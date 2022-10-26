@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Santiago-LTP\\Documents\\final\\SantaInesAPI\\SantaInesAPI.csproj": {}
+    "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Santiago-LTP\\Documents\\final\\SantaInesAPI\\SantaInesAPI.csproj": {
+    "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Santiago-LTP\\Documents\\final\\SantaInesAPI\\SantaInesAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj",
         "projectName": "SantaInesAPI",
-        "projectPath": "C:\\Users\\Santiago-LTP\\Documents\\final\\SantaInesAPI\\SantaInesAPI.csproj",
+        "projectPath": "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj",
         "packagesPath": "C:\\Users\\Santiago-LTP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Santiago-LTP\\Documents\\final\\SantaInesAPI\\obj\\",
+        "outputPath": "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Santiago-LTP\\AppData\\Roaming\\NuGet\\NuGet.Config",

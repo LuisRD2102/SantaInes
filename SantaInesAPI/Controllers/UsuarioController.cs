@@ -11,12 +11,14 @@ namespace SantaInesAPI.Controllers
     {
 
         private readonly IUsuarioDAO _dao;
+        private readonly IDireccionDAO _daoDireccion;
         private readonly ILogger<UsuarioController> _log;
 
-        public UsuarioController(IUsuarioDAO dao, ILogger<UsuarioController> log)
+        public UsuarioController(IUsuarioDAO dao, ILogger<UsuarioController> log, IDireccionDAO daoDireccion)
         {
             this._dao = dao;
             this._log = log;
+            this._daoDireccion = daoDireccion;
         }
 
         [HttpGet]
@@ -68,12 +70,12 @@ namespace SantaInesAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("EliminarUsuario/{id}")]
-        public ActionResult<UsuarioDTO> EliminarTipoCargo([FromRoute] String username)
+        [Route("EliminarUsuario/{username}/{idDireccion}")]
+        public ActionResult<UsuarioDTO> EliminarTipoCargo([FromRoute] String username, [FromRoute] Guid idDireccion)
         {
             try
             {
-                return _dao.EliminarUsuarioDAO(username);
+                return _dao.EliminarUsuarioDAO(username,idDireccion);
             }
             catch (Exception ex)
             {

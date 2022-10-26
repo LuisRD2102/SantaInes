@@ -14,5 +14,6 @@ namespace SantaInesAPI.BussinessLogic.DTO
         public string Sexo { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
+        public Guid Id_direccion { get; set; }
     }
 }

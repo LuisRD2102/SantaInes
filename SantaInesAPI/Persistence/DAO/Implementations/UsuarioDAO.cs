@@ -33,7 +33,8 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                         Fecha_Nacimiento = u.fecha_nacimiento,
                         Sexo = u.sexo,
                         Telefono = u.telefono,
-                        Email = u.email
+                        Email = u.email,
+                        Id_direccion=u.id_direccion
                     }
                 );
                 return data.First();
@@ -63,7 +64,8 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                                 Fecha_Nacimiento = u.fecha_nacimiento,
                                 Sexo = u.sexo,
                                 Telefono = u.telefono,
-                                Email = u.email
+                                Email = u.email,
+                                Id_direccion = u.id_direccion
                             });
 
                 return data.First();
@@ -91,7 +93,8 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                         Fecha_Nacimiento = u.fecha_nacimiento,
                         Sexo = u.sexo,
                         Telefono = u.telefono,
-                        Email = u.email
+                        Email = u.email,
+                        Id_direccion = u.id_direccion
                     }
                 );
 
@@ -105,14 +108,18 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
         }
 
-        public UsuarioDTO EliminarUsuarioDAO(String username)
+        public UsuarioDTO EliminarUsuarioDAO(String username,Guid idDireccion)
         {
             try
             {
                 var usuario = _context.Usuario
-                .Where(u => u.username == username).First();
+                .Where(u => u.username == username && u.id_direccion==idDireccion).First();
 
                 _context.Usuario.Remove(usuario);
+                _context.SaveChanges();
+                var direccionAsoc = _context.Direccion
+                .Where(d => d.id == idDireccion).First();
+                _context.Direccion.Remove(direccionAsoc);
                 _context.SaveChanges();
 
                 return UsuarioMapper.EntityToDTO(usuario);

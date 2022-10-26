@@ -51,7 +51,7 @@ namespace SantaInesAPI.Controllers
             }
         }
         [HttpPut]
-        [Route("ActualizarDireccion/{id}")]
+        [Route("ActualizarDireccion/")]
         public ActionResult<DireccionDTO> ActualizarDireccion([FromBody] DireccionDTO direccion)
         {
             try
@@ -67,7 +67,7 @@ namespace SantaInesAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("EliminarDireccion/{id}")]
+        [Route("EliminarDireccion/{guidDireccion}")]
         public ActionResult<DireccionDTO> EliminarDireccion([FromRoute] Guid id)
         {
             try

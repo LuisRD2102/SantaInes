@@ -17,7 +17,8 @@ namespace SantaInesAPI.BussinessLogic.Mapper
                 Fecha_Nacimiento = u.fecha_nacimiento,
                 Sexo = u.sexo,
                 Telefono = u.telefono,
-                Email = u.email
+                Email = u.email,
+                Id_direccion = u.id_direccion
             };
         }
 
@@ -33,7 +34,8 @@ namespace SantaInesAPI.BussinessLogic.Mapper
                 fecha_nacimiento = u.Fecha_Nacimiento,
                 sexo = u.Sexo,
                 telefono = u.Telefono,
-                email = u.Email
+                email = u.Email,
+                id_direccion = u.Id_direccion
             };
         }
 
