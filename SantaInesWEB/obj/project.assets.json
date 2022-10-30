@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\luisr\\.nuget\\packages\\": {}
+    "C:\\Users\\Santiago-LTP\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\luisr\\OneDrive\\Documentos\\GitHub\\SantaInes\\SantaInesWEB\\SantaInesWEB.csproj",
+      "projectUniqueName": "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesWEB\\SantaInesWEB.csproj",
       "projectName": "SantaInesWEB",
-      "projectPath": "C:\\Users\\luisr\\OneDrive\\Documentos\\GitHub\\SantaInes\\SantaInesWEB\\SantaInesWEB.csproj",
-      "packagesPath": "C:\\Users\\luisr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\luisr\\OneDrive\\Documentos\\GitHub\\SantaInes\\SantaInesWEB\\obj\\",
+      "projectPath": "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesWEB\\SantaInesWEB.csproj",
+      "packagesPath": "C:\\Users\\Santiago-LTP\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesWEB\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\luisr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Santiago-LTP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

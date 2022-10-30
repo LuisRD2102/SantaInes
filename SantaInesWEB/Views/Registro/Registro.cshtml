@@ -1,0 +1,17 @@
+﻿@model SantaInesWEB.Models.RegisterModel
+@{
+        ViewData["Title"] = "Registro";
+}
+<h1>REGISTRO</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Label("Usuario")
+    @Html.TextBoxFor(m => m.username, new { @class = "form-control" })
+    <br />
+    @Html.Label("Contraseña")
+    @Html.PasswordFor(m => m.password,new { @class = "form-control" })
+    <br />
+    <input type="submit" />
+}
