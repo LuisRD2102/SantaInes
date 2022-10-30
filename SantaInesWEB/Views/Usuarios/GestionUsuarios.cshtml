@@ -1,0 +1,82 @@
+﻿@model List<SantaInesWEB.DTO.UsuarioDTO>
+@{
+        ViewData["Title"] = "Gestion Usuarios";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Usuario
+        </th>
+        <th>
+            Contraseña
+        </th>
+        <th>
+            Cedula
+        </th>
+        <th>
+            Nombres
+        </th>
+        <th>
+            Apellidos
+        </th>
+        <th >
+            Fecha Nacimiento
+        </th>
+        <th>
+            Sexo
+        </th>
+        <th>
+            Telefono
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Guid Direccion
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(i => item.username)
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.password)
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.nombre_Completo)
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.apellido_Completo)
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.fecha_Nacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.sexo)
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.email)
+            </td>
+             <td>
+                @Html.DisplayFor(i => item.id_direccion)
+            </td>
+            <td>
+                @Html.ActionLink("Detalles", "") |
+                @Html.ActionLink("Editar", "") |
+                @Html.ActionLink("Eliminar", "")
+            </td>
+        </tr>
+    }
+
+</table>
