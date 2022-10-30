@@ -70,12 +70,12 @@ namespace SantaInesAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("EliminarUsuario/{username}/{idDireccion}")]
-        public ActionResult<UsuarioDTO> EliminarTipoCargo([FromRoute] String username, [FromRoute] Guid idDireccion)
+        [Route("EliminarUsuario/{username}")]
+        public ActionResult<UsuarioDTO> EliminarTipoCargo([FromRoute] String username)
         {
             try
             {
-                return _dao.EliminarUsuarioDAO(username,idDireccion);
+                return _dao.EliminarUsuarioDAO(username);
             }
             catch (Exception ex)
             {

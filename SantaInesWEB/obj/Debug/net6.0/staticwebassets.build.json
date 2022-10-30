@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/RGCb5UZDGAN9Y0RhfoxQaJ2k3SyKdlI3fCgqmS5JPA=",
+  "Hash": "voXfEu7Ya1abVXN1cynGL6ZvlPIBh3QJx4Ne1VRoj88=",
   "Source": "SantaInesWEB",
   "BasePath": "_content/SantaInesWEB",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesWEB\\wwwroot\\css\\styles.css",
+      "SourceId": "SantaInesWEB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesWEB\\wwwroot\\",
+      "BasePath": "_content/SantaInesWEB",
+      "RelativePath": "css/styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styles.css"
     },
     {
       "Identity": "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesWEB\\wwwroot\\favicon.ico",

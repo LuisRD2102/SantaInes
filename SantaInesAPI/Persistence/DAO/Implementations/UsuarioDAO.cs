@@ -108,13 +108,14 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
         }
 
-        public UsuarioDTO EliminarUsuarioDAO(String username,Guid idDireccion)
+        public UsuarioDTO EliminarUsuarioDAO(String username)
         {
             try
             {
                 var usuario = _context.Usuario
-                .Where(u => u.username == username && u.id_direccion==idDireccion).First();
+                    .Where(u => u.username == username).First();
 
+                Guid idDireccion = usuario.id_direccion;
                 _context.Usuario.Remove(usuario);
                 _context.SaveChanges();
                 var direccionAsoc = _context.Direccion

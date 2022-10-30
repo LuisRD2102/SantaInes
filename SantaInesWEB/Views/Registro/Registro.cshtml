@@ -3,15 +3,58 @@
         ViewData["Title"] = "Registro";
 }
 <h1>REGISTRO</h1>
+<head>
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+</head>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("RegistroExitoso","Registro",FormMethod.Post))
 {
-    @Html.AntiForgeryToken()
-    @Html.Label("Usuario")
-    @Html.TextBoxFor(m => m.username, new { @class = "form-control" })
+    <span>Nombre de usuario:</span> @Html.TextBoxFor(m => m.username)
+    @Html.ValidationMessageFor(m => m.username ,"",new { @class = "prueba" })
     <br />
-    @Html.Label("Contraseña")
-    @Html.PasswordFor(m => m.password,new { @class = "form-control" })
     <br />
-    <input type="submit" />
+    <span>Contraseña: </span> @Html.PasswordFor(m => m.password)
+    @Html.ValidationMessageFor(m => m.password ,"",new { @class = "prueba" })
+    <br />
+    <br />
+    <span>Repetir Contraseña: </span> @Html.PasswordFor(m => m.password2)
+    @Html.ValidationMessageFor(m => m.password2 ,"",new { @class = "prueba" })
+    <br />
+    <br />
+    <span>Cédula: </span> @Html.TextBoxFor(m => m.cedula,new { type = "number" })
+    @Html.ValidationMessageFor(m => m.cedula ,"",new { @class = "prueba" })
+    <br />
+    <br />
+    <span>Nombre(s): </span> @Html.TextBoxFor(m => m.nombre_Completo)
+    @Html.ValidationMessageFor(m => m.nombre_Completo ,"",new { @class = "prueba" })
+    <br />
+    <br />
+    <span>Apellido(s): </span> @Html.TextBoxFor(m => m.apellido_Completo)
+    @Html.ValidationMessageFor(m => m.apellido_Completo ,"",new { @class = "prueba" })
+    <br />
+    <br />
+    <span>Fecha de nacimiento: </span> @Html.TextBoxFor(m => m.fecha_Nacimiento,new { type = "date" })
+    @Html.ValidationMessageFor(m => m.fecha_Nacimiento ,"",new { @class = "prueba" })
+    <br />
+    <br />
+    <span>Género: </span> @Html.DropDownListFor(m => m.sexo, new List<SelectListItem>
+       {
+            new SelectListItem { Text = "M", Value = "M"},
+            new SelectListItem { Text = "F", Value = "F"},
+       }, "Selecionar género")
+    @Html.ValidationMessageFor(m => m.sexo ,"",new { @class = "prueba" })
+    <br />
+    <br />
+    <span>Teléfono: </span> @Html.TextBoxFor(m => m.telefono)
+    @Html.ValidationMessageFor(m => m.telefono ,"",new { @class = "prueba" ,mask=""})
+    <br />
+    <br />
+    <span>Email: </span> @Html.TextBoxFor(m => m.email, new { placeholder = "example@gmail.com", })
+    @Html.ValidationMessageFor(m => m.email ,"",new { @class = "text-danger" })
+    <br />
+    <br />
+    <input type="submit" value="Crear Cuenta" />
 }
