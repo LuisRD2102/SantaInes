@@ -8,8 +8,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 </head>
 
+<body>
+
+    <script type="text/javascript">
+            jQuery(function ($) {
+               $("#telefono").mask("(999) 999-9999");
+            });
+
+        </script>
+    
 @using (Html.BeginForm("RegistroExitoso","Registro",FormMethod.Post))
 {
     <span>Nombre de usuario:</span> @Html.TextBoxFor(m => m.username)
@@ -48,8 +58,8 @@
     @Html.ValidationMessageFor(m => m.sexo ,"",new { @class = "prueba" })
     <br />
     <br />
-    <span>Teléfono: </span> @Html.TextBoxFor(m => m.telefono)
-    @Html.ValidationMessageFor(m => m.telefono ,"",new { @class = "prueba" ,mask=""})
+        <span>Teléfono: </span> @Html.TextBoxFor(m => m.telefono)
+    @Html.ValidationMessageFor(m => m.telefono ,"",new { @class = "prueba"})
     <br />
     <br />
     <span>Email: </span> @Html.TextBoxFor(m => m.email, new { placeholder = "example@gmail.com", })
@@ -57,4 +67,13 @@
     <br />
     <br />
     <input type="submit" value="Crear Cuenta" />
+
+
+        
+    @*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquerymask")
+    }*@
 }
+</body>
+

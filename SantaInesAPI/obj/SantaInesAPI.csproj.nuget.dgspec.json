@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj": {}
+    "C:\\Users\\luisr\\OneDrive\\Documentos\\GitHub\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj": {
+    "C:\\Users\\luisr\\OneDrive\\Documentos\\GitHub\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj",
+        "projectUniqueName": "C:\\Users\\luisr\\OneDrive\\Documentos\\GitHub\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj",
         "projectName": "SantaInesAPI",
-        "projectPath": "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj",
-        "packagesPath": "C:\\Users\\Santiago-LTP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesAPI\\obj\\",
+        "projectPath": "C:\\Users\\luisr\\OneDrive\\Documentos\\GitHub\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj",
+        "packagesPath": "C:\\Users\\luisr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\luisr\\OneDrive\\Documentos\\GitHub\\SantaInes\\SantaInesAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Santiago-LTP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\luisr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -63,6 +63,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "jQuery.MaskedInput": {
+              "target": "Package",
+              "version": "[1.4.1, )"
             }
           },
           "imports": [
@@ -84,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

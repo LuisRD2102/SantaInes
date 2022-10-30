@@ -41,7 +41,6 @@ namespace SantaInesWEB.Models
 
 
         [Required(ErrorMessage = "Introduzca teléfono")]
-        [Mask]
         public string telefono { get; set; }
 
 

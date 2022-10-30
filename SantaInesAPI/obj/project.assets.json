@@ -15,6 +15,15 @@
           }
         }
       },
+      "jQuery/1.9.0": {
+        "type": "package"
+      },
+      "jQuery.MaskedInput/1.4.1": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "1.9.0"
+        }
+      },
       "Microsoft.CSharp/4.5.0": {
         "type": "package",
         "compile": {
@@ -887,6 +896,39 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "jQuery/1.9.0": {
+      "sha512": "bS6OGSd/QL39vKKhATpeehgZDCzV6foRJ52EocEGAB29VetwXkQHN6KQIBlBbW9VJzuHr+rQxHYZ13MnPGQ/vw==",
+      "type": "package",
+      "path": "jquery/1.9.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/Scripts/jquery-1.9.0-vsdoc.js",
+        "Content/Scripts/jquery-1.9.0.js",
+        "Content/Scripts/jquery-1.9.0.min.js",
+        "Content/Scripts/jquery-1.9.0.min.map",
+        "Tools/common.ps1",
+        "Tools/install.ps1",
+        "Tools/jquery-1.9.0.intellisense.js",
+        "Tools/uninstall.ps1",
+        "jquery.1.9.0.nupkg.sha512",
+        "jquery.nuspec"
+      ]
+    },
+    "jQuery.MaskedInput/1.4.1": {
+      "sha512": "U/XBjJtENm8HhAm5PjOxlaH+q13PpTJpvDJOPg1bTU0uMssn8pXalqgIqYyg9dvytfodAPneOSwXBG+FxetELA==",
+      "type": "package",
+      "path": "jquery.maskedinput/1.4.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/scripts/jquery.maskedinput.js",
+        "content/scripts/jquery.maskedinput.min.js",
+        "jquery.maskedinput.1.4.1.nupkg.sha512",
+        "jquery.maskedinput.nuspec"
       ]
     },
     "Microsoft.CSharp/4.5.0": {
@@ -2223,23 +2265,24 @@
       "Microsoft.EntityFrameworkCore.Design >= 6.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.10",
-      "Swashbuckle.AspNetCore >= 6.2.3"
+      "Swashbuckle.AspNetCore >= 6.2.3",
+      "jQuery.MaskedInput >= 1.4.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Santiago-LTP\\.nuget\\packages\\": {}
+    "C:\\Users\\luisr\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj",
+      "projectUniqueName": "C:\\Users\\luisr\\OneDrive\\Documentos\\GitHub\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj",
       "projectName": "SantaInesAPI",
-      "projectPath": "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj",
-      "packagesPath": "C:\\Users\\Santiago-LTP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Santiago-LTP\\source\\repos\\SantaInes\\SantaInesAPI\\obj\\",
+      "projectPath": "C:\\Users\\luisr\\OneDrive\\Documentos\\GitHub\\SantaInes\\SantaInesAPI\\SantaInesAPI.csproj",
+      "packagesPath": "C:\\Users\\luisr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\luisr\\OneDrive\\Documentos\\GitHub\\SantaInes\\SantaInesAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Santiago-LTP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\luisr\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2288,6 +2331,10 @@
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[6.2.3, )"
+          },
+          "jQuery.MaskedInput": {
+            "target": "Package",
+            "version": "[1.4.1, )"
           }
         },
         "imports": [
@@ -2309,7 +2356,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
