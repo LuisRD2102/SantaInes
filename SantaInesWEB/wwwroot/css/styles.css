@@ -236,7 +236,8 @@ body {
             }
 
             .form-v10-content .form-detail .form-right select option {
-                background: var(--primary-color);
+                background: #fff;
+                color: black;
             }
 
             
@@ -325,7 +326,12 @@ body {
 
             .form-v10-content .form-detail .form-right .register:hover {
                 background: var(--primary-color-dark);
-                color:#fff;
+                color: #fff;
+                box-shadow: none;
+                -o-box-shadow: none;
+                -ms-box-shadow: none;
+                -moz-box-shadow: none;
+                -webkit-box-shadow: none;
             }
 
         .form-v10-content .form-detail .form-right .form-row-last input {
