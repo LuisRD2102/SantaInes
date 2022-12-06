@@ -5,15 +5,15 @@ namespace SantaInesAPI.BussinessLogic.DTO
 {
     public class UsuarioDTO
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public int Cedula { get; set; }
-        public string Nombre_Completo { get; set; }
-        public string Apellido_Completo { get; set; }
-        public DateTime Fecha_Nacimiento { get; set; }
-        public string Sexo { get; set; }
-        public string Telefono { get; set; }
-        public string Email { get; set; }
-        public Guid Id_direccion { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public int cedula { get; set; }
+        public string nombre_Completo { get; set; }
+        public string apellido_Completo { get; set; }
+        public DateTime fecha_Nacimiento { get; set; }
+        public string sexo { get; set; }
+        public string telefono { get; set; }
+        public string email { get; set; }
+        public Guid id_direccion { get; set; }
     }
 }

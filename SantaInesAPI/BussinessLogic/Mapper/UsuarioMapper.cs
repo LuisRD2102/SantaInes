@@ -9,16 +9,16 @@ namespace SantaInesAPI.BussinessLogic.Mapper
         {
             return new UsuarioDTO()
             {
-                Username = u.username,
-                Password = u.password,
-                Cedula = u.cedula,
-                Nombre_Completo = u.nombre_completo,
-                Apellido_Completo = u.apellido_completo,
-                Fecha_Nacimiento = u.fecha_nacimiento,
-                Sexo = u.sexo,
-                Telefono = u.telefono,
-                Email = u.email,
-                Id_direccion = u.id_direccion
+                username = u.username,
+                password = u.password,
+                cedula = u.cedula,
+                nombre_Completo = u.nombre_completo,
+                apellido_Completo = u.apellido_completo,
+                fecha_Nacimiento = u.fecha_nacimiento,
+                sexo = u.sexo,
+                telefono = u.telefono,
+                email = u.email,
+                id_direccion = u.id_direccion
             };
         }
 
@@ -26,16 +26,16 @@ namespace SantaInesAPI.BussinessLogic.Mapper
         {
             return new Usuario()
             {
-                username = u.Username,
-                password = u.Password,
-                cedula = u.Cedula,
-                nombre_completo = u.Nombre_Completo,
-                apellido_completo = u.Apellido_Completo,
-                fecha_nacimiento = u.Fecha_Nacimiento,
-                sexo = u.Sexo,
-                telefono = u.Telefono,
-                email = u.Email,
-                id_direccion = u.Id_direccion
+                username = u.username,
+                password = u.password,
+                cedula = u.cedula,
+                nombre_completo = u.nombre_Completo,
+                apellido_completo = u.apellido_Completo,
+                fecha_nacimiento = u.fecha_Nacimiento,
+                sexo = u.sexo,
+                telefono = u.telefono,
+                email = u.email,
+                id_direccion = u.id_direccion
             };
         }
 

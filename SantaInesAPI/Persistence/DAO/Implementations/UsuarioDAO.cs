@@ -25,16 +25,16 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 var data = _context.Usuario.Where(u => u.username == usuario.username).Select(
                     u => new UsuarioDTO
                     {
-                        Username = u.username,
-                        Password = u.password,
-                        Cedula = u.cedula,
-                        Nombre_Completo = u.nombre_completo,
-                        Apellido_Completo = u.apellido_completo,
-                        Fecha_Nacimiento = u.fecha_nacimiento,
-                        Sexo = u.sexo,
-                        Telefono = u.telefono,
-                        Email = u.email,
-                        Id_direccion=u.id_direccion
+                        username = u.username,
+                        password = u.password,
+                        cedula = u.cedula,
+                        nombre_Completo = u.nombre_completo,
+                        apellido_Completo = u.apellido_completo,
+                        fecha_Nacimiento = u.fecha_nacimiento,
+                        sexo = u.sexo,
+                        telefono = u.telefono,
+                        email = u.email,
+                        id_direccion=u.id_direccion
                     }
                 );
                 return data.First();
@@ -56,16 +56,16 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 var data = _context.Usuario.Where(u => u.username == usuario.username)
                             .Select(u => new UsuarioDTO
                             {
-                                Username = u.username,
-                                Password = u.password,
-                                Cedula = u.cedula,
-                                Nombre_Completo = u.nombre_completo,
-                                Apellido_Completo = u.apellido_completo,
-                                Fecha_Nacimiento = u.fecha_nacimiento,
-                                Sexo = u.sexo,
-                                Telefono = u.telefono,
-                                Email = u.email,
-                                Id_direccion = u.id_direccion
+                                username = u.username,
+                                password = u.password,
+                                cedula = u.cedula,
+                                nombre_Completo = u.nombre_completo,
+                                apellido_Completo = u.apellido_completo,
+                                fecha_Nacimiento = u.fecha_nacimiento,
+                                sexo = u.sexo,
+                                telefono = u.telefono,
+                                email = u.email,
+                                id_direccion = u.id_direccion
                             });
 
                 return data.First();
@@ -85,16 +85,16 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 var lista = _context.Usuario.Select(
                     u => new UsuarioDTO
                     {
-                        Username = u.username,
-                        Password = u.password,
-                        Cedula = u.cedula,
-                        Nombre_Completo = u.nombre_completo,
-                        Apellido_Completo = u.apellido_completo,
-                        Fecha_Nacimiento = u.fecha_nacimiento,
-                        Sexo = u.sexo,
-                        Telefono = u.telefono,
-                        Email = u.email,
-                        Id_direccion = u.id_direccion
+                        username = u.username,
+                        password = u.password,
+                        cedula = u.cedula,
+                        nombre_Completo = u.nombre_completo,
+                        apellido_Completo = u.apellido_completo,
+                        fecha_Nacimiento = u.fecha_nacimiento,
+                        sexo = u.sexo,
+                        telefono = u.telefono,
+                        email = u.email,
+                        id_direccion = u.id_direccion
                     }
                 );
 

@@ -25,13 +25,11 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 var data = _context.Direccion.Where(d => d.id == direccion.id).Select(
                     d => new DireccionDTO
                     {
-                        Id = d.id,
-                        Estado = d.estado,
-                        Municipio = d.municipio,
-                        Calle = d.calle,
-                        EdifCasa = d.edif_casa,
-                        NumCasaApto = d.num_casa_apto,
-                        CodPostal = d.cod_postal
+                        id = d.id,
+                        estado = d.estado,
+                        municipio = d.municipio,
+                        direccion = d.direccion,
+                        codPostal = d.cod_postal
                     }
                 );
                 return data.First();
@@ -53,13 +51,11 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 var data = _context.Direccion.Where(d => d.id == direccion.id)
                             .Select(d => new DireccionDTO
                             {
-                                Id = d.id,
-                                Estado = d.estado,
-                                Municipio = d.municipio,
-                                Calle = d.calle,
-                                EdifCasa = d.edif_casa,
-                                NumCasaApto = d.num_casa_apto,
-                                CodPostal = d.cod_postal
+                                id = d.id,
+                                estado = d.estado,
+                                municipio = d.municipio,
+                                direccion = d.direccion,
+                                codPostal = d.cod_postal
                             });
 
                 return data.First();
@@ -79,13 +75,11 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 var lista = _context.Direccion.Select(
                     d => new DireccionDTO
                     {
-                        Id = d.id,
-                        Estado = d.estado,
-                        Municipio = d.municipio,
-                        Calle = d.calle,
-                        EdifCasa = d.edif_casa,
-                        NumCasaApto = d.num_casa_apto,
-                        CodPostal = d.cod_postal
+                        id = d.id,
+                        estado = d.estado,
+                        municipio = d.municipio,
+                        direccion = d.direccion,
+                        codPostal = d.cod_postal
                     }
                 );
 

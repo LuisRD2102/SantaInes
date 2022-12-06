@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.EntityFrameworkCore;
 using SantaInesAPI.Persistence.Database;
 using SantaInesAPI.Persistence.Entity;
+using System.Reflection.Metadata;
 
 
 namespace SantaInesAPI.Persistence.Database
@@ -12,7 +13,10 @@ namespace SantaInesAPI.Persistence.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<Direccion>()
+            .HasOne(b => b.Usuario)
+            .WithOne(i => i.Direccion)
+            .HasForeignKey<Usuario>(b => b.id_direccion);
         }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Direccion> Direccion { get; set; }

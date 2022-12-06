@@ -8,7 +8,7 @@ using SantaInesAPI.Persistence.Database;
 
 #nullable disable
 
-namespace SantaInesAPI.migrations
+namespace SantaInesAPI.Migrations
 {
     [DbContext(typeof(MigrationDbContext))]
     partial class MigrationDbContextModelSnapshot : ModelSnapshot
@@ -28,14 +28,10 @@ namespace SantaInesAPI.migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("calle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("cod_postal")
                         .HasColumnType("int");
 
-                    b.Property<string>("edif_casa")
+                    b.Property<string>("direccion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -44,10 +40,6 @@ namespace SantaInesAPI.migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("municipio")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("num_casa_apto")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -96,25 +88,27 @@ namespace SantaInesAPI.migrations
 
                     b.HasKey("username");
 
-                    b.HasIndex("id_direccion");
+                    b.HasIndex("id_direccion")
+                        .IsUnique();
 
                     b.ToTable("Usuario");
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Usuario", b =>
                 {
-                    b.HasOne("SantaInesAPI.Persistence.Entity.Direccion", "direccion")
-                        .WithMany("usuarios")
-                        .HasForeignKey("id_direccion")
+                    b.HasOne("SantaInesAPI.Persistence.Entity.Direccion", "Direccion")
+                        .WithOne("Usuario")
+                        .HasForeignKey("SantaInesAPI.Persistence.Entity.Usuario", "id_direccion")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("direccion");
+                    b.Navigation("Direccion");
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Direccion", b =>
                 {
-                    b.Navigation("usuarios");
+                    b.Navigation("Usuario")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

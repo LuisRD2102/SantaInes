@@ -38,7 +38,7 @@ namespace SantaInesAPI.Controllers
 
         [HttpPost]
         [Route("CrearUsuario/")]
-        public ActionResult<UsuarioDTO> AgregarTipoCargo([FromBody] UsuarioDTO dto1)
+        public ActionResult<UsuarioDTO> AgregarUsuario([FromBody] UsuarioDTO dto1)
         {
             try
             {
