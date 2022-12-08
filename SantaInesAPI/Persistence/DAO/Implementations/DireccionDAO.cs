@@ -55,7 +55,8 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                                 estado = d.estado,
                                 municipio = d.municipio,
                                 direccion = d.direccion,
-                                codPostal = d.cod_postal
+                                codPostal = d.cod_postal                             
+
                             });
 
                 return data.First();

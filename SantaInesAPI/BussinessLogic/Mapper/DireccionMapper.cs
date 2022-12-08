@@ -22,7 +22,7 @@ namespace SantaInesAPI.BussinessLogic.Mapper
         {
             return new Direccion()
             {
-                id = Guid.NewGuid(),
+                id = d.id,
                 estado = d.estado,
                 municipio = d.municipio,
                 direccion = d.direccion,

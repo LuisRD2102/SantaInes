@@ -48,5 +48,6 @@ namespace SantaInesWEB.Models
         [Required(ErrorMessage = "Introduzca un correo")]
         [EmailAddress(ErrorMessage ="Introduzca un correo válido")]
         public string email { get; set; }
+
     }
 }
