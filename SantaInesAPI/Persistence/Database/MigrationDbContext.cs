@@ -20,5 +20,6 @@ namespace SantaInesAPI.Persistence.Database
         }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Direccion> Direccion { get; set; }
+        public DbSet<Departamento> Departamentos { get; set; }
     }
 }

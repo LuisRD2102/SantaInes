@@ -1,5 +1,6 @@
 ﻿using SantaInesAPI.BussinessLogic.DTO;
 using SantaInesAPI.BussinessLogic.Mapper;
+using SantaInesAPI.Migrations;
 using SantaInesAPI.Persistence.DAO.Interface;
 using SantaInesAPI.Persistence.Database;
 using SantaInesAPI.Persistence.Entity;
@@ -50,8 +51,10 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
         {
             try
             {
-                _context.Usuario.Add(usuario);
-                _context.SaveChanges();
+                if (!(ExisteCedula(usuario))) {
+                    _context.Usuario.Add(usuario);
+                    _context.SaveChanges();
+                }               
 
                 var data = _context.Usuario.Where(u => u.username == usuario.username)
                             .Select(u => new UsuarioDTO
@@ -131,6 +134,24 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 Console.WriteLine(ex.Message + " || " + ex.StackTrace);
                 throw new Exception("Fallo al Eliminar por usuario: " + username, ex);
             }
+        }
+
+        public bool ExisteCedula(Usuario usuario)
+        {
+            bool existe = false;
+
+            try
+            {
+                var nuevoUsuario = _context.Usuario.Where(d => d.cedula.Equals(usuario.cedula));
+                if (nuevoUsuario.Count() != 0)
+                    existe = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " || " + ex.StackTrace);
+                throw new Exception("Usuario no encontrado: " + usuario, ex);
+            }
+            return existe;
         }
     }
 }

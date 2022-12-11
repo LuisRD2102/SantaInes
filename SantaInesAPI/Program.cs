@@ -18,6 +18,7 @@ builder.Services.AddDbContext<MigrationDbContext>(options =>
 
 /*Inyeccion de dependencias*/
 builder.Services.AddTransient<IUsuarioDAO, UsuarioDAO>();
+builder.Services.AddTransient<IDepartamentoDAO, DepartamentoDAO>();
 builder.Services.AddTransient<IDireccionDAO, DireccionDAO>();
 
 var app = builder.Build();

@@ -5,10 +5,23 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SantaInesAPI.Migrations
 {
-    public partial class Migracion_Inicial : Migration
+    public partial class Departamentos : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Departamentos",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Departamentos", x => x.id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Direccion",
                 columns: table => new
@@ -37,11 +50,17 @@ namespace SantaInesAPI.Migrations
                     sexo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    id_direccion = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    id_direccion = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Departamentoid = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuario", x => x.username);
+                    table.ForeignKey(
+                        name: "FK_Usuario_Departamentos_Departamentoid",
+                        column: x => x.Departamentoid,
+                        principalTable: "Departamentos",
+                        principalColumn: "id");
                     table.ForeignKey(
                         name: "FK_Usuario_Direccion_id_direccion",
                         column: x => x.id_direccion,
@@ -49,6 +68,11 @@ namespace SantaInesAPI.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuario_Departamentoid",
+                table: "Usuario",
+                column: "Departamentoid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Usuario_id_direccion",
@@ -61,6 +85,9 @@ namespace SantaInesAPI.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Usuario");
+
+            migrationBuilder.DropTable(
+                name: "Departamentos");
 
             migrationBuilder.DropTable(
                 name: "Direccion");

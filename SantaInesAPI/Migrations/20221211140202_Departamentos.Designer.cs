@@ -12,8 +12,8 @@ using SantaInesAPI.Persistence.Database;
 namespace SantaInesAPI.Migrations
 {
     [DbContext(typeof(MigrationDbContext))]
-    [Migration("20221204203841_Migracion_Inicial")]
-    partial class Migracion_Inicial
+    [Migration("20221211140202_Departamentos")]
+    partial class Departamentos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,25 @@ namespace SantaInesAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Departamento", b =>
+                {
+                    b.Property<Guid>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Departamentos");
+                });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Direccion", b =>
                 {
@@ -54,6 +73,9 @@ namespace SantaInesAPI.Migrations
                 {
                     b.Property<string>("username")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid?>("Departamentoid")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("apellido_completo")
                         .IsRequired()
@@ -90,6 +112,8 @@ namespace SantaInesAPI.Migrations
 
                     b.HasKey("username");
 
+                    b.HasIndex("Departamentoid");
+
                     b.HasIndex("id_direccion")
                         .IsUnique();
 
@@ -98,6 +122,10 @@ namespace SantaInesAPI.Migrations
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Usuario", b =>
                 {
+                    b.HasOne("SantaInesAPI.Persistence.Entity.Departamento", null)
+                        .WithMany("usuarios")
+                        .HasForeignKey("Departamentoid");
+
                     b.HasOne("SantaInesAPI.Persistence.Entity.Direccion", "Direccion")
                         .WithOne("Usuario")
                         .HasForeignKey("SantaInesAPI.Persistence.Entity.Usuario", "id_direccion")
@@ -105,6 +133,11 @@ namespace SantaInesAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Direccion");
+                });
+
+            modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Departamento", b =>
+                {
+                    b.Navigation("usuarios");
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Direccion", b =>

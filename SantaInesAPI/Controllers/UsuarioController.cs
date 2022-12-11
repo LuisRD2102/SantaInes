@@ -71,7 +71,7 @@ namespace SantaInesAPI.Controllers
 
         [HttpDelete]
         [Route("EliminarUsuario/{username}")]
-        public ActionResult<UsuarioDTO> EliminarTipoCargo([FromRoute] String username)
+        public ActionResult<UsuarioDTO> EliminarUsuario([FromRoute] String username)
         {
             try
             {

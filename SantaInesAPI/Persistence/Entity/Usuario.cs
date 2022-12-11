@@ -15,8 +15,10 @@ namespace SantaInesAPI.Persistence.Entity
         public string sexo { get; set; }
         public string telefono { get; set; }
         public string email { get; set; }
-
         public Guid id_direccion { get; set; }
         public virtual Direccion Direccion { get; set; }
-}
+        //public Guid? idDepartamento { get; set; }
+        //public virtual Departamento departamento { get; set; }
+
+    }
 }
