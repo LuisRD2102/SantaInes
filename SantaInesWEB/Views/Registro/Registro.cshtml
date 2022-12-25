@@ -93,6 +93,8 @@
 	<link rel="stylesheet" type="text/css" href="~/css/montserrat-font.css">
 	<link rel="stylesheet" type="text/css" href="~/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">	
     <link rel="stylesheet" href="~/css/styles.css"/>
+	
+	<script src="https://kit.fontawesome.com/34fd9ed5f9.js" crossorigin="anonymous"></script>
 </head>
 
 @section scripts{
@@ -101,6 +103,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+	<script src="~/js/Registro.js"></script>
+
 
     <script>
         $(function () {
@@ -111,7 +115,20 @@
 			this.style.color = "black";
 		}
 
+		const input = document.querySelector("input");
+
+		input.addEventListener("keyup", () => {
+
+			if (input.value===1) {
+				console.log("Hola");
+			}
+
+		})
+
+
     </script>
+
+	
 }
 
 	<div class="page-content">
@@ -122,16 +139,22 @@
 					<h2>Información General</h2>
 				
 					<div class="form-row">
-						<input type="number" name="cedula" placeholder="Cédula" required>
+						@*<input type="number" class="cedula" name="cedula" placeholder="Cédula" required>*@
+						@Html.TextBoxFor(m => m.Item1.cedula, new{Placeholder = "Cédula" })
+						@Html.ValidationMessageFor(m => m.Item1.cedula ,null, new { @class = "text-danger" })
+						
 					</div>
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="nombre_Completo" placeholder="Nombre(s)" required>
-							
+							@*<input type="text" name="nombre_Completo" placeholder="Nombre(s)" required>*@
+							@Html.TextBoxFor(m => m.Item1.nombre_Completo, new{Placeholder = "Nombre(s)" })
+							@Html.ValidationMessageFor(m => m.Item1.nombre_Completo ,null, new { @class = "text-danger" })							
 						</div>
 						<div class="form-row form-row-2">
-							<input type="text" name="apellido_Completo" placeholder="Apellido(s)" required>
-						</div>
+							@*<input type="text" name="apellido_Completo" placeholder="Apellido(s)" required>*@
+							@Html.TextBoxFor(m => m.Item1.apellido_Completo, new{Placeholder = "Apellido(s)" })
+							@Html.ValidationMessageFor(m => m.Item1.apellido_Completo ,null, new { @class = "text-danger" })
+					</div>
 					</div>					
 					<div class="form-row">
 						<input type="date" id = "fecha" style="color:#666" name="fecha_Nacimiento" placeholder="Fecha de nacimiento" min="1940-01-01" required>
@@ -139,7 +162,9 @@
 					
 					<div class="form-group">
 						<div class="form-row form-row-3">
-							<input type="text" name="telefono" id="telefono" placeholder="Teléfono" required>
+							@*<input type="text" name="telefono" id="telefono" placeholder="Teléfono" required>*@
+						@Html.TextBoxFor(m => m.Item1.telefono, new{Placeholder = "Teléfono", id = "telefono"})
+							@Html.ValidationMessageFor(m => m.Item1.telefono ,null, new { @class = "text-danger" })
 						</div>
 						<div class="form-row form-row-4">
 						<select name="sexo">
@@ -155,24 +180,30 @@
 					
 					<h2>Información de Usuario</h2>
 					<div class="form-row">
-						<input type="text" name="username" placeholder="Usuario" required>					
+						@*<input type="text" name="username" placeholder="Usuario" required>*@
+						@Html.TextBoxFor(m => m.Item1.username, new{Placeholder = "Usuario" })
+						@Html.ValidationMessageFor(m => m.Item1.username ,null, new { @class = "text-danger" })
 					</div>
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="password" name="password" placeholder="Contraseña" required>
+							@*<input type="password" name="password" placeholder="Contraseña" required>*@
+							@Html.TextBoxFor(m => m.Item1.password, new{Placeholder = "Contraseña" })
+							@Html.ValidationMessageFor(m => m.Item1.password ,null, new { @class = "text-danger" })
 						</div>
 						<div class="form-row form-row-2">
-							<input type="password" name="password2" placeholder="Repita la Contraseña" required>
+							@*<input type="password" name="password2" placeholder="Repita la Contraseña" required>*@
+							@Html.TextBoxFor(m => m.Item1.password2, new{Placeholder = "Repita la Contraseña" })
+							@Html.ValidationMessageFor(m => m.Item1.password2 ,null, new { @class = "text-danger" })
 						</div>
 					</div>
 					<div class="form-row" style="margin-bottom:80px;">
-						<input type="email" name="email" placeholder="Email" required>
+						@*<input type="email" name="email" placeholder="Email" required>*@
+						@Html.TextBoxFor(m => m.Item1.email, new{Placeholder = "Email" })
+						@Html.ValidationMessageFor(m => m.Item1.email ,null, new { @class = "text-danger" })
 					</div>
 
 					
 				</div>
-
-
 
 				<div class="form-right">
 					<h2>Información Domiciliaria</h2>
