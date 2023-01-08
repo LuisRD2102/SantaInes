@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SantaInesAPI.BussinessLogic.DTO;
 using SantaInesAPI.BussinessLogic.Mapper;
+using SantaInesAPI.Persistence.DAO.Implementations;
 using SantaInesAPI.Persistence.DAO.Interface;
+using ServicesDeskUCABWS.BussinesLogic.Exceptions;
+using ServicesDeskUCABWS.BussinesLogic.Response;
 
 namespace SantaInesAPI.Controllers
 {
@@ -23,66 +26,79 @@ namespace SantaInesAPI.Controllers
 
         [HttpGet]
         [Route("ConsultaUsuarios/")]
-        public ActionResult<List<UsuarioDTO>> ConsultarUsuarioDAO()
+        public ApplicationResponse<List<UsuarioDTO>> ConsultarUsuarioDAO()
         {
+            var response = new ApplicationResponse<List<UsuarioDTO>>();
+
             try
             {
-                return _dao.ConsultarUsuarioDAO();
+                response.Data = _dao.ConsultarUsuarioDAO();
             }
-            catch (Exception ex)
+            catch (ExceptionsControl ex)
             {
-
-                throw ex.InnerException!;
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
             }
+            return response;
+          
         }
 
         [HttpPost]
         [Route("CrearUsuario/")]
-        public ActionResult<UsuarioDTO> AgregarUsuario([FromBody] UsuarioDTO dto1)
+        public ApplicationResponse<UsuarioDTO> AgregarUsuario([FromBody] UsuarioDTO dto1)
         {
+            var response = new ApplicationResponse<UsuarioDTO>();
             try
             {
-                var dao0 = _dao.AgregarUsuarioDAO(UsuarioMapper.DtoToEntity(dto1));
-                return dao0;
-
+                response.Data = _dao.AgregarUsuarioDAO(UsuarioMapper.DtoToEntity(dto1));
+                
             }
-            catch (Exception ex)
-            {
-
-                throw ex.InnerException!;
-            }
+			catch (ExceptionsControl ex)
+			{
+				response.Success = false;
+				response.Message = ex.Mensaje;
+				response.Exception = ex.Excepcion.ToString();
+			}
+			return response;
         }
 
         [HttpPut]
         [Route("ActualizarUsuario/")]
-        public ActionResult<UsuarioDTO> ActualizarUsuario([FromBody] UsuarioDTO usuario)
+        public ApplicationResponse<UsuarioDTO> ActualizarUsuario([FromBody] UsuarioDTO usuario)
         {
-            try
+			var response = new ApplicationResponse<UsuarioDTO>();
+			try
             {
-                return _dao.ActualizarUsuarioDAO(UsuarioMapper.DtoToEntity(usuario));
+				response.Data = _dao.ActualizarUsuarioDAO(UsuarioMapper.DtoToEntity(usuario));
 
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
-                throw ex.InnerException!;
-            }
-        }
+			catch (ExceptionsControl ex)
+			{
+				response.Success = false;
+				response.Message = ex.Mensaje;
+				response.Exception = ex.Excepcion.ToString();
+			}
+			return response;
+		}
 
         [HttpDelete]
         [Route("EliminarUsuario/{username}")]
-        public ActionResult<UsuarioDTO> EliminarUsuario([FromRoute] String username)
+        public ApplicationResponse<UsuarioDTO> EliminarUsuario([FromRoute] String username)
         {
-            try
+			var response = new ApplicationResponse<UsuarioDTO>();
+			try
             {
-                return _dao.EliminarUsuarioDAO(username);
+				response.Data = _dao.EliminarUsuarioDAO(username);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
-                throw ex.InnerException!;
-            }
-        }
+			catch (ExceptionsControl ex)
+			{
+				response.Success = false;
+				response.Message = ex.Mensaje;
+				response.Exception = ex.Excepcion.ToString();
+			}
+			return response;
+		}
 
     }
 }

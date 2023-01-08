@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using SantaInesAPI.BussinessLogic.DTO;
 using SantaInesAPI.BussinessLogic.Mapper;
 using SantaInesAPI.Persistence.DAO.Interface;
+using ServicesDeskUCABWS.BussinesLogic.Exceptions;
+using ServicesDeskUCABWS.BussinesLogic.Response;
 
 namespace SantaInesAPI.Controllers
 {
@@ -21,65 +23,76 @@ namespace SantaInesAPI.Controllers
 
         [HttpGet]
         [Route("ConsultarDireccion/")]
-        public ActionResult<List<DireccionDTO>> ConsultarDireccionDAO()
+        public ApplicationResponse<List<DireccionDTO>> ConsultarDireccionDAO()
         {
-            try
+			var response = new ApplicationResponse<List<DireccionDTO>>();
+			try
             {
-                return _DireccionDAO.ConsultarDireccionDAO();
+				response.Data = _DireccionDAO.ConsultarDireccionDAO();
             }
-            catch (Exception ex)
-            {
-
-                throw ex.InnerException!;
-            }
-        }
+			catch (ExceptionsControl ex)
+			{
+				response.Success = false;
+				response.Message = ex.Mensaje;
+				response.Exception = ex.Excepcion.ToString();
+			}
+			return response;
+		}
 
         [HttpPost]
         [Route("CrearDireccion/")]
-        public ActionResult<DireccionDTO> AgregarDireccion([FromBody] DireccionDTO dto1)
+        public ApplicationResponse<DireccionDTO> AgregarDireccion([FromBody] DireccionDTO dto1)
         {
-            try
+			var response = new ApplicationResponse<DireccionDTO>();
+			try
             {
-                var dao0 = _DireccionDAO.AgregarDireccionDAO(DireccionMapper.DtoToEntity(dto1));
-                return dao0;
-
+                response.Data = _DireccionDAO.AgregarDireccionDAO(DireccionMapper.DtoToEntity(dto1));
+                
             }
-            catch (Exception ex)
-            {
-
-                throw ex.InnerException!;
-            }
-        }
+			catch (ExceptionsControl ex)
+			{
+				response.Success = false;
+				response.Message = ex.Mensaje;
+				response.Exception = ex.Excepcion.ToString();
+			}
+			return response;
+		}
         [HttpPut]
         [Route("ActualizarDireccion/")]
-        public ActionResult<DireccionDTO> ActualizarDireccion([FromBody] DireccionDTO direccion)
+        public ApplicationResponse<DireccionDTO> ActualizarDireccion([FromBody] DireccionDTO direccion)
         {
-            try
+			var response = new ApplicationResponse<DireccionDTO>();
+			try
             {
-                return _DireccionDAO.ActualizarDireccionDAO(DireccionMapper.DtoToEntity(direccion));
+				response.Data = _DireccionDAO.ActualizarDireccionDAO(DireccionMapper.DtoToEntity(direccion));
 
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
-                throw ex.InnerException!;
-            }
-        }
+			catch (ExceptionsControl ex)
+			{
+				response.Success = false;
+				response.Message = ex.Mensaje;
+				response.Exception = ex.Excepcion.ToString();
+			}
+			return response;
+		}
 
         [HttpDelete]
         [Route("EliminarDireccion/{guidDireccion}")]
-        public ActionResult<DireccionDTO> EliminarDireccion([FromRoute] Guid id)
+        public ApplicationResponse<DireccionDTO> EliminarDireccion([FromRoute] Guid id)
         {
-            try
+			var response = new ApplicationResponse<DireccionDTO>();
+			try
             {
-                return _DireccionDAO.EliminarDireccionDAO(id);
+				response.Data = _DireccionDAO.EliminarDireccionDAO(id);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
-                throw ex.InnerException!;
-            }
-        }
+			catch (ExceptionsControl ex)
+			{
+				response.Success = false;
+				response.Message = ex.Mensaje;
+				response.Exception = ex.Excepcion.ToString();
+			}
+			return response;
+		}
     }
 
     
