@@ -9,5 +9,6 @@ namespace SantaInesAPI.Persistence.DAO.Interface
         public UsuarioDTO AgregarUsuarioDAO(Usuario usuario);
         public UsuarioDTO ActualizarUsuarioDAO(Usuario usuario);
         public UsuarioDTO EliminarUsuarioDAO(String usuario);
+        public UsuarioDTO VerificarDatosLogin(string username, string pass);
     }
 }

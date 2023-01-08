@@ -12,7 +12,7 @@ namespace SantaInesWEB.Controllers
             return View();
         }
 
-        public async Task<IActionResult> RegistroExitoso(UsuarioModel user, DireccionModel dir)
+        public async Task<IActionResult> RegistroExitoso([Bind(Prefix = "Item1")] UsuarioModel user, [Bind(Prefix = "Item2")] DireccionModel dir)
         {
             try
             {

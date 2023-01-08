@@ -39,45 +39,43 @@
 		<div class="form-v10-content">
 
 			@using (Html.BeginForm("RegistroExitoso", "Registro", FormMethod.Post, new { id = "myform", Class="form-detail"})){
-			
-			@*<form class="form-detail" asp-action="RegistroExitoso" asp-controller="Registro" method="post" id="myform">*@
 				<div class="form-left">
 					<h2>Información General</h2>
 				
 					<div class="form-row">
-						@*<input type="number" class="cedula empty" name="cedula" placeholder="Cédula" required>*@
 						@Html.TextBoxFor(m => m.Item1.cedula, new{Placeholder = "Cédula", Class = "empty", type="number"})
 						@Html.ValidationMessageFor(m => m.Item1.cedula ,null, new { @class = "text-danger" })
-						
 					</div>
+
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="nombre_Completo" placeholder="Nombre(s)" required>
-							@*@Html.TextBoxFor(m => m.Item1.nombre_Completo, new{Placeholder = "Nombre(s)" })
-							@Html.ValidationMessageFor(m => m.Item1.nombre_Completo ,null, new { @class = "text-danger" })	*@						
+							@Html.TextBoxFor(m => m.Item1.nombre_Completo, new{Placeholder = "Nombre(s)" })
+							@Html.ValidationMessageFor(m => m.Item1.nombre_Completo ,null, new { @class = "text-danger" })					
 						</div>
+
 						<div class="form-row form-row-2">
-							<input type="text" name="apellido_Completo" placeholder="Apellido(s)" required>
-							@*@Html.TextBoxFor(m => m.Item1.apellido_Completo, new{Placeholder = "Apellido(s)" })
-							@Html.ValidationMessageFor(m => m.Item1.apellido_Completo ,null, new { @class = "text-danger" })*@
+							@Html.TextBoxFor(m => m.Item1.apellido_Completo, new{Placeholder = "Apellido(s)" })
+							@Html.ValidationMessageFor(m => m.Item1.apellido_Completo ,null, new { @class = "text-danger" })
+						</div>
 					</div>
-					</div>					
+					
 					<div class="form-row">
-						<input type="date" id = "fecha" style="color:#666" name="fecha_Nacimiento" placeholder="Fecha de nacimiento" min="1940-01-01" required>
+					@Html.TextBoxFor(m => m.Item1.fecha_Nacimiento ,new{type = "date", style = "color:#666" })
+					@Html.ValidationMessageFor(m => m.Item1.fecha_Nacimiento, null, new { @class = "text-danger"})
 					</div>
 					
 					<div class="form-group">
 						<div class="form-row form-row-3">
-							<input type="text" name="telefono" id="telefono" placeholder="Teléfono" required>
-						@*@Html.TextBoxFor(m => m.Item1.telefono, new{Placeholder = "Teléfono", id = "telefono"})
-							@Html.ValidationMessageFor(m => m.Item1.telefono ,null, new { @class = "text-danger" })*@
+						@Html.TextBoxFor(m => m.Item1.telefono, new{Placeholder = "Teléfono", id = "telefono"})
+						@Html.ValidationMessageFor(m => m.Item1.telefono ,null, new { @class = "text-danger" })
 						</div>
 						<div class="form-row form-row-4">
-						<select name="sexo">
-							<option value="sexo">Sexo</option>
-							<option value="M">Masculino</option>
-							<option value="F">Femenino</option>
-						</select>
+							@Html.DropDownListFor(m => m.Item1.sexo, new List<SelectListItem>{
+								new SelectListItem{Value = "", Text = "Sexo"},
+								new SelectListItem{Value = "M", Text = "Masculino"},
+								new SelectListItem{Value = "F", Text = "Femenino"}
+							})
+							@Html.ValidationMessageFor(m => m.Item1.sexo ,null, new { @class = "text-danger" })
 							<span class="select-btn">
 								<i class="zmdi zmdi-chevron-down"></i>
 							</span>
@@ -86,86 +84,82 @@
 					
 					<h2>Información de Usuario</h2>
 					<div class="form-row">
-						<input type="text" name="username" placeholder="Usuario" required>
-						@*@Html.TextBoxFor(m => m.Item1.username, new{Placeholder = "Usuario" })
-						@Html.ValidationMessageFor(m => m.Item1.username ,null, new { @class = "text-danger" })*@
-					</div>
-					<div class="form-group">
-						<div class="form-row form-row-1">
-							<input type="password" name="password" placeholder="Contraseña" required>
-							@*@Html.TextBoxFor(m => m.Item1.password, new{Placeholder = "Contraseña" })
-							@Html.ValidationMessageFor(m => m.Item1.password ,null, new { @class = "text-danger" })*@
-						</div>
-						<div class="form-row form-row-2">
-							<input type="password" name="password2" placeholder="Repita la Contraseña" required>
-							@*@Html.TextBoxFor(m => m.Item1.password2, new{Placeholder = "Repita la Contraseña" })
-							@Html.ValidationMessageFor(m => m.Item1.password2 ,null, new { @class = "text-danger" })*@
-						</div>
-					</div>
-					<div class="form-row" style="margin-bottom:80px;">
-						<input type="email" name="email" placeholder="Email" required>
-						@*@Html.TextBoxFor(m => m.Item1.email, new{Placeholder = "Email" })
-						@Html.ValidationMessageFor(m => m.Item1.email ,null, new { @class = "text-danger" })*@
+						@Html.TextBoxFor(m => m.Item1.username, new{Placeholder = "Usuario" })
+						@Html.ValidationMessageFor(m => m.Item1.username ,null, new { @class = "text-danger" })
 					</div>
 
-					
+					<div class="form-group">
+						<div class="form-row form-row-1">
+							@Html.PasswordFor(m => m.Item1.password, new{Placeholder = "Contraseña" })
+							@Html.ValidationMessageFor(m => m.Item1.password ,null, new { @class = "text-danger" })
+						</div>
+
+						<div class="form-row form-row-2">
+						@Html.PasswordFor(m => m.Item1.password2, new{Placeholder = "Repita la Contraseña" })
+						@Html.ValidationMessageFor(m => m.Item1.password2 ,null, new { @class = "text-danger"})
+						</div>
+					</div>
+
+					<div class="form-row" style="margin-bottom:80px;">
+						@Html.TextBoxFor(m => m.Item1.email, new{Placeholder = "Email" })
+						@Html.ValidationMessageFor(m => m.Item1.email ,null, new { @class = "text-danger" })
+					</div>
 				</div>
 
 				<div class="form-right">
 					<h2>Información Domiciliaria</h2>
 					<div class="form-row form-row-2">
-						<select name="estado">
-							<option value="estado">Estado</option>
-							<option value="Amazonas">Amazonas</option>
-							<option value="Anzoategui">Anzoátegui</option>
-							<option value="Apure">Apure</option>
-							<option value="Aragua">Aragua</option>
-							<option value="Barinas">Barinas</option>
-							<option value="Bolívar">Bolívar</option>
-							<option value="Carabobo">Carabobo</option>
-							<option value="Cojedes">Cojedes</option>
-							<option value="Delta Amacuro">Delta Amacuro</option>
-							<option value="Distrito Federal">Distrito Federal</option>
-							<option value="Falcon">Falcón</option>
-							<option value="Guarico">Guárico</option>
-							<option value="Lara">Lara</option>
-							<option value="Mérida">Mérida</option>
-							<option value="Miranda">Miranda</option>
-							<option value="Monagas">Monagas</option>
-							<option value="Nueva Esparta">Nueva Esparta</option>
-							<option value="Portuguesa">Portuguesa</option>
-							<option value="Sucre">Sucre</option>
-							<option value="Tachira">Táchira</option>
-							<option value="Trujillo">Trujillo</option>
-							<option value="Vargas">Vargas</option>
-							<option value="Yaracuy ">Yaracuy </option>
-							<option value="Zulia">Zulia</option>
-						</select>
+							@Html.DropDownListFor(m => m.Item2.estado, new List<SelectListItem>{
+								new SelectListItem{Value = "", Text = "Estado"},
+								new SelectListItem{Value = "Amazonas", Text = "Amazonas"},
+								new SelectListItem{Value = "Anzoategui", Text = "Anzoategui"},
+								new SelectListItem{Value = "Apure", Text = "Apure"},
+								new SelectListItem{Value = "Aragua", Text = "Aragua"},
+								new SelectListItem{Value = "Barinas", Text = "Barinas"},
+								new SelectListItem{Value = "Bolívar", Text = "Bolívar"},
+								new SelectListItem{Value = "Carabobo", Text = "Carabobo"},
+								new SelectListItem{Value = "Cojedes", Text = "Cojedes"},
+								new SelectListItem{Value = "Delta Amacuro", Text = "Delta Amacuro"},
+								new SelectListItem{Value = "Distrito Federal", Text = "Distrito Federal"},
+								new SelectListItem{Value = "Falcon", Text = "Falcon"},
+								new SelectListItem{Value = "Guarico", Text = "Guarico"},
+								new SelectListItem{Value = "Lara", Text = "Lara"},
+								new SelectListItem{Value = "Mérida", Text = "Mérida"},
+								new SelectListItem{Value = "Miranda", Text = "Miranda"},
+								new SelectListItem{Value = "Monagas", Text = "Monagas"},
+								new SelectListItem{Value = "Nueva Esparta", Text = "Nueva Esparta"},
+								new SelectListItem{Value = "Portuguesa", Text = "Portuguesa"},
+								new SelectListItem{Value = "Sucre", Text = "Sucre"},
+								new SelectListItem{Value = "Tachira", Text = "Tachira"},
+								new SelectListItem{Value = "Trujillo", Text = "Trujillo"},
+								new SelectListItem{Value = "Vargas", Text = "Vargas"},
+								new SelectListItem{Value = "Yaracuy", Text = "Yaracuy"},
+								new SelectListItem{Value = "Zulia", Text = "Zulia"},
+						})
+						@Html.ValidationMessageFor(m => m.Item2.estado ,null, new { @class = "text-danger" })
 						<span class="select-btn">
 							<i class="zmdi zmdi-chevron-down"></i>
 						</span>
 					</div>
 					<div class="form-row">
-						<input type="text" name = "municipio" placeholder="Municipio" required>
+						@Html.TextBoxFor(m => m.Item2.municipio, new{Placeholder = "Municipio" })
+						@Html.ValidationMessageFor(m => m.Item2.municipio ,null, new { @class = "text-danger" })
 					</div>
 										
 					<div class="form-row">
-						<input type="number" name="cod_postal" placeholder="Código Postal" required>
+						@Html.TextBoxFor(m => m.Item2.codPostal, new{Placeholder = "Código postal", type = "number" })
+					@Html.ValidationMessageFor(m => m.Item2.codPostal ,null, new { @class = "text-danger" })
 					</div>
 
 					<div class="form-row">
-						<textarea name="direccion" placeholder="Dirección" required></textarea>
-					</div>					
-				
-					
+						@Html.TextBoxFor(m => m.Item2.direccion, new{Placeholder = "Dirección" })
+						@Html.ValidationMessageFor(m => m.Item2.direccion ,null, new { @class = "text-danger" })
+					</div>										
 					<center class="form-row-last">
 						<input type="submit" name="register" class="register" value="Registrar">
 					</center>
 				</div>
-			}
-			@*</form>*@
-
-			
+			}			
 		</div>
 	</div>
 

@@ -2,6 +2,8 @@
 using SantaInesAPI.BussinessLogic.DTO;
 using SantaInesAPI.BussinessLogic.Mapper;
 using SantaInesAPI.Persistence.DAO.Interface;
+using ServicesDeskUCABWS.BussinesLogic.Exceptions;
+using ServicesDeskUCABWS.BussinesLogic.Response;
 
 namespace SantaInesAPI.Controllers
 {
@@ -19,65 +21,75 @@ namespace SantaInesAPI.Controllers
 
         [HttpGet]
         [Route("ConsultaDepartamentos/")]
-        public ActionResult<List<DepartamentoDTO>> ConsultarDepartamento()
+        public ApplicationResponse<List<DepartamentoDTO>> ConsultarDepartamento()
         {
-            try
+			var response = new ApplicationResponse<List<DepartamentoDTO>>();
+			try
             {
-                return _daoDepartamento.ConsultarDepartamentoDAO();
+			    response.Data = _daoDepartamento.ConsultarDepartamentoDAO();
             }
-            catch (Exception ex)
-            {
-
-                throw ex.InnerException!;
-            }
-        }
+			catch (ExceptionsControl ex)
+			{
+				response.Success = false;
+				response.Message = ex.Mensaje;
+				response.Exception = ex.Excepcion.ToString();
+			}
+			return response;
+		}
 
         [HttpPost]
         [Route("CrearDepartamento/")]
-        public ActionResult<DepartamentoDTO> AgregarDepartamento([FromBody] DepartamentoDTO dto1)
+        public ApplicationResponse<DepartamentoDTO> AgregarDepartamento([FromBody] DepartamentoDTO dto1)
         {
-            try
+			var response = new ApplicationResponse<DepartamentoDTO>();
+			try
             {
-                var dao0 = _daoDepartamento.AgregarDepartamentoDAO(DepartamentoMapper.DtoToEntity(dto1));
-                return dao0;
-
+				response.Data = _daoDepartamento.AgregarDepartamentoDAO(DepartamentoMapper.DtoToEntity(dto1));
             }
-            catch (Exception ex)
-            {
-
-                throw ex.InnerException!;
-            }
-        }
+			catch (ExceptionsControl ex)
+			{
+				response.Success = false;
+				response.Message = ex.Mensaje;
+				response.Exception = ex.Excepcion.ToString();
+			}
+			return response;
+		}
 
         [HttpPut]
         [Route("ActualizarDepartamento/")]
-        public ActionResult<DepartamentoDTO> ActualizarDepartamento([FromBody] DepartamentoDTO departamento)
+        public ApplicationResponse<DepartamentoDTO> ActualizarDepartamento([FromBody] DepartamentoDTO departamento)
         {
-            try
+			var response = new ApplicationResponse<DepartamentoDTO>();
+			try
             {
-                return _daoDepartamento.ActualizarDepartamentoDAO(DepartamentoMapper.DtoToEntity_Update(departamento));
+				response.Data = _daoDepartamento.ActualizarDepartamentoDAO(DepartamentoMapper.DtoToEntity_Update(departamento));
 
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
-                throw ex.InnerException!;
-            }
-        }
+			catch (ExceptionsControl ex)
+			{
+				response.Success = false;
+				response.Message = ex.Mensaje;
+				response.Exception = ex.Excepcion.ToString();
+			}
+			return response;
+		}
 
         [HttpDelete]
         [Route("EliminarDepartamento/{id}")]
-        public ActionResult<DepartamentoDTO> EliminarDepartamento([FromRoute] Guid id)
+        public ApplicationResponse<DepartamentoDTO> EliminarDepartamento([FromRoute] Guid id)
         {
-            try
+			var response = new ApplicationResponse<DepartamentoDTO>();
+			try
             {
-                return _daoDepartamento.EliminarDepartamentoDAO(id);
+				response.Data = _daoDepartamento.EliminarDepartamentoDAO(id);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
-                throw ex.InnerException!;
-            }
-        }
+			catch (ExceptionsControl ex)
+			{
+				response.Success = false;
+				response.Message = ex.Mensaje;
+				response.Exception = ex.Excepcion.ToString();
+			}
+			return response;
+		}
     }
 }

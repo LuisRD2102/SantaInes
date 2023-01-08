@@ -5,18 +5,19 @@ namespace SantaInesWEB.Models
 	public class UsuarioModel
 	{
 		[Required(ErrorMessage = "Introduzca su cédula")]
-		[Range(1000000,99999999, ErrorMessage = "La cédula debe contener 8 dígitos")]
+		[Range(1000000,99999999, ErrorMessage = "Cédula inválida")]
 		public int cedula { get; set; }
 
 		[Required(ErrorMessage = "Introduzca un usuario")]
 		[StringLength(30, MinimumLength = 5, ErrorMessage = "El usuario debe de tener entre 5 a 30 caracteres")]
 		public string username { get; set; }
 
-		//[Required(ErrorMessage = "Introduzca contraseña")]
+		[Required(ErrorMessage = "Introduzca contraseña")]
+		[StringLength(int.MaxValue,MinimumLength = 5, ErrorMessage = "La contraseña debe de tener al menos 5 caracteres")]
 		public string password { get; set; }
 
-		//[Required(ErrorMessage = "Repita la contraseña")]
-		//[Compare("password", ErrorMessage = "Las contraseñas no coinciden")]
+		[Required(ErrorMessage = "Repita la contraseña")]
+		[Compare("password", ErrorMessage = "Las contraseñas no coinciden")]
 		public string password2 { get; set; }		
 
 		[Required(ErrorMessage = "Introduzca sus nombre(s)")]
@@ -26,8 +27,11 @@ namespace SantaInesWEB.Models
 		public string apellido_Completo { get; set; }
 
 		[Required(ErrorMessage = "Introduzca su fecha de nacimiento")]
+		[DataType(DataType.Date)]
 		public DateTime fecha_Nacimiento { get; set; }
-        public string sexo { get; set; }
+
+		[Required(ErrorMessage = "Seleccione su sexo")]
+		public string sexo { get; set; }
 
 		[Required(ErrorMessage = "Introduzca teléfono")]
 		public string telefono { get; set; }

@@ -67,13 +67,44 @@ namespace SantaInesAPI.Migrations
                     b.ToTable("Direccion");
                 });
 
-            modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Usuario", b =>
+            modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Empleado", b =>
                 {
                     b.Property<string>("username")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid?>("Departamentoid")
+                    b.Property<string>("apellido_completo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("cedula")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("id_departamento")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("nombre_completo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("rol")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("username");
+
+                    b.HasIndex("id_departamento");
+
+                    b.ToTable("Empleados");
+                });
+
+            modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Usuario", b =>
+                {
+                    b.Property<string>("username")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("apellido_completo")
                         .IsRequired()
@@ -110,20 +141,25 @@ namespace SantaInesAPI.Migrations
 
                     b.HasKey("username");
 
-                    b.HasIndex("Departamentoid");
-
                     b.HasIndex("id_direccion")
                         .IsUnique();
 
                     b.ToTable("Usuario");
                 });
 
+            modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Empleado", b =>
+                {
+                    b.HasOne("SantaInesAPI.Persistence.Entity.Departamento", "Departamento")
+                        .WithMany("Empleados")
+                        .HasForeignKey("id_departamento")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Departamento");
+                });
+
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Usuario", b =>
                 {
-                    b.HasOne("SantaInesAPI.Persistence.Entity.Departamento", null)
-                        .WithMany("usuarios")
-                        .HasForeignKey("Departamentoid");
-
                     b.HasOne("SantaInesAPI.Persistence.Entity.Direccion", "Direccion")
                         .WithOne("Usuario")
                         .HasForeignKey("SantaInesAPI.Persistence.Entity.Usuario", "id_direccion")
@@ -135,7 +171,7 @@ namespace SantaInesAPI.Migrations
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Departamento", b =>
                 {
-                    b.Navigation("usuarios");
+                    b.Navigation("Empleados");
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Direccion", b =>

@@ -153,5 +153,32 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
             return existe;
         }
+
+        public UsuarioDTO VerificarDatosLogin(string username, string pass)
+        {
+            try
+            {
+                var user = _context.Usuario
+                                   .Where(u => u.username == username && u.password == pass)
+                                   .Select(u => new UsuarioDTO{
+                                        username = u.username,
+                                        password = u.password,
+                                        cedula = u.cedula,
+                                        nombre_Completo = u.nombre_completo,
+                                        apellido_Completo = u.apellido_completo,
+                                        fecha_Nacimiento = u.fecha_nacimiento,
+                                        sexo = u.sexo,
+                                        telefono = u.telefono,
+                                        email = u.email,
+                                        id_direccion = u.id_direccion
+                                   }).First();
+                return user;
+            }
+            catch (Exception ex)
+            {
+				Console.WriteLine(ex.Message + " || " + ex.StackTrace);
+				throw new Exception("Usuario o contraseña incorrectos", ex);
+			}
+        }
     }
 }

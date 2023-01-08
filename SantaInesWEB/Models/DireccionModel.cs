@@ -6,13 +6,17 @@ namespace SantaInesWEB.Models
 	{
         public Guid id { get; set; }
 
-        public string estado { get; set; }
-    
-        public string municipio { get; set; }
+		[Required(ErrorMessage = "Introduzca el estado")]
+		public string estado { get; set; }
 
-        public string direccion { get; set; }
+		[Required(ErrorMessage = "Introduzca el municipio")]
+		public string municipio { get; set; }
 
-      
-        public int cod_postal { get; set; }
+		[Required(ErrorMessage = "Introduzca la dirección")]
+		public string direccion { get; set; }
+
+		[Required(ErrorMessage = "Introduzca el código postal")]
+		[Range(1000, 10000 , ErrorMessage = "Código postal inválido")]
+		public int codPostal { get; set; }
     }
 }
