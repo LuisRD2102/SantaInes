@@ -24,13 +24,13 @@
 			this.style.color = "black";
 		}
 
-		$('.empty').blur(function () {
-			if (!$(this).val()) {
-				$('.empty').addClass('input-danger');
-				console.log('Hola');
-			}
-			else $('.empty').removeClass('input-danger');
-		})
+		//$('.empty').blur(function () {
+		//	if (!$(this).val()) {
+		//		$('.empty').addClass('input-danger');
+				
+		//	}
+		//	else $('.empty').removeClass('input-danger');
+		//})
 
 	</script>	
 }
@@ -43,7 +43,7 @@
 					<h2>Información General</h2>
 				
 					<div class="form-row">
-						@Html.TextBoxFor(m => m.Item1.cedula, new{Placeholder = "Cédula", Class = "empty", type="number"})
+						@Html.TextBoxFor(m => m.Item1.cedula, new{Placeholder = "Cédula", type="number"})
 						@Html.ValidationMessageFor(m => m.Item1.cedula ,null, new { @class = "text-danger" })
 					</div>
 
@@ -60,7 +60,7 @@
 					</div>
 					
 					<div class="form-row">
-					@Html.TextBoxFor(m => m.Item1.fecha_Nacimiento ,new{type = "date", style = "color:#666" })
+					@Html.TextBoxFor(m => m.Item1.fecha_Nacimiento ,new{type = "date", style = "color:#666", id="fecha" })
 					@Html.ValidationMessageFor(m => m.Item1.fecha_Nacimiento, null, new { @class = "text-danger"})
 					</div>
 					
@@ -136,24 +136,24 @@
 								new SelectListItem{Value = "Yaracuy", Text = "Yaracuy"},
 								new SelectListItem{Value = "Zulia", Text = "Zulia"},
 						})
-						@Html.ValidationMessageFor(m => m.Item2.estado ,null, new { @class = "text-danger" })
+						@Html.ValidationMessageFor(m => m.Item2.estado ,null, new { @class = "text-danger-right" })
 						<span class="select-btn">
 							<i class="zmdi zmdi-chevron-down"></i>
 						</span>
 					</div>
 					<div class="form-row">
 						@Html.TextBoxFor(m => m.Item2.municipio, new{Placeholder = "Municipio" })
-						@Html.ValidationMessageFor(m => m.Item2.municipio ,null, new { @class = "text-danger" })
+						@Html.ValidationMessageFor(m => m.Item2.municipio ,null, new { @class = "text-danger-right" })
 					</div>
 										
 					<div class="form-row">
 						@Html.TextBoxFor(m => m.Item2.codPostal, new{Placeholder = "Código postal", type = "number" })
-					@Html.ValidationMessageFor(m => m.Item2.codPostal ,null, new { @class = "text-danger" })
+					@Html.ValidationMessageFor(m => m.Item2.codPostal ,null, new { @class = "text-danger-right" })
 					</div>
 
 					<div class="form-row">
 						@Html.TextBoxFor(m => m.Item2.direccion, new{Placeholder = "Dirección" })
-						@Html.ValidationMessageFor(m => m.Item2.direccion ,null, new { @class = "text-danger" })
+					@Html.ValidationMessageFor(m => m.Item2.direccion ,null, new { @class = "text-danger-right" })
 					</div>										
 					<center class="form-row-last">
 						<input type="submit" name="register" class="register" value="Registrar">

@@ -1,9 +1,23 @@
+using SantaInesWEB.Servicios.ServicioRegistro;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//Dependency Injections
+builder.Services.AddScoped<IServicioDireccion, ServicioDireccion>();
+builder.Services.AddScoped<IServicioUsuario, ServicioUsuario>();
+
+builder.Services.AddHttpClient("DevConnection", config =>
+{
+	config.BaseAddress = new Uri("https://localhost:7270/");
+}
+);
+
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -22,6 +36,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Login}/{id?}");
 
 app.Run();
