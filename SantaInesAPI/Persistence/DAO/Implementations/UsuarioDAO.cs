@@ -121,6 +121,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 Guid idDireccion = usuario.id_direccion;
                 _context.Usuario.Remove(usuario);
                 _context.SaveChanges();
+
                 var direccionAsoc = _context.Direccion
                 .Where(d => d.id == idDireccion).First();
                 _context.Direccion.Remove(direccionAsoc);
@@ -158,21 +159,8 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
         {
             try
             {
-                var user = _context.Usuario
-                                   .Where(u => u.username == username && u.password == pass)
-                                   .Select(u => new UsuarioDTO{
-                                        username = u.username,
-                                        password = u.password,
-                                        cedula = u.cedula,
-                                        nombre_Completo = u.nombre_completo,
-                                        apellido_Completo = u.apellido_completo,
-                                        fecha_Nacimiento = u.fecha_nacimiento,
-                                        sexo = u.sexo,
-                                        telefono = u.telefono,
-                                        email = u.email,
-                                        id_direccion = u.id_direccion
-                                   }).First();
-                return user;
+                var user = _context.Usuario.Where(u => u.username == username && u.password == pass).First();
+                return UsuarioMapper.EntityToDTO(user);
             }
             catch (Exception ex)
             {

@@ -2,10 +2,10 @@
 using Newtonsoft.Json.Linq;
 using SantaInesAPI.Persistence.Entity;
 using SantaInesWEB.Models;
-using SantaInesWEB.Servicios.ServicioRegistro;
+using SantaInesWEB.Servicios.ServicioUsuario;
 using System.Text;
 
-namespace SantaInesWEB.Servicios.ServicioRegistro
+namespace SantaInesWEB.Servicios.ServicioUsuario
 {
 	public class ServicioUsuario : IServicioUsuario
 	{
@@ -44,6 +44,30 @@ namespace SantaInesWEB.Servicios.ServicioRegistro
 
 		}
 
+        public async Task<JObject> ValidarUsuarioLogin(string username, string password)
+        {
+            var cliente = _httpClientFactory.CreateClient("DevConnection");
 
-	}
+            try
+            {
+                var response = await cliente.GetAsync($"Login/LoginUsuario/{username}/{password}");
+                var respuesta = await response.Content.ReadAsStringAsync();
+                JObject _json_respuesta = JObject.Parse(respuesta);
+
+                return _json_respuesta;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"ERROR de conexión con la API: '{ex.Message}'");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            return _json_respuesta;
+        }
+
+
+    }
 }

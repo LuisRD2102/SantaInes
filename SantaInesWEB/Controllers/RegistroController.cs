@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using SantaInesWEB.Models;
-using SantaInesWEB.Servicios.ServicioRegistro;
+using SantaInesWEB.Servicios.ServicioDireccion;
+using SantaInesWEB.Servicios.ServicioUsuario;
 using System.Reflection.PortableExecutable;
 using System.Text.Json;
 
@@ -38,7 +39,7 @@ namespace SantaInesWEB.Controllers
 
 				if ((bool)respuestaDireccion["success"] && (bool)respuestaUsuario["success"])
 				{
-					return View("Registro");
+					return RedirectToAction("Registro");
 				}
 								
 			}

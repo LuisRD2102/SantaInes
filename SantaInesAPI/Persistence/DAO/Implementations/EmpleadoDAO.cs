@@ -106,13 +106,14 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
         {
             try
             {
-                var empleado = _context.Empleados
-                    .Where(e => e.username == username).First();
+                var empleado = _context.Empleados.Where(e => e.username == username).First();
+
                 Guid idDepartamento = empleado.id_departamento;
                 _context.Empleados.Remove(empleado);
                 _context.SaveChanges();
-                var departamentoAsoc = _context.Departamentos
-                                                .Where(d => d.id == idDepartamento).First();
+
+                var departamentoAsoc = _context.Departamentos.Where(d => d.id == idDepartamento).First();
+
                 _context.Departamentos.Remove(departamentoAsoc);
                 _context.SaveChanges();
 
@@ -143,28 +144,18 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
             return existe;
         }
-
+     
         public EmpleadoDTO VerificarDatosLogin(string username, string pass)
         {
             try
             {
-                var user = _context.Empleados
-                                   .Where(e => e.username == username && e.password == pass)
-                                   .Select(e => new EmpleadoDTO{
-                                       username = e.username,
-                                       password = e.password,
-                                       cedula = e.cedula,
-                                       nombre_completo = e.nombre_completo,
-                                       apellido_completo = e.apellido_completo,
-                                       rol = e.rol,
-                                       id_departamento = e.id_departamento
-                                   }).First();
-                return user;
+                var empleado = _context.Empleados.Where(u => u.username == username && u.password == pass).First();
+                return EmpleadoMapper.EntityToDTO(empleado);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
-                throw ex.InnerException!;
+                Console.WriteLine(ex.Message + " || " + ex.StackTrace);
+                throw new Exception("Usuario o contraseña incorrectos", ex);
             }
         }
     }

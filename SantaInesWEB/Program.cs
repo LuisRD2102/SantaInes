@@ -1,4 +1,6 @@
-using SantaInesWEB.Servicios.ServicioRegistro;
+using SantaInesWEB.Servicios.ServicioDireccion;
+using SantaInesWEB.Servicios.ServicioEmpleado;
+using SantaInesWEB.Servicios.ServicioUsuario;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,7 @@ builder.Services.AddControllersWithViews();
 //Dependency Injections
 builder.Services.AddScoped<IServicioDireccion, ServicioDireccion>();
 builder.Services.AddScoped<IServicioUsuario, ServicioUsuario>();
+builder.Services.AddScoped<IServicioEmpleado, ServicioEmpleado>();
 
 builder.Services.AddHttpClient("DevConnection", config =>
 {

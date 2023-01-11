@@ -2,10 +2,11 @@
 using Newtonsoft.Json.Linq;
 using SantaInesWEB.Models;
 
-namespace SantaInesWEB.Servicios.ServicioRegistro
+namespace SantaInesWEB.Servicios.ServicioUsuario
 {
 	public interface IServicioUsuario
 	{
 		Task<JObject> RegistrarUsuario(UsuarioModel user);
-	}
+        Task<JObject> ValidarUsuarioLogin(string username, string password);
+    }
 }

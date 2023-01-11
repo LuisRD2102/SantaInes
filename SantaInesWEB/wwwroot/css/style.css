@@ -255,9 +255,21 @@
   border-radius: 0px;
   transition: all 0.5s ease;
 }
+.sidebar .profile #log_out:hover{
+  color:red;
+}
 .sidebar.open .profile #log_out{
   width: 50px;
   background: none;
+}
+.sidebar.open .profile #log_out:hover{
+  color:red;
+}
+.sidebar.open .profile .log-out {
+    background-color: #1d1b31;
+}
+.sidebar.open .profile .log-out:hover i{
+    color:red;
 }
 .home-section{
   position: relative;
