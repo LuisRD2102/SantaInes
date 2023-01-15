@@ -20,7 +20,7 @@ builder.Services.AddHttpClient("DevConnection", config =>
 }
 );
 
-
+builder.Services.AddSession();
 var app = builder.Build();
 
 
@@ -34,7 +34,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();

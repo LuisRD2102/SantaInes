@@ -4,6 +4,7 @@ using SantaInesWEB.Models;
 using SantaInesWEB.Servicios.ServicioDireccion;
 using SantaInesWEB.Servicios.ServicioEmpleado;
 using SantaInesWEB.Servicios.ServicioUsuario;
+using System.Globalization;
 
 namespace SantaInesWEB.Controllers
 {
@@ -37,7 +38,11 @@ namespace SantaInesWEB.Controllers
 
                 if ((respuestaEmpleado is not null && (bool)respuestaEmpleado["success"]) || (respuestaUsuario is not null && (bool)respuestaUsuario["success"]))
                 {
-                    return RedirectToAction("Index", "Home");
+                    if (respuestaEmpleado is not null && (bool)respuestaEmpleado["success"])
+                        asignarDatosSesion(respuestaEmpleado,false);
+                    else if (respuestaUsuario is not null && (bool)respuestaUsuario["success"])
+						asignarDatosSesion(respuestaUsuario,true);
+					return RedirectToAction("Index", "Home");
                 }
                 
             }
@@ -47,6 +52,20 @@ namespace SantaInesWEB.Controllers
             }
             return NoContent();
         }
+
+        private void asignarDatosSesion (JObject respuesta, bool isPaciente)
+        {
+			TextInfo textInfo = new CultureInfo("es", false).TextInfo;
+
+
+			HttpContext.Session.SetString("username", (string)respuesta.SelectToken("data.username"));
+			HttpContext.Session.SetString("nombre_completo", textInfo.ToTitleCase((string)respuesta.SelectToken("data.nombre_completo")));
+			HttpContext.Session.SetString("apellido_completo", textInfo.ToTitleCase((string)respuesta.SelectToken("data.apellido_completo")));
+            if (isPaciente)
+				HttpContext.Session.SetString("rol", "Paciente");
+			else
+			    HttpContext.Session.SetString("rol", textInfo.ToTitleCase((string)respuesta.SelectToken("data.rol")));
+		}
 
     }
 }

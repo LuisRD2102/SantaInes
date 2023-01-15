@@ -89,8 +89,8 @@
              <a asp-controller ="Login" asp-action="Login" class="log-out">
                  <div class="profile-details">           
                     <div class="name_job">
-                        <div class="name">Carlos Torres</div>
-                        <div class="job">Gerente</div>
+                            <div class="name">@Context.Session.GetString("nombre_completo").Split(' ').First()  @Context.Session.GetString("apellido_completo")[0].</div>
+                        <div class="job">@Context.Session.GetString("rol")</div>
                     </div>
                  </div>
                  <i class='bx bx-log-out' id="log_out" ></i>
