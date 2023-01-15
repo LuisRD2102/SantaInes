@@ -35,7 +35,7 @@ namespace SantaInesWEB.Controllers
                 JObject respuestaEmpleado = await _servicioApiEmpleado.ValidarEmpleadoLogin(loginData.username, loginData.password);
                 JObject respuestaUsuario = await _servicioApiUsuario.ValidarUsuarioLogin(loginData.username, loginData.password);
 
-                if ((bool)respuestaUsuario["success"] || (bool)respuestaEmpleado["success"])
+                if ((respuestaEmpleado is not null && (bool)respuestaEmpleado["success"]) || (respuestaUsuario is not null && (bool)respuestaUsuario["success"]))
                 {
                     return RedirectToAction("Index", "Home");
                 }

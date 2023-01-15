@@ -87,6 +87,10 @@ section .boton:hover {
     color: white;
 }
 
+section .boton:focus{
+    box-shadow: none !important;
+}
+
 section .no-account{
     font-size: 12px;    
 }
