@@ -1,27 +1,37 @@
-﻿@model List<SantaInesWEB.Models.DepartamentoModel>
+﻿@model Tuple<List<SantaInesWEB.Models.EmpleadoModel>,List<SantaInesWEB.Models.DepartamentoModel>>
 
 @{
     ViewData["Title"] = "Gestion Departamento";
 }
 
 <head>
-    <link rel="stylesheet" href="~/css/Design.css" /> 
+    <link rel="stylesheet" href="~/css/EmpleadoYDepartamento.css" /> 
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="../jquery.simplePagination.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    
 </head>
 @section scripts{
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.13.1/features/pageResize/dataTables.pageResize.min.js"></script>
+    <@*script type="text/javascript" src="jquery.dataTables.js"></script>*@
+    @*<script type="text/javascript" src="dataTables.scrollingPagination.js"></script>*@
+
     <script>
     $(document).ready(function(){
-    var rowsShown = 8;
-    var rowsTotal = $('#table tbody tr').length;
+    var rowsShown = 16;
+    if (window.matchMedia('(max-device-width: 1200px)').matches){
+                rowsShown = 8;
+    } 
+    var rowsTotal = $('#table-empleado tbody tr').length;
     var numPages = rowsTotal/rowsShown;
     for(i = 0;i < numPages;i++) {
         var pageNum = i + 1;
         $('#nav').append('<a href="#" rel="'+i+'">'+pageNum+'</a> ');
     }
-            $('#table tbody tr').hide();
-            $('#table tbody tr').slice(0, rowsShown).show();
-            $('#table a:first').addClass('active');
+            $('#table-empleado tbody tr').hide();
+            $('#table-empleado tbody tr').slice(0, rowsShown).show();
+            $('#table-empleado a:first').addClass('active');
             $('#nav a').bind('click', function(){
 
         $('#nav a').removeClass('active');
@@ -29,10 +39,67 @@
         var currPage = $(this).attr('rel');
         var startItem = currPage * rowsShown;
         var endItem = startItem + rowsShown;
-        $('#table tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
+        $('#table-empleado tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
         css('display','table-row').animate({opacity:1}, 300);
     });
 });
+
+    /*Departamento*/
+        //$(window).resize((event) =>{
+        //    var rowsShown = 16;
+        //    if (innerWidth <= 1200) {
+        //        rowsShown = 8;
+        //        console.log('It\'s working.');
+        //    }
+        //    //if (window.matchMedia('(max-device-width: 1200px)').matches){
+        //    //    rowsShown = 8;
+        //    //    console.log('HHHHH');
+                
+        //    //}                      
+        //    var rowsTotal = $('#table-departamento tbody tr').length;
+        //    var numPages = rowsTotal / rowsShown;
+        //    for (i = 0; i < numPages; i++) {
+        //        var pageNum = i + 1;
+        //        $('#navDept').append('<a href="#" rel="' + i + '">' + pageNum + '</a> ');
+        //    }
+        //    $('#table-departamento tbody tr').hide();
+        //    $('#table-departamento tbody tr').slice(0, rowsShown).show();
+        //    $('#table-departamento a:first').addClass('active');
+
+        //    $('#navDept a').bind('click', function () {
+
+        //        $('#navDept a').removeClass('active');
+        //        $(this).addClass('active');
+        //        var currPage = $(this).attr('rel');
+        //        var startItem = currPage * rowsShown;
+        //        var endItem = startItem + rowsShown;
+        //        $('#table-departamento tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
+        //            css('display', 'table-row').animate({ opacity: 1 }, 300);
+        //    });
+        //});
+
+
+        $(document).ready(function () {
+            $('#table-departamento').dataTable({
+                "pagingType": "numbers",
+                "searching": false,
+                //"pageLength":16,
+                "responsive":true,
+                "pageResize":true,
+                "lengthChange": false,
+                "columnDefs": [
+                    {
+                        "target": 0,
+                        "visible": false,
+                        "searchable": false,
+                    }
+                ],
+                "stripeClasses": []
+
+            });
+        });
+
+      
 
     </script>
 
@@ -70,30 +137,97 @@
     </div>
 </div>
 
-
  <div class="contenedor">
 
+     <div class="Empleados">
+
+        <div class="titulo-empleado">
+            <h1>Empleados</h1>
+        </div>
+
+         <div class="wrapperTable">           
+
+            <table class="tableEmpleados" id="table-empleado">
+                <thead>
+                    <tr>
+                        <th>Cédula</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
+                        <th>Rol</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.Item1)
+                {
+                    <tr>
+                        <td class="id">
+                            @Html.DisplayFor(i => item.cedula)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(i => item.nombre_completo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(i => item.apellido_completo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(i => item.username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(i => item.password)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(i => item.rol)
+                        </td>
+                        @*<td>
+                    <div class="dropdown">
+
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></button>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                    <button id="btnEditar" type="button" class="dropdown-item" data-toggle="editarDepartamento-modal" data-target="#popUpEditar" data-url="@Url.Action("VentanaEditarDepartamento","Departamento",new { id = "idDepartamento" })">Editar</button>
+                    <button id="btnEliminar" type="button" class="dropdown-item" data-toggle="eliminarDepartamento-modal" data-target="#popUpEliminar" data-url="@Url.Action("VentanaEliminarDepartamento","Departamento",new { id = "idDepartamento" })">Eliminar</button>
+                    <button type="button" class="dropdown-item" onclick="location.href='@Url.Action("VistaEstadosDepartamentos", "DepartamentoEstado",new{ id =@item.id, nombre = @item.nombre} )'">Ver Estados</button>
+                    <button type="button" class="dropdown-item" onclick="location.href='@Url.Action("VistaCargosDepartamentos", "DepartamentoCargo",new{ id =@item.id, nombre = @item.nombre} )'">Ver Cargos</button>
+
+                    </ul>
+                    </div>
+                    </td>*@
+                    </tr>
+                }
+            </table>
+         </div>
+
         
-    
-          <!-- Tabla Departamentos -->
-        <table class="table" id="table">
-            <thead>            
+     </div>
+
+    <div class="departamentos">
+
+        <div class="titulo-departamento">
+            <h1>Departamentos</h1>
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="display" id="table-departamento">
+            <thead>
                 <tr>
-                    
+                    <th></th>
                     <th>
                         Nombre
                     </th>
                     <th>
                         Descripcion
                     </th>
-                    <th></th>
+                    
                 </tr>
             </thead>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Item2)
             {
                 <tr>
-                    
-                    <td class="id" style="display:none";>
+                    <td>
                         @Html.DisplayFor(i => item.id)
                     </td>
                     <td>
@@ -103,27 +237,33 @@
                         @Html.DisplayFor(i => item.descripcion)
                     </td>
                     @*<td>
-                        <div class="dropdown">
+                <div class="dropdown">
 
-                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></button>
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></button>
 
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        
-                                <button id="btnEditar" type="button" class="dropdown-item" data-toggle="editarDepartamento-modal" data-target="#popUpEditar" data-url="@Url.Action("VentanaEditarDepartamento","Departamento",new { id = "idDepartamento" })">Editar</button>
-                                <button id="btnEliminar" type="button" class="dropdown-item" data-toggle="eliminarDepartamento-modal" data-target="#popUpEliminar" data-url="@Url.Action("VentanaEliminarDepartamento","Departamento",new { id = "idDepartamento" })">Eliminar</button>
-                                <button type="button" class="dropdown-item" onclick="location.href='@Url.Action("VistaEstadosDepartamentos", "DepartamentoEstado",new{ id =@item.id, nombre = @item.nombre} )'">Ver Estados</button>
-                                <button type="button" class="dropdown-item" onclick="location.href='@Url.Action("VistaCargosDepartamentos", "DepartamentoCargo",new{ id =@item.id, nombre = @item.nombre} )'">Ver Cargos</button>
-        
-                            </ul>
-                        </div>                
-                    </td>*@
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                <button id="btnEditar" type="button" class="dropdown-item" data-toggle="editarDepartamento-modal" data-target="#popUpEditar" data-url="@Url.Action("VentanaEditarDepartamento","Departamento",new { id = "idDepartamento" })">Editar</button>
+                <button id="btnEliminar" type="button" class="dropdown-item" data-toggle="eliminarDepartamento-modal" data-target="#popUpEliminar" data-url="@Url.Action("VentanaEliminarDepartamento","Departamento",new { id = "idDepartamento" })">Eliminar</button>
+                <button type="button" class="dropdown-item" onclick="location.href='@Url.Action("VistaEstadosDepartamentos", "DepartamentoEstado",new{ id =@item.id, nombre = @item.nombre} )'">Ver Estados</button>
+                <button type="button" class="dropdown-item" onclick="location.href='@Url.Action("VistaCargosDepartamentos", "DepartamentoCargo",new{ id =@item.id, nombre = @item.nombre} )'">Ver Cargos</button>
+
+                </ul>
+                </div>
+                </td>*@
                 </tr>
             }
         </table>
+        </div>
+        <div id="navDept"></div>
+    </div>
+
+
+      
     
 
 
 </div>
-<div id="nav"></div>
+
 
 
