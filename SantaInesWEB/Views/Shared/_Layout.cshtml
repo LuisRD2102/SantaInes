@@ -6,7 +6,7 @@
     
     <title>@ViewData["Title"] - SantaInesWEB</title>
     <link rel="stylesheet" href="~/css/style.css">
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @*<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
     <link rel="stylesheet" href="~/SantaInesWEB.styles.css" asp-append-version="true" />
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -51,11 +51,11 @@
                 <span class="tooltip">Empleados</span>
         </li>
         <li>
-         <a href="#">
+         <a a asp-controller="Prueba" asp-action="PruebaDepartamento">
            <i class='bx bx-pie-chart-alt-2' ></i>
-           <span class="links_name">Analytics</span>
+           <span class="links_name">Prueba</span>
          </a>
-         <span class="tooltip">Analytics</span>
+                <span class="tooltip">Prueba</span>
         </li>
         <li>
          <a href="#">

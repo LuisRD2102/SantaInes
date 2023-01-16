@@ -217,7 +217,7 @@ main .table-responsive {
     background-color: white;
     margin: auto;
     border-radius: var(--card-border-radius);
-    /*height: auto;*/
+    height: auto;
     height:80vh !important; 
    
 }
@@ -232,8 +232,8 @@ table.dataTable thead th {
 table.dataTable{
     width:100% !important;
     margin-top: 0.8rem !important;
-    height:auto !important;
-    max-height:80vh !important;
+    height:100% !important;
+    /*max-height:80vh !important;*/
     /*height:80vh !important;*/
     
 }
@@ -247,12 +247,12 @@ table.dataTable.no-footer {
 }
 
 table.dataTable tbody td {
-     word-wrap: break-word;
+    /* word-wrap: break-word;*/
     text-align: center !important;
 }
 
 table.dataTable th{
-     word-wrap: break-word;
+    /* word-wrap: break-word;*/
     border:none !important;
 }
 
