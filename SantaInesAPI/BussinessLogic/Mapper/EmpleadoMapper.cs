@@ -16,7 +16,7 @@ namespace SantaInesAPI.BussinessLogic.Mapper
                 apellido_completo = e.apellido_completo,
                 rol = e.rol,
                 id_departamento = e.id_departamento,
-                id_itinerario = e.id_itinerario
+                id_itinerario = e?.id_itinerario
             };
         }
 

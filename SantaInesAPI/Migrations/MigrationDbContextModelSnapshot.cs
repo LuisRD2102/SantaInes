@@ -104,7 +104,7 @@ namespace SantaInesAPI.Migrations
                     b.Property<Guid>("id_departamento")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("id_itinerario")
+                    b.Property<Guid?>("id_itinerario")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("nombre_completo")
@@ -124,7 +124,8 @@ namespace SantaInesAPI.Migrations
                     b.HasIndex("id_departamento");
 
                     b.HasIndex("id_itinerario")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[id_itinerario] IS NOT NULL");
 
                     b.ToTable("Empleados");
                 });
@@ -221,9 +222,7 @@ namespace SantaInesAPI.Migrations
 
                     b.HasOne("SantaInesAPI.Persistence.Entity.Itinerario", "Itinerario")
                         .WithOne("Empleado")
-                        .HasForeignKey("SantaInesAPI.Persistence.Entity.Empleado", "id_itinerario")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SantaInesAPI.Persistence.Entity.Empleado", "id_itinerario");
 
                     b.Navigation("Departamento");
 
