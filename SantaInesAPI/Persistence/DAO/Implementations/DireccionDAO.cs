@@ -26,7 +26,6 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                     d => new DireccionDTO
                     {
                         id = d.id,
-                        estado = d.estado,
                         municipio = d.municipio,
                         direccion = d.direccion,
                         codPostal = d.cod_postal
@@ -52,7 +51,6 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                             .Select(d => new DireccionDTO
                             {
                                 id = d.id,
-                                estado = d.estado,
                                 municipio = d.municipio,
                                 direccion = d.direccion,
                                 codPostal = d.cod_postal                             
@@ -77,7 +75,6 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                     d => new DireccionDTO
                     {
                         id = d.id,
-                        estado = d.estado,
                         municipio = d.municipio,
                         direccion = d.direccion,
                         codPostal = d.cod_postal

@@ -80,10 +80,6 @@ namespace SantaInesAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("estado")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("municipio")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

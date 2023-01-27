@@ -10,7 +10,6 @@ namespace SantaInesAPI.BussinessLogic.Mapper
             return new DireccionDTO()
             {
                 id = d.id,
-                estado = d.estado,
                 municipio = d.municipio,
                 direccion = d.direccion,               
                 codPostal = d.cod_postal
@@ -23,7 +22,6 @@ namespace SantaInesAPI.BussinessLogic.Mapper
             return new Direccion()
             {
                 id = d.id,
-                estado = d.estado,
                 municipio = d.municipio,
                 direccion = d.direccion,
                 cod_postal = d.codPostal
