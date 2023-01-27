@@ -6,9 +6,6 @@ namespace SantaInesWEB.Models
 	{
         public Guid id { get; set; }
 
-		[Required(ErrorMessage = "Introduzca el estado")]
-		public string estado { get; set; }
-
 		[Required(ErrorMessage = "Introduzca el municipio")]
 		public string municipio { get; set; }
 

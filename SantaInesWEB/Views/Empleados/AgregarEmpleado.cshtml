@@ -5,51 +5,18 @@
 }
 
 <head>
-    <link rel="stylesheet" href="~/css/EmpleadoYDepartamento.css" />  
+    <link rel="stylesheet" href="~/css/EmpleadoYDepartamento.css" />
+   @* <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<!-- Importacion de librerias -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+
 
 <!-- Ventana emergente -->
-<div class="modal fade" id="popUpAgregarEmpleado" tabindex="-1" role="dialog" aria-labelledby="popUpAgregarTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Agregar Empleado</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            @using (Html.BeginForm("GuardarEmpleado", "Empleado", FormMethod.Post))
-            {
-                <div class="modal-body">
 
-                    @Html.TextBoxFor(m => m.cedula, new {Class="form-control", placeholder="Cedula: "})
-                    @Html.ValidationMessageFor(m => m.cedula ,null, new { @class = "text-danger" })
-                    <br />
-                    @Html.TextAreaFor(m => m.nombre_completo, new {Class="form-control", placeholder="Nombre(s): "})
-                    @Html.ValidationMessageFor(m => m.nombre_completo ,null, new { @class = "text-danger" })
-                    <br />
-                    @Html.TextAreaFor(m => m.apellido_completo, new {Class="form-control", placeholder="Apellido(s): "})
-                    @Html.ValidationMessageFor(m => m.apellido_completo ,null, new { @class = "text-danger" })
-                    <br />
-                    @Html.TextAreaFor(m => m.username, new {Class="form-control", placeholder="Usuario: "})
-                    @Html.ValidationMessageFor(m => m.username ,null, new { @class = "text-danger" })
-                    <br />
-                    @Html.TextAreaFor(m => m.password, new {Class="form-control", placeholder="Contraseña: "})
-                    @Html.ValidationMessageFor(m => m.password ,null, new { @class = "text-danger" })
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="botonCancelar" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="botonCrear">Crear</button>
-                </div>
-            }
-        </div>
-    </div>
-</div>
+
+
+ 

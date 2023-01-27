@@ -7,7 +7,9 @@
 <head>
     <link rel="stylesheet" href="~/css/EmpleadoYDepartamento.css" /> 
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="../jquery.simplePagination.js"></script>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css">*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
 </head>
 
@@ -50,7 +52,7 @@
             </div>
 
             <div class="agregar">
-                <button id=btnAgregarEmpleado class="boton" type="button" data-toggle="agregarEmpleado-modal" data-target="#popUpAgregar" data-url="@Url.Action("AgregarEmpleado")">
+                <button class="boton" type="button" data-toggle="modal" data-target="#myModal">
                     Crear Empleado
                     <i class='bx bx-plus'></i>
                 </button>
@@ -94,21 +96,21 @@
                         <td>
                             @Html.DisplayFor(i => item.rol)
                         </td>
-                        @*<td>
-                    <div class="dropdown">
+                        <td>
+                            <div class="dropdown">
 
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></button>
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-vertical-rounded'></i></button>
 
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
-                    <button id="btnEditar" type="button" class="dropdown-item" data-toggle="editarDepartamento-modal" data-target="#popUpEditar" data-url="@Url.Action("VentanaEditarDepartamento","Departamento",new { id = "idDepartamento" })">Editar</button>
-                    <button id="btnEliminar" type="button" class="dropdown-item" data-toggle="eliminarDepartamento-modal" data-target="#popUpEliminar" data-url="@Url.Action("VentanaEliminarDepartamento","Departamento",new { id = "idDepartamento" })">Eliminar</button>
-                    <button type="button" class="dropdown-item" onclick="location.href='@Url.Action("VistaEstadosDepartamentos", "DepartamentoEstado",new{ id =@item.id, nombre = @item.nombre} )'">Ver Estados</button>
-                    <button type="button" class="dropdown-item" onclick="location.href='@Url.Action("VistaCargosDepartamentos", "DepartamentoCargo",new{ id =@item.id, nombre = @item.nombre} )'">Ver Cargos</button>
+                             @*   <button id="btnEditar" type="button" class="dropdown-item" data-toggle="editarDepartamento-modal" data-target="#popUpEditar" data-url="@Url.Action("VentanaEditarDepartamento","Departamento",new { id = "idDepartamento" })">Editar</button>
+                                <button id="btnEliminar" type="button" class="dropdown-item" data-toggle="eliminarDepartamento-modal" data-target="#popUpEliminar" data-url="@Url.Action("VentanaEliminarDepartamento","Departamento",new { id = "idDepartamento" })">Eliminar</button>
+                                <button type="button" class="dropdown-item" onclick="location.href='@Url.Action("VistaEstadosDepartamentos", "DepartamentoEstado",new{ id =@item.id, nombre = @item.nombre} )'">Ver Estados</button>
+                                <button type="button" class="dropdown-item" onclick="location.href='@Url.Action("VistaCargosDepartamentos", "DepartamentoCargo",new{ id =@item.id, nombre = @item.nombre} )'">Ver Cargos</button>*@
 
-                    </ul>
-                    </div>
-                    </td>*@
+                                </ul>
+                            </div>
+                    </td>
                     </tr>
                 }
             </table>
@@ -183,7 +185,55 @@
         <div id="navDept"></div>
     </div>
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("GuardarEmpleado", "Empleado", FormMethod.Post))
+                    {
+                        <div class="modal-body">
+                            <h1>PENE</h1>
+                            @*  @Html.TextBoxFor(m => m, new {Class="form-control", placeholder="Cedula: "})
+                        @Html.ValidationMessageFor(m => m.cedula ,null, new { @class = "text-danger" })
+                        <br />
+                        @Html.TextAreaFor(m => m.nombre_completo, new {Class="form-control", placeholder="Nombre(s): "})
+                        @Html.ValidationMessageFor(m => m.nombre_completo ,null, new { @class = "text-danger" })
+                        <br />
+                        @Html.TextAreaFor(m => m.apellido_completo, new {Class="form-control", placeholder="Apellido(s): "})
+                        @Html.ValidationMessageFor(m => m.apellido_completo ,null, new { @class = "text-danger" })
+                        <br />
+                        @Html.TextAreaFor(m => m.username, new {Class="form-control", placeholder="Usuario: "})
+                        @Html.ValidationMessageFor(m => m.username ,null, new { @class = "text-danger" })
+                        <br />
+                        @Html.TextAreaFor(m => m.password, new {Class="form-control", placeholder="Contraseña: "})
+                        @Html.ValidationMessageFor(m => m.password ,null, new { @class = "text-danger" })
+                        *@
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="botonCancelar" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="botonCrear">Crear</button>
+                        </div>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
 </div>
+
 
 
 @section Scripts{
@@ -246,13 +296,20 @@
             "pagingType": "numbers",
             "searching": false,
             "responsive": true,
-            "pageResize":true,
+            "resizePage":true,
             "lengthChange": false,
+            "order": [],
             "columnDefs": [
                 {
                     "target": 0,
                     "visible": false,
                     "searchable": false,
+                     
+                    
+                    
+                },{
+                        "target": 6,
+                        "orderable": false,
                 }
             ],
             "stripeClasses": []

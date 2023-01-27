@@ -108,39 +108,7 @@
 
 				<div class="form-right">
 					<h2>Información Domiciliaria</h2>
-					<div class="form-row form-row-2">
-							@Html.DropDownListFor(m => m.Item2.estado, new List<SelectListItem>{
-								new SelectListItem{Value = "", Text = "Estado"},
-								new SelectListItem{Value = "Amazonas", Text = "Amazonas"},
-								new SelectListItem{Value = "Anzoategui", Text = "Anzoategui"},
-								new SelectListItem{Value = "Apure", Text = "Apure"},
-								new SelectListItem{Value = "Aragua", Text = "Aragua"},
-								new SelectListItem{Value = "Barinas", Text = "Barinas"},
-								new SelectListItem{Value = "Bolívar", Text = "Bolívar"},
-								new SelectListItem{Value = "Carabobo", Text = "Carabobo"},
-								new SelectListItem{Value = "Cojedes", Text = "Cojedes"},
-								new SelectListItem{Value = "Delta Amacuro", Text = "Delta Amacuro"},
-								new SelectListItem{Value = "Distrito Federal", Text = "Distrito Federal"},
-								new SelectListItem{Value = "Falcon", Text = "Falcon"},
-								new SelectListItem{Value = "Guarico", Text = "Guarico"},
-								new SelectListItem{Value = "Lara", Text = "Lara"},
-								new SelectListItem{Value = "Mérida", Text = "Mérida"},
-								new SelectListItem{Value = "Miranda", Text = "Miranda"},
-								new SelectListItem{Value = "Monagas", Text = "Monagas"},
-								new SelectListItem{Value = "Nueva Esparta", Text = "Nueva Esparta"},
-								new SelectListItem{Value = "Portuguesa", Text = "Portuguesa"},
-								new SelectListItem{Value = "Sucre", Text = "Sucre"},
-								new SelectListItem{Value = "Tachira", Text = "Tachira"},
-								new SelectListItem{Value = "Trujillo", Text = "Trujillo"},
-								new SelectListItem{Value = "Vargas", Text = "Vargas"},
-								new SelectListItem{Value = "Yaracuy", Text = "Yaracuy"},
-								new SelectListItem{Value = "Zulia", Text = "Zulia"},
-						})
-						@Html.ValidationMessageFor(m => m.Item2.estado ,null, new { @class = "text-danger-right" })
-						<span class="select-btn">
-							<i class="zmdi zmdi-chevron-down"></i>
-						</span>
-					</div>
+				
 					<div class="form-row">
 						@Html.TextBoxFor(m => m.Item2.municipio, new{Placeholder = "Municipio" })
 						@Html.ValidationMessageFor(m => m.Item2.municipio ,null, new { @class = "text-danger-right" })

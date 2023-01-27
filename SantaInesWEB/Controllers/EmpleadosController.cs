@@ -19,7 +19,6 @@ namespace SantaInesWEB.Controllers
             var tupla = new Tuple<List<EmpleadoModel>, List<DepartamentoModel>>(null, null);
             tupla = await _servicioApiEmpleado.MostrarTabla();
             return View(tupla);
-            //return View(await _servicioApiDepartamento.MostrarTabla());
         }
 
         public IActionResult AgregarEmpleado()
