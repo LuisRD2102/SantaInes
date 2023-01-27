@@ -13,6 +13,7 @@ builder.Services.AddScoped<IServicioDepartamento, ServicioDepartamento>();
 builder.Services.AddScoped<IServicioUsuario, ServicioUsuario>();
 builder.Services.AddScoped<IServicioEmpleado, ServicioEmpleado>();
 builder.Services.AddScoped<IServicioDireccion, ServicioDireccion>();
+builder.Services.AddScoped<IServicioCita, ServicioCita>();
 
 builder.Services.AddHttpClient("DevConnection", config =>
 {

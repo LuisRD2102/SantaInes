@@ -21,6 +21,8 @@ builder.Services.AddTransient<IUsuarioDAO, UsuarioDAO>();
 builder.Services.AddTransient<IDepartamentoDAO, DepartamentoDAO>();
 builder.Services.AddTransient<IDireccionDAO, DireccionDAO>();
 builder.Services.AddTransient<IEmpleadoDAO, EmpleadoDAO>();
+builder.Services.AddTransient<ICitaDAO, CitaDAO>();
+builder.Services.AddTransient<IItinerarioDAO, ItinerarioDAO>();
 
 var app = builder.Build();
 

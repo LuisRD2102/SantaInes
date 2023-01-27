@@ -15,7 +15,8 @@ namespace SantaInesAPI.BussinessLogic.Mapper
                 nombre_completo = e.nombre_completo,
                 apellido_completo = e.apellido_completo,
                 rol = e.rol,
-                id_departamento = e.id_departamento
+                id_departamento = e.id_departamento,
+                id_itinerario = e.id_itinerario
             };
         }
 
@@ -29,7 +30,8 @@ namespace SantaInesAPI.BussinessLogic.Mapper
                 nombre_completo = e.nombre_completo,
                 apellido_completo = e.apellido_completo,
                 rol = e.rol,
-                id_departamento = e.id_departamento
+                id_departamento = e.id_departamento,
+                id_itinerario = e.id_itinerario
             };
         }
 

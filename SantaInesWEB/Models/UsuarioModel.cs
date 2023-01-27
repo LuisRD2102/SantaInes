@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Data.SqlTypes;
 
 namespace SantaInesWEB.Models
 {
@@ -28,7 +29,7 @@ namespace SantaInesWEB.Models
 
 		[Required(ErrorMessage = "Introduzca su fecha de nacimiento")]
 		[DataType(DataType.Date)]
-		public DateTime fecha_Nacimiento { get; set; }
+		public SqlDateTime fecha_Nacimiento { get; set; }
 
 		[Required(ErrorMessage = "Seleccione su sexo")]
 		public string sexo { get; set; }

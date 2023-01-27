@@ -12,7 +12,6 @@ namespace SantaInesAPI.BussinessLogic.Mapper
                 id = c.id,
                 doctor= c.doctor,
                 fecha_hora= c.fecha_hora,
-                id_departamento= c.id_departamento,
                 paciente = c.paciente   
             };
         }
@@ -23,8 +22,7 @@ namespace SantaInesAPI.BussinessLogic.Mapper
             {
                 id = c.id,
                 doctor = c.doctor,
-                fecha_hora = c.fecha_hora,
-                id_departamento = c.id_departamento,
+                fecha_hora = ((DateTime)c.fecha_hora),
                 paciente = c.paciente
             };
         }

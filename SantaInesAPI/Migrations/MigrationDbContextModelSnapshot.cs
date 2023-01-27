@@ -28,9 +28,6 @@ namespace SantaInesAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("Departamentoid")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("doctor")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -38,16 +35,11 @@ namespace SantaInesAPI.Migrations
                     b.Property<DateTime>("fecha_hora")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("id_departamento")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("paciente")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("id");
-
-                    b.HasIndex("Departamentoid");
 
                     b.HasIndex("doctor");
 
@@ -147,13 +139,11 @@ namespace SantaInesAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("hora_fin")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("hora_fin")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("hora_inicio")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("hora_inicio")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("id");
 
@@ -208,12 +198,6 @@ namespace SantaInesAPI.Migrations
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Cita", b =>
                 {
-                    b.HasOne("SantaInesAPI.Persistence.Entity.Departamento", "Departamento")
-                        .WithMany()
-                        .HasForeignKey("Departamentoid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SantaInesAPI.Persistence.Entity.Empleado", "Empleado")
                         .WithMany("Citas")
                         .HasForeignKey("doctor")
@@ -225,8 +209,6 @@ namespace SantaInesAPI.Migrations
                         .HasForeignKey("paciente")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Departamento");
 
                     b.Navigation("Empleado");
 

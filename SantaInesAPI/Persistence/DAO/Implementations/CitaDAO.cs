@@ -28,7 +28,6 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                         id = c.id,
                         doctor = c.doctor,
                         fecha_hora = c.fecha_hora,
-                        id_departamento = c.id_departamento,
                         paciente = c.paciente
                     }
                 );
@@ -54,7 +53,6 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                                 id = c.id,
                                 doctor = c.doctor,
                                 fecha_hora = c.fecha_hora,
-                                id_departamento = c.id_departamento,
                                 paciente = c.paciente
 
                             });
@@ -79,7 +77,6 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                         id = c.id,
                         doctor = c.doctor,
                         fecha_hora = c.fecha_hora,
-                        id_departamento = c.id_departamento,
                         paciente = c.paciente
                     }
                 );

@@ -1,6 +1,7 @@
 ﻿using SantaInesAPI.Persistence.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.SqlTypes;
 
 namespace SantaInesAPI.BussinessLogic.DTO
 {
@@ -10,7 +11,6 @@ namespace SantaInesAPI.BussinessLogic.DTO
         public DateTime fecha_hora { get; set; }
         public string paciente { get; set; }
         public string doctor { get; set; }
-        public Guid id_departamento { get; set; }
 
     }
 }

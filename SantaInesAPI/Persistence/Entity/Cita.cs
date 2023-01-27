@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.SqlTypes;
 
 namespace SantaInesAPI.Persistence.Entity
 {
@@ -12,8 +13,6 @@ namespace SantaInesAPI.Persistence.Entity
         public virtual Usuario Usuario { get; set; }
         public string doctor { get; set; }
         public virtual Empleado Empleado { get; set; }
-        public Guid id_departamento { get; set; }
-        public virtual Departamento Departamento { get; set; }  
 
     }
 }
