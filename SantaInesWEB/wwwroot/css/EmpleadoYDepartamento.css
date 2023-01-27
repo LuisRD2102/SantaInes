@@ -58,7 +58,7 @@ main .contenedor {
     width: 96%;
     margin: 0 auto;
     gap: 2rem;
-    grid-template-columns: auto 26rem;
+    grid-template-columns: auto 32rem;
     
 }
 
@@ -226,6 +226,7 @@ table.dataTable thead th {
     background-color: var(--primary-color);
     color: white;
     text-align: center !important;
+    font-weight:500 !important;
     
 }
 
@@ -294,17 +295,61 @@ main .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
 }
 
 /*Fin tabla responsive*/
+
+main .contenedor .top-table {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .boton {
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--color-white);
+    border-radius: var(--border-radius-3);
+    cursor: pointer;
+    height: 38px;
+    width: 200px;
+    margin-top: 20px;
+    margin-right: 28px;
+    font-weight:600;
+    transition: all 300ms ease;
+}
+
+    main .boton:hover {
+        background-color: var(--primary-color-dark);
+    }
+
+main .botonDepartamento {
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--color-white);
+    border-radius: var(--border-radius-3);
+    cursor: pointer;
+    height: 38px;
+    width: 200px;
+    margin-top: 20px;
+    /*font-size:10px;*/
+    margin-right: 28px;
+    font-weight: 600;
+    transition: all 300ms ease;
+}
+
+    main .botonDepartamento:hover {
+        background-color: var(--primary-color-dark);
+    }
+
+main .agregar i {
+    font-size: 0px;
+}
+
 /*--------------Media Screen----------------*/
 @media screen and (min-width: 300px) and (max-width: 519px) {
-    main .tableEmpleados th, main .tableEmpleados td {
+    main .dataTable th,
+    main .dataTable td {
         font-size: 6px !important;
     }
 
-    main .tableEmpleados{
-        table-layout:fixed;
-        
-    }
-
     main .table-responsive {
         background-color: white;
         margin: auto;
@@ -312,43 +357,52 @@ main .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
         height: 40vh;
     }
 
-    /*main .wrapperTable {
-        display: block;
-        margin: auto;
-        width: 100%;
-        height: 40vh;
-        box-shadow: var(--box-shadow);
-        background: var(--color-white);
-        margin-top: 0.8rem;
-        border-radius: var(--card-border-radius);
-    }*/
+    main .boton {
+        width: 40px;
+        font-size: 0;
+        transform: translateY(-14%);
+    }
+
+    main .botonDepartamento {
+        width: 40px;
+        font-size: 0;
+        transform: translateY(-14%);
+    }
+
+    main .agregar i {
+        font-size: 14px;
+    }
 }
 
 @media screen and (min-width: 520px) and (max-width: 682px) {
-   
 
-    main .tableEmpleados th,
-    main .tableEmpleados td {
+
+    main .dataTable th,
+    main .dataTable td {
         font-size: 8px !important;
     }
-
-    /*main .wrapperTable {
-        display: block;
-        margin: auto;
-        width: 100%;
-        height: 40vh;
-        box-shadow: var(--box-shadow);
-        background: var(--color-white);
-        margin-top: 0.8rem;
-        border-radius: var(--card-border-radius);*/
-        /*padding: 1px 8px 8px;*/
-    /*}*/
 
     main .table-responsive {
         background-color: white;
         margin: auto;
         border-radius: var(--card-border-radius);
         height: 40vh;
+    }
+
+    main .boton {
+        width: 60px;
+        font-size: 0;
+        transform: translateY(-14%);
+    }
+
+    main .botonDepartamento {
+        width: 60px;
+        font-size: 0;
+        transform: translateY(-14%);
+    }
+
+    main .agregar i {
+        font-size: 14px;
     }
 
 }
@@ -356,10 +410,27 @@ main .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
 @media screen and (min-width: 683px) and (max-width: 768px) {
    
 
-    main .tableEmpleados th,
-    main .tableEmpleados td {
+    main .dataTable th,
+    main .dataTable td {
         font-size: 13px !important;
     }
+
+    main .boton {
+        width: 60px;
+        font-size: 0;
+        transform: translateY(-14%);
+    }
+
+    main .botonDepartamento {
+        width: 60px;
+        font-size: 0;
+        transform: translateY(-14%);
+    }
+
+    main .agregar i {
+        font-size: 14px;
+    }
+
 }
 
 @media screen and (max-width: 1200px) {
@@ -383,6 +454,16 @@ main .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
             width: 100%;
         }
 
+   /* main .boton {
+        width: 60px;
+        font-size: 0;
+        transform: translateY(-14%);
+    }
+
+    main .agregar i {
+        font-size: 12px;
+    }*/
+
     main .tableEmpleados {
         background: var(--color-white);
         margin-top: 0.8rem;
@@ -396,23 +477,11 @@ main .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
         /*min-height:10px;*/
     }
 
-    main .wrapperTable {
-        display: block;
-        margin: auto;
-        width: 100%;
-        height: 25vh;
-        box-shadow: var(--box-shadow);
-        background: var(--color-white);
-        margin-top: 0.8rem;
-        border-radius: var(--card-border-radius);
-        /*padding: 1px 8px 8px;*/
-    }
-
     main .table-responsive {
         background-color: white;
         margin: auto;
         border-radius: var(--card-border-radius);
-        height: 45vh;
+        height: 35vh !important;
     }
    
 

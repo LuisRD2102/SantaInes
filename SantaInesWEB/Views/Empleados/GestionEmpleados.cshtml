@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
 </head>
 
-@*<!--Alerta de mensajes exitosos-->
+<!--Alerta de mensajes exitosos-->
 @if (Context.Request.Query["message"].Count() > 0)
 {
     <div class="alert alert-success text-center alert-dismissible fade show p-3" role="alert">
@@ -20,7 +20,7 @@
     </div>
 }
 
-<!--Alerta de mensajes de error-->
+@*<!--Alerta de mensajes de error-->
 @if (Context.Request.Query["message2"].Count() > 0)
 {
     <div class="alert alert-danger text-center alert-dismissible fade show p-3" role="alert">
@@ -29,10 +29,10 @@
     </div>
 }*@
 
-@*<!-- Placeholders de las ventanas emergentes -->
-<div id="PlaceHolderAgregarDepartamento"></div>
-<div id="PlaceHolderEliminarDepartamento"></div>
-<div id="PlaceHolderModificarDepartamento"></div>*@
+<!-- Placeholders de las ventanas emergentes -->
+<div id="PlaceHolderAgregarEmpleado"></div>
+<div id="PlaceHolderEliminarEmpleado"></div>
+<div id="PlaceHolderModificarEmpleado"></div>
 <div class="top-bar" >
     <div class="titulo-top">
         <h2>Gestión de Empleados</h2>
@@ -43,13 +43,25 @@
 
      <div class="Empleados">
 
-        <div class="titulo-empleado">
-            <h1>Empleados</h1>
+        <div class="top-table">
+
+            <div class="titulo-empleado">
+                <h1>Empleados</h1>
+            </div>
+
+            <div class="agregar">
+                <button id=btnAgregarEmpleado class="boton" type="button" data-toggle="agregarEmpleado-modal" data-target="#popUpAgregar" data-url="@Url.Action("AgregarEmpleado")">
+                    Crear Empleado
+                    <i class='bx bx-plus'></i>
+                </button>
+            </div>
+
         </div>
+     
 
-         <div class="wrapperTable">           
+        <div class="table-responsive">
 
-            <table class="tableEmpleados pageResize" id="table-empleado">
+            <table class="display" id="table-empleado">
                 <thead>
                     <tr>
                         <th>Cédula</th>
@@ -107,8 +119,19 @@
 
     <div class="departamentos">
 
-        <div class="titulo-departamento">
-            <h1>Departamentos</h1>
+          <div class="top-table">
+
+            <div class="titulo-departamento">
+                <h1>Departamentos</h1>
+            </div>
+
+            <div class="agregar">
+                <button id=btnAgregarDepartamento class="botonDepartamento" type="button" data-toggle="agregarEmpleado-modal" data-target="#popUpAgregarEmpleado" data-url="@Url.Action("AgregarDepartamento")">
+                    Crear Departamento
+                    <i class='bx bx-plus'></i>
+                </button>
+            </div>
+
         </div>
 
         <div class="table-responsive">
@@ -166,69 +189,37 @@
 @section Scripts{
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.13.1/features/pageResize/dataTables.pageResize.min.js"></script>
+    <script src="~/js/Empleado.js"></script>
     <@*script type="text/javascript" src="jquery.dataTables.js"></script>*@
           @*<script type="text/javascript" src="dataTables.scrollingPagination.js"></script>*@
 
-    <script defer="defer">
-    $(document).ready(function () {
-        var rowsShown = 16;
-        if (window.matchMedia('(max-device-width: 1200px)').matches) {
-            rowsShown = 8;
-        }
-        var rowsTotal = $('#table-empleado tbody tr').length;
-        var numPages = rowsTotal / rowsShown;
-        for (i = 0; i < numPages; i++) {
-            var pageNum = i + 1;
-            $('#nav').append('<a href="#" rel="' + i + '">' + pageNum + '</a> ');
-        }
-        $('#table-empleado tbody tr').hide();
-        $('#table-empleado tbody tr').slice(0, rowsShown).show();
-        $('#table-empleado a:first').addClass('active');
-        $('#nav a').bind('click', function () {
-
-            $('#nav a').removeClass('active');
-            $(this).addClass('active');
-            var currPage = $(this).attr('rel');
-            var startItem = currPage * rowsShown;
-            var endItem = startItem + rowsShown;
-            $('#table-empleado tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
-                css('display', 'table-row').animate({ opacity: 1 }, 300);
-        });
-    });
-
-    /*Departamento*/
-    //$(window).resize((event) =>{
+    <script>
+    //$(document).ready(function () {
     //    var rowsShown = 16;
-    //    if (innerWidth <= 1200) {
+    //    if (window.matchMedia('(max-device-width: 1200px)').matches) {
     //        rowsShown = 8;
-    //        console.log('It\'s working.');
     //    }
-    //    //if (window.matchMedia('(max-device-width: 1200px)').matches){
-    //    //    rowsShown = 8;
-    //    //    console.log('HHHHH');
-
-    //    //}
-    //    var rowsTotal = $('#table-departamento tbody tr').length;
+    //    var rowsTotal = $('#table-empleado tbody tr').length;
     //    var numPages = rowsTotal / rowsShown;
     //    for (i = 0; i < numPages; i++) {
     //        var pageNum = i + 1;
-    //        $('#navDept').append('<a href="#" rel="' + i + '">' + pageNum + '</a> ');
+    //        $('#nav').append('<a href="#" rel="' + i + '">' + pageNum + '</a> ');
     //    }
-    //    $('#table-departamento tbody tr').hide();
-    //    $('#table-departamento tbody tr').slice(0, rowsShown).show();
-    //    $('#table-departamento a:first').addClass('active');
+    //    $('#table-empleado tbody tr').hide();
+    //    $('#table-empleado tbody tr').slice(0, rowsShown).show();
+    //    $('#table-empleado a:first').addClass('active');
+    //    $('#nav a').bind('click', function () {
 
-    //    $('#navDept a').bind('click', function () {
-
-    //        $('#navDept a').removeClass('active');
+    //        $('#nav a').removeClass('active');
     //        $(this).addClass('active');
     //        var currPage = $(this).attr('rel');
     //        var startItem = currPage * rowsShown;
     //        var endItem = startItem + rowsShown;
-    //        $('#table-departamento tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
+    //        $('#table-empleado tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
     //            css('display', 'table-row').animate({ opacity: 1 }, 300);
     //    });
     //});
+
 
 
     $(document).ready(function () {
@@ -236,7 +227,7 @@
             "pagingType": "numbers",
             "searching": false,
             "responsive": true,
-           
+            "pageResize":true,
             "lengthChange": false,
             "columnDefs": [
                 {
@@ -250,6 +241,24 @@
         });
     });
 
+       $(document).ready(function () {
+        $('#table-empleado').dataTable({
+            "pagingType": "numbers",
+            "searching": false,
+            "responsive": true,
+            "pageResize":true,
+            "lengthChange": false,
+            "columnDefs": [
+                {
+                    "target": 0,
+                    "visible": false,
+                    "searchable": false,
+                }
+            ],
+            "stripeClasses": []
+
+        });
+    });
 
 
     </script>

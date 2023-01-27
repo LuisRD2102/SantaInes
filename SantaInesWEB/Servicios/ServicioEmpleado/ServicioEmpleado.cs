@@ -118,36 +118,30 @@ namespace SantaInesWEB.Servicios.ServicioEmpleado
 
         }
 
-        //public async Task<List<EmpleadoModel>> MostrarTabla()
-        //{
-        //    EmpleadoModel empleado = new EmpleadoModel();
+        public async Task<JObject> RegistrarEmpleado(EmpleadoModel empleado)
+        {
+            var cliente = _httpClientFactory.CreateClient("DevConnection");
 
-        //    var cliente = _httpClientFactory.CreateClient("DevConnection");
+            var content = new StringContent(JsonConvert.SerializeObject(empleado), Encoding.UTF8, "application/json");
+            
+            try
+            {
+                var response = await cliente.PostAsync("Empleado/CrearEmpleado/", content);
+                var respuesta = await response.Content.ReadAsStringAsync();
+                JObject _json_respuesta = JObject.Parse(respuesta);
 
-        //    try
-        //    {
-        //        var responseEmpleado = await cliente.GetAsync("Empleado/ConsultaEmpleados/");
+                return _json_respuesta;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"ERROR de conexión con la API: '{ex.Message}'");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
 
-        //        if (responseEmpleado.IsSuccessStatusCode)
-        //        {
-        //            var respuestaEmpleado = await responseEmpleado.Content.ReadAsStringAsync();
-        //            JObject json_respuestaDept = JObject.Parse(respuestaEmpleado);
-
-        //            string stringDataRespuestaDept = json_respuestaDept["data"].ToString();
-        //            var resultadoEmpleado = JsonConvert.DeserializeObject<List<EmpleadoModel>>(stringDataRespuestaDept);
-        //            empleado.empleados = resultadoEmpleado;
-        //        }
-        //    }
-        //    catch (HttpRequestException ex)
-        //    {
-        //        Console.WriteLine($"ERROR de conexión con la API: '{ex.Message}'");
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex);
-        //    }
-        //    return empleado.empleados;
-        //}
+            return _json_respuesta;
+        }
     }
 }

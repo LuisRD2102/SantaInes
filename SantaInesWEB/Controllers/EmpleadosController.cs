@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using SantaInesWEB.Models;
 using SantaInesWEB.Servicios.ServicioEmpleado;
 
@@ -19,6 +20,39 @@ namespace SantaInesWEB.Controllers
             tupla = await _servicioApiEmpleado.MostrarTabla();
             return View(tupla);
             //return View(await _servicioApiDepartamento.MostrarTabla());
+        }
+
+        public IActionResult AgregarEmpleado()
+        {
+            try
+            {
+                return PartialView();
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException!;
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GuardarEmpleado(EmpleadoModel empleado)
+        {
+
+            try
+            {
+                JObject respuesta = await _servicioApiEmpleado.RegistrarEmpleado(empleado);
+
+                if ((bool)respuesta["success"])
+                {
+                    return RedirectToAction("GestionEmpleados", new { message = "Se ha agregado correctamente" });
+                }
+                //else return RedirectToAction("GestionEmpleados", new { message2 = "El nombre del departamento ingresado ya existe" });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return NoContent();
         }
     }
 }

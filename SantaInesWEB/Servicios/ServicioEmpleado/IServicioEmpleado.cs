@@ -9,6 +9,7 @@ namespace SantaInesWEB.Servicios.ServicioEmpleado
 		//Task<JObject> RegistrarEmpleado(UsuarioModel user);
         Task<JObject> ValidarEmpleadoLogin(string username, string password);
         Task<Tuple<List<EmpleadoModel>,List<DepartamentoModel>>> MostrarTabla();
+        Task<JObject> RegistrarEmpleado(EmpleadoModel empleado);
 
     }
 }
