@@ -6,7 +6,7 @@ namespace SantaInesAPI.Persistence.DAO.Interface
     public interface ICitaDAO
     {
         public List<CitaDTO> ConsultarCitasDAO();
-        public CitaDTO AgregarCitaoDAO(Cita cita);
+        public CitaDTO AgregarCitaDAO(Cita cita);
         public CitaDTO ActualizarCitaDAO(Cita cita);
         public CitaDTO EliminarCitaDAO(Guid id);
     }

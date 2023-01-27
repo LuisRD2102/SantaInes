@@ -26,12 +26,14 @@ namespace SantaInesAPI.Persistence.Database
             modelBuilder.Entity<Cita>()
             .HasOne(b => b.Usuario)
             .WithMany(i => i.Citas)
-            .HasForeignKey(b => b.paciente);
+            .HasForeignKey(b => b.paciente)
+            .OnDelete(DeleteBehavior.Restrict); ;
 
             modelBuilder.Entity<Cita>()
             .HasOne(b => b.Empleado)
             .WithMany(i => i.Citas)
-            .HasForeignKey(b => b.doctor);
+            .HasForeignKey(b => b.doctor)
+            .OnDelete(DeleteBehavior.Restrict); ;
 
             modelBuilder.Entity<Itinerario>()
             .HasOne(b => b.Empleado)

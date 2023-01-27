@@ -11,6 +11,6 @@ namespace SantaInesAPI.Persistence.Entity
         public string municipio { get; set; }
         public string direccion { get; set; }
         public int cod_postal { get; set; }        
-        public  Usuario Usuario { get; set; }
+        public Usuario Usuario { get; set; }
     }
 }
