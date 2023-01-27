@@ -17,6 +17,7 @@ namespace SantaInesAPI.Persistence.Entity
         public string email { get; set; }
         public Guid id_direccion { get; set; }
         public virtual Direccion Direccion { get; set; }
+        public virtual List<Cita> Citas { get; set; }
 
     }
 }

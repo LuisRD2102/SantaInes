@@ -14,5 +14,8 @@ namespace SantaInesAPI.Persistence.Entity
         public string rol { get; set; }
         public Guid id_departamento { get; set; }
         public virtual Departamento Departamento { get; set; }
+        public virtual List<Cita> Citas { get; set; }
+        public Guid id_itinerario { get; set; }
+        public virtual Itinerario Itinerario { get; set; }
     }
 }

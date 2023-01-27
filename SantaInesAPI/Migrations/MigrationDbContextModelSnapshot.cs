@@ -22,6 +22,23 @@ namespace SantaInesAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Cita", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Citas");
+                });
+
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Departamento", b =>
                 {
                     b.Property<Guid>("id")

@@ -232,10 +232,7 @@ table.dataTable thead th {
 table.dataTable{
     width:100% !important;
     margin-top: 0.8rem !important;
-    height:100% !important;
-    /*max-height:80vh !important;*/
-    /*height:80vh !important;*/
-    
+    height:100% !important;    
 }
 
 table.dataTable tr:hover{
@@ -271,8 +268,7 @@ main .dataTables_wrapper .dataTables_paginate .paginate_button {
     width: 30px;
     transition: all 0.5s ease;
 }
-
-main .dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+main .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
     background: var(--primary-color) !important;
 }
 

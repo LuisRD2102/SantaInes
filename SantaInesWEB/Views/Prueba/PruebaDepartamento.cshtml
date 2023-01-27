@@ -1,15 +1,11 @@
 ﻿@model List<SantaInesWEB.Models.DepartamentoModel>
 
 <head>
-    @*<link rel="stylesheet" href="~/css/EmpleadoYDepartamento.css" />*@
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="../jquery.simplePagination.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
 </head>
 
-<div class="card-body">
-
-    <table class="display" id="table-departamento" style="width:100%">
+<div id="resize_wrapper" style="height: 100vh;">
+    <table id="tablaId" class="display responsive nowrap" style="width:100%">
         <thead>
             <tr>
                 <th></th>
@@ -22,48 +18,47 @@
 
             </tr>
         </thead>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(i => item.id)
-                </td>
-                <td>
-                    @Html.DisplayFor(i => item.nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(i => item.descripcion)
-                </td>
-      
-            </tr>
-        }
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(i => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(i => item.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(i => item.descripcion)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
     </table>
 </div>
 
 
 @section Scripts{
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.13.1/features/pageResize/dataTables.pageResize.min.js"></script>
-
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.13.1/features/scrollResize/dataTables.scrollResize.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#table-departamento').dataTable({
-                "pagingType": "numbers",
-                "responsive": true,
-             
-                "lengthChange": false,
-                "columnDefs": [
-                    {
-                        "target": 0,
-                        "visible": false,
-                        "searchable": false,
-                    }
-                ],
-                "stripeClasses": []
-
-            });
+        $('#tablaId').DataTable({
+            "scrollResize": true,
+            "scrollY": "100",
+            "paging": "numbers",
+            "responsive": true,
+            "lengthMenu": [15, 30, 50],
+            "columnDefs": [
+                {
+                    target: 0,
+                    visible: false,
+                    searchable: false,
+                },
+            ],
         });
 
     </script>
-  
+
 }
