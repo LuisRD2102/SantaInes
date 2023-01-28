@@ -14,7 +14,7 @@ namespace SantaInesWEB.Models
 
 
         [Required(ErrorMessage = "Introduzca su cédula")]
-        [StringLength(8, MinimumLength = 8, ErrorMessage = "La cédula debe contener 8 dígitos")]
+        [Range(1000000, 99999999, ErrorMessage = "Cédula inválida")]
         public int cedula { get; set; }
 
 
