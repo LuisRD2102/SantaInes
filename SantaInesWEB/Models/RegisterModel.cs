@@ -36,14 +36,13 @@ namespace SantaInesWEB.Models
         public SqlDateTime fecha_Nacimiento { get; set; }
 
 
-        [Required(ErrorMessage = "Introduzca su género")]
+        [Required(ErrorMessage = "Seleccione su género")]
         [RegularExpression("[MF]", ErrorMessage = "Seleccione M o F")]
         public string sexo { get; set; }
 
 
         [Required(ErrorMessage = "Introduzca teléfono")]
         public string telefono { get; set; }
-
 
 
         [Required(ErrorMessage = "Introduzca un correo")]
