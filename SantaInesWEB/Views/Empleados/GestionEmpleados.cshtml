@@ -6,10 +6,6 @@
 
 <head>
     <link rel="stylesheet" href="~/css/EmpleadoYDepartamento.css" /> 
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css">*@
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
 </head>
 
@@ -52,7 +48,7 @@
             </div>
 
             <div class="agregar">
-                <button class="boton" type="button" data-toggle="modal" data-target="#myModal">
+                <button id=btnAgregar type="button" class="boton" data-toggle="ajax-modal" data-target="#popUpAgregar" data-url="@Url.Action("AgregarEmpleado")">
                     Crear Empleado
                     <i class='bx bx-plus'></i>
                 </button>
@@ -128,7 +124,7 @@
             </div>
 
             <div class="agregar">
-                <button id=btnAgregarDepartamento class="botonDepartamento" type="button" data-toggle="agregarEmpleado-modal" data-target="#popUpAgregarEmpleado" data-url="@Url.Action("AgregarDepartamento")">
+                <button id=btnAgregar type="button" class="botonDepartamento" data-toggle="ajax-modal" data-target="#popUpAgregar" data-url="@Url.Action("AgregarDepartamento")">
                     Crear Departamento
                     <i class='bx bx-plus'></i>
                 </button>
@@ -186,8 +182,7 @@
     </div>
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
+    <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -197,31 +192,7 @@
                     <h4 class="modal-title">Modal Header</h4>
                 </div>
                 <div class="modal-body">
-                    @using (Html.BeginForm("GuardarEmpleado", "Empleado", FormMethod.Post))
-                    {
-                        <div class="modal-body">
-                            <h1>PENE</h1>
-                            @*  @Html.TextBoxFor(m => m, new {Class="form-control", placeholder="Cedula: "})
-                        @Html.ValidationMessageFor(m => m.cedula ,null, new { @class = "text-danger" })
-                        <br />
-                        @Html.TextAreaFor(m => m.nombre_completo, new {Class="form-control", placeholder="Nombre(s): "})
-                        @Html.ValidationMessageFor(m => m.nombre_completo ,null, new { @class = "text-danger" })
-                        <br />
-                        @Html.TextAreaFor(m => m.apellido_completo, new {Class="form-control", placeholder="Apellido(s): "})
-                        @Html.ValidationMessageFor(m => m.apellido_completo ,null, new { @class = "text-danger" })
-                        <br />
-                        @Html.TextAreaFor(m => m.username, new {Class="form-control", placeholder="Usuario: "})
-                        @Html.ValidationMessageFor(m => m.username ,null, new { @class = "text-danger" })
-                        <br />
-                        @Html.TextAreaFor(m => m.password, new {Class="form-control", placeholder="Contraseña: "})
-                        @Html.ValidationMessageFor(m => m.password ,null, new { @class = "text-danger" })
-                        *@
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="botonCancelar" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="botonCrear">Crear</button>
-                        </div>
-                    }
+                    <p>Some text in the modal.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

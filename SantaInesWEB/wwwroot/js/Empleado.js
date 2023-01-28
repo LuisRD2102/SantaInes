@@ -6,16 +6,20 @@ const keys = [
 
 // Script para mostrar ventana Agregar Empleado
 
-$(function () {
-    var PlaceHolderElement = $('#PlaceHolderAgregarEmpleado');
-    $('button[data-toggle="agregarEmpleado-modal"]').click(function (event) {
-        var url = $(this).data('url');
+
+        $(function () {
+                var PlaceHolderElement = $('#PlaceHolderAgregarEmpleado');
+        $('#btnAgregar').click(function (event) {
+                var url = $(this).data('url');
         $.get(url).done(function (data) {
             PlaceHolderElement.html(data);
-            PlaceHolderElement.find('.modal').modal('show');
+        PlaceHolderElement.find('header').empty();
+        PlaceHolderElement.find('footer').empty();
+        PlaceHolderElement.find('.modal').modal('show');
+                })
+            })
+
         })
-    })
-})
 
 //Script para mostrar ventana Editar Departamento
 
@@ -44,30 +48,6 @@ $(function () {
             PlaceHolderElement.find('.modal').modal('show');
         })
     })
-})
-
-
-//Script para el buscador
-buscador.addEventListener("keyup", function () {
-    var keyword = this.value;
-    keyword = keyword.toUpperCase();
-    var table = document.getElementById("table");
-    var all_tr = table.getElementsByTagName("tr");
-    for (var i = 0; i < all_tr.length; i++) {
-        var name_column = all_tr[i].getElementsByTagName("td")[1];
-        var description_column = all_tr[i].getElementsByTagName("td")[2];
-        if (name_column && description_column) {
-            var name_value = name_column.textContent || name_column.innerText;
-            var description_value = description_column.textContent || description_column.innerText;
-            name_value = name_value.toUpperCase();
-            description_value = description_value.toUpperCase();
-            if ((name_value.indexOf(keyword) > -1) || (description_value.indexOf(keyword) > -1)) {
-                all_tr[i].style.display = "";
-            } else {
-                all_tr[i].style.display = "none"; 
-            }
-        }
-    }
 })
 
 //Script para activar el buscador con Alt+Ctrl
