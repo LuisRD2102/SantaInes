@@ -1,11 +1,11 @@
-﻿@model SantaInesWEB.Models.EmpleadoModel
+﻿@model Tuple<EmpleadoModel, List<SelectListItem>>
 
 @{
     ViewData["Title"] = "Gestion Empleados";
 }
 <!-- IMPORTACIONES DE LIBRERIAS -->
 <link rel="stylesheet" href="~/css/Modal.css" />
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.Item1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
@@ -25,29 +25,32 @@
             {
                 <div class="modal-body">
 
-                    @Html.TextBoxFor(m => m.cedula, new {Class="form-control", placeholder="Cedula: ", type="number"})
-                    @Html.ValidationMessageFor(m => m.cedula ,null, new { @class = "text-danger" })
+                    @Html.TextBoxFor(m => m.Item1.cedula, new {Class="form-control", placeholder="Cedula: ", type="number"})
+                    @Html.ValidationMessageFor(m => m.Item1.cedula ,null, new { @class = "text-danger" })
                     <br />
-                    @Html.TextBoxFor(m => m.nombre_completo, new {Class="form-control", placeholder="Nombre(s): "})
-                    @Html.ValidationMessageFor(m => m.nombre_completo ,null, new { @class = "text-danger" })
+                    @Html.TextBoxFor(m => m.Item1.nombre_completo, new {Class="form-control", placeholder="Nombre(s): "})
+                    @Html.ValidationMessageFor(m => m.Item1.nombre_completo ,null, new { @class = "text-danger" })
                     <br />
-                    @Html.TextBoxFor(m => m.apellido_completo, new {Class="form-control", placeholder="Apellido(s): "})
-                    @Html.ValidationMessageFor(m => m.apellido_completo ,null, new { @class = "text-danger" })
+                    @Html.TextBoxFor(m => m.Item1.apellido_completo, new {Class="form-control", placeholder="Apellido(s): "})
+                    @Html.ValidationMessageFor(m => m.Item1.apellido_completo ,null, new { @class = "text-danger" })
                     <br />
-                    @Html.TextBoxFor(m => m.username, new {Class="form-control", placeholder="Usuario: "})
-                    @Html.ValidationMessageFor(m => m.username ,null, new { @class = "text-danger" })
+                    @Html.TextBoxFor(m => m.Item1.username, new {Class="form-control", placeholder="Usuario: "})
+                    @Html.ValidationMessageFor(m => m.Item1.username ,null, new { @class = "text-danger" })
                     <br />
-                    @Html.TextBoxFor(m => m.password, new {Class="form-control", placeholder="Contraseña: "})
-                    @Html.ValidationMessageFor(m => m.password ,null, new { @class = "text-danger" })
+                    @Html.TextBoxFor(m => m.Item1.password, new {Class="form-control", placeholder="Contraseña: "})
+                    @Html.ValidationMessageFor(m => m.Item1.password ,null, new { @class = "text-danger" })
                     <br />
 
-                    @Html.DropDownListFor(m => m.rol, new List<SelectListItem>{
+                    @Html.DropDownListFor(m => m.Item1.rol, new List<SelectListItem>{
                         new SelectListItem{Value = "", Text = "Rol"},
                         new SelectListItem{Value = "Doctor", Text = "Doctor"},
                         new SelectListItem{Value = "Empleado", Text = "Empleado"}
                         }, new {Class="form-select",Style = "color:#666", id="rol"} )
-                    @Html.ValidationMessageFor(m => m.rol,null, new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(m => m.Item1.rol,null, new { @class = "text-danger" })
+                    <br />
 
+                    @Html.DropDownListFor(m => m.Item1.id_departamento, Model.Item2,"Departamento",new {@Class = "form-select"})
+                    @Html.ValidationMessageFor(m => m.Item1.id_departamento, null, new {@Class = "text-danger"})
 
                 </div>
                 <div class="modal-footer">

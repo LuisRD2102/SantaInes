@@ -30,6 +30,12 @@ namespace SantaInesWEB.Models
         public string rol { get; set; }
 
 
+        [Required(ErrorMessage = "Seleccione el departamento")]
+        public Guid id_departamento { get; set; }
+
+
+        public Guid? id_itinerario { get; set; }
+
         public List<EmpleadoModel> empleados { get; set; }
     }
 }
