@@ -40,6 +40,7 @@
                     @Html.TextBoxFor(m => m.password, new {Class="form-control", placeholder="Contraseña: "})
                     @Html.ValidationMessageFor(m => m.password ,null, new { @class = "text-danger" })
                     <br />
+
                     @Html.DropDownListFor(m => m.rol, new List<SelectListItem>{
                         new SelectListItem{Value = "", Text = "Rol"},
                         new SelectListItem{Value = "Doctor", Text = "Doctor"},
@@ -60,6 +61,9 @@
 
 <script>
     document.querySelector('#rol').onchange = function () {
-        this.style.color = "black";
+        this.style.color = #212529;
     }
-</script>
+
+ </script>
+
+                
