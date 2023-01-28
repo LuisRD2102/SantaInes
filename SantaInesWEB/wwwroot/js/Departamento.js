@@ -4,33 +4,20 @@ const keys = [
     { keyCode: 'ControlLeft', isTriggered: false },
 ];
 
-// Script para mostrar ventana Agregar Empleado
-
-
-        //$(function () {
-        //        var PlaceHolderElement = $('#PlaceHolderAgregarEmpleado');
-        //$('#btnAgregar').click(function (event) {
-        //        var url = $(this).data('url');
-        //$.get(url).done(function (data) {
-        //    PlaceHolderElement.html(data);
-        //    PlaceHolderElement.find('header').empty();
-        //    PlaceHolderElement.find('footer').empty();
-        //    PlaceHolderElement.find('.modal').modal('show');
-        //        })
-        //    })
-
-        //})
-
+// Script para mostrar ventana Agregar Departamento
 
 $(function () {
-    var PlaceHolderElement = $('#PlaceHolderAgregarEmpleado');
-    $('button[data-toggle="agregarEmpleado-modal"]').click(function (event) {
+    var PlaceHolderElement = $('#PlaceholderAgregarDepartamento');
+    $('#btnAgregarDepartamento').click(function (event) {
         var url = $(this).data('url');
         $.get(url).done(function (data) {
             PlaceHolderElement.html(data);
+            PlaceHolderElement.find('header').empty();
+            PlaceHolderElement.find('footer').empty();
             PlaceHolderElement.find('.modal').modal('show');
         })
     })
+
 })
 
 //Script para mostrar ventana Editar Departamento

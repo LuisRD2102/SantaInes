@@ -49,6 +49,32 @@ namespace SantaInesWEB.Servicios.ServicioDepartamento
 
         }
 
+        public async Task<JObject> RegistrarDepartamento(DepartamentoModel dept)
+        {
+            var cliente = _httpClientFactory.CreateClient("DevConnection");
+
+            var content = new StringContent(JsonConvert.SerializeObject(dept), Encoding.UTF8, "application/json");
+
+            try
+            {
+                var response = await cliente.PostAsync("Departamento/CrearDepartamento/", content);
+                var respuesta = await response.Content.ReadAsStringAsync();
+                JObject _json_respuesta = JObject.Parse(respuesta);
+
+                return _json_respuesta;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"ERROR de conexión con la API: '{ex.Message}'");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            return _json_respuesta;
+        }
+
 
 
     }

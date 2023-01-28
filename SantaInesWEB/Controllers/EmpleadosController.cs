@@ -40,7 +40,7 @@ namespace SantaInesWEB.Controllers
             }
         }
 
-        private static List<SelectListItem> crearDepatamentoDropDown(List<DepartamentoModel> lista)
+         private static List<SelectListItem> crearDepatamentoDropDown(List<DepartamentoModel> lista)
         {
             List<SelectListItem> listItems = new List<SelectListItem>();
 

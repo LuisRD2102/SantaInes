@@ -32,6 +32,12 @@
 <div id="PlaceHolderAgregarEmpleado"></div>
 <div id="PlaceHolderEliminarEmpleado"></div>
 <div id="PlaceHolderModificarEmpleado"></div>
+
+<!-- Placeholders de las ventanas emergentes -->
+<div id="PlaceholderAgregarDepartamento"></div>
+<div id="PlaceholderEliminarDepartamento"></div>
+<div id="PlaceholderModificarDepartamento"></div>
+
 <div class="top-bar" >
     <div class="titulo-top">
         <h2>Gestión de Empleados</h2>
@@ -49,7 +55,7 @@
             </div>
 
             <div class="agregar">
-                <button id=btnAgregar type="button" class="boton" data-toggle="ajax-modal" data-target="#popUpAgregar" data-url="@Url.Action("AgregarEmpleado")">
+                <button id=btnAgregar class="boton" type="button" data-toggle="agregarEmpleado-modal" data-target="#popUpAgregar" data-url="@Url.Action("AgregarEmpleado")">
                     Crear Empleado
                     <i class='bx bx-plus'></i>
                 </button>
@@ -125,7 +131,7 @@
             </div>
 
             <div class="agregar">
-                <button id=btnAgregar type="button" class="botonDepartamento" data-toggle="ajax-modal" data-target="#popUpAgregar" data-url="@Url.Action("AgregarDepartamento")">
+                <button id=btnAgregarDepartamento type="button" class="boton" data-toggle="ajax-modal" data-target="#popUpAgregarDepartamento" onclick="location.href='@Url.Action("AgregarDepartamentoView","Departamento")'">
                     Crear Departamento
                     <i class='bx bx-plus'></i>
                 </button>
@@ -189,6 +195,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.13.1/features/pageResize/dataTables.pageResize.min.js"></script>
     <script src="~/js/Empleado.js"></script>
+    <script src="~/js/Departamento.js"></script>
     <@*script type="text/javascript" src="jquery.dataTables.js"></script>*@
           @*<script type="text/javascript" src="dataTables.scrollingPagination.js"></script>*@
 
