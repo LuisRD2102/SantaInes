@@ -5,20 +5,20 @@ using SantaInesWEB.Servicios.ServicioDepartamento;
 
 namespace SantaInesWEB.Controllers
 { 
-    public class DepartamentoController : Controller
+    public class DepartamentosController : Controller
     {
         private readonly IServicioDepartamento _servicioApiDepartamento;
 
-        public DepartamentoController(IServicioDepartamento servicioApiDepartamento)
+        public DepartamentosController(IServicioDepartamento servicioApiDepartamento)
         {
             _servicioApiDepartamento = servicioApiDepartamento;
         }
 
-        public IActionResult AgregarDepartamentoView()
+        public IActionResult AgregarDepartamento()
         {
             try
             {
-                return View();
+                return PartialView();
             }
             catch (Exception ex)
             {

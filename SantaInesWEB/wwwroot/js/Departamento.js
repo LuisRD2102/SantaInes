@@ -1,23 +1,20 @@
-﻿const buscador = document.getElementById('search');
-const keys = [
-    { keyCode: 'AltLeft', isTriggered: false },
-    { keyCode: 'ControlLeft', isTriggered: false },
-];
+﻿//const buscador = document.getElementById('search');
+//const keys = [
+//    { keyCode: 'AltLeft', isTriggered: false },
+//    { keyCode: 'ControlLeft', isTriggered: false },
+//];
 
 // Script para mostrar ventana Agregar Departamento
 
 $(function () {
-    var PlaceHolderElement = $('#PlaceholderAgregarDepartamento');
-    $('#btnAgregarDepartamento').click(function (event) {
+    var PlaceHolderElement = $('#PlaceHolderAgregarDepartamento');
+    $('button[data-toggle="agregarDepartamento-modal"]').click(function (event) {
         var url = $(this).data('url');
         $.get(url).done(function (data) {
             PlaceHolderElement.html(data);
-            PlaceHolderElement.find('header').empty();
-            PlaceHolderElement.find('footer').empty();
             PlaceHolderElement.find('.modal').modal('show');
         })
     })
-
 })
 
 //Script para mostrar ventana Editar Departamento
@@ -51,24 +48,24 @@ $(function () {
 
 //Script para activar el buscador con Alt+Ctrl
 
-window.addEventListener('keydown', (e) => {
-    keys.forEach((obj) => {
-        if (obj.keyCode === e.code) {
-            obj.isTriggered = true;
-        }
-    });
+//window.addEventListener('keydown', (e) => {
+//    keys.forEach((obj) => {
+//        if (obj.keyCode === e.code) {
+//            obj.isTriggered = true;
+//        }
+//    });
 
-    const shortcutTriggered = keys.filter((obj) => obj.isTriggered).length === keys.length;
+//    const shortcutTriggered = keys.filter((obj) => obj.isTriggered).length === keys.length;
 
-    if (shortcutTriggered) {
-        buscador.focus();
-    }
-});
+//    if (shortcutTriggered) {
+//        buscador.focus();
+//    }
+//});
 
-window.addEventListener('keyup', (e) => {
-    keys.forEach((obj) => {
-        if (obj.keyCode === e.code) {
-            obj.isTriggered = false;
-        }
-    });
-});
+//window.addEventListener('keyup', (e) => {
+//    keys.forEach((obj) => {
+//        if (obj.keyCode === e.code) {
+//            obj.isTriggered = false;
+//        }
+//    });
+//});

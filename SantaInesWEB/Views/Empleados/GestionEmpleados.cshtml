@@ -29,14 +29,16 @@
 }*@
 
 <!-- Placeholders de las ventanas emergentes -->
+<div id="PlaceHolderAgregarDepartamento"></div>
+<div id="PlaceHolderEliminarDepartamento"></div>
+<div id="PlaceHolderModificarDepartamento"></div>
+
+<!-- Placeholders de las ventanas emergentes -->
 <div id="PlaceHolderAgregarEmpleado"></div>
 <div id="PlaceHolderEliminarEmpleado"></div>
 <div id="PlaceHolderModificarEmpleado"></div>
 
-<!-- Placeholders de las ventanas emergentes -->
-<div id="PlaceholderAgregarDepartamento"></div>
-<div id="PlaceholderEliminarDepartamento"></div>
-<div id="PlaceholderModificarDepartamento"></div>
+
 
 <div class="top-bar" >
     <div class="titulo-top">
@@ -131,7 +133,7 @@
             </div>
 
             <div class="agregar">
-                <button id=btnAgregarDepartamento type="button" class="boton" data-toggle="ajax-modal" data-target="#popUpAgregarDepartamento" onclick="location.href='@Url.Action("AgregarDepartamentoView","Departamento")'">
+                <button id=btnAgregar class="boton" type="button" data-toggle="agregarDepartamento-modal" data-target="#popUpAgregar" data-url="@Url.Action("AgregarDepartamento","Departamentos")">
                     Crear Departamento
                     <i class='bx bx-plus'></i>
                 </button>
