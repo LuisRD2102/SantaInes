@@ -36,7 +36,7 @@ namespace SantaInesWEB.Controllers
 
                 if ((bool)respuesta["success"])
                 {
-                    return RedirectToAction("GestionEmpleados", new { message = "Se ha agregado correctamente" });
+                    return RedirectToAction("GestionEmpleados","Empleados", new { message = "Se ha agregado correctamente" });
                 }
                 //else return RedirectToAction("GestionEmpleados", new { message2 = "El nombre del departamento ingresado ya existe" });
             }
@@ -67,7 +67,7 @@ namespace SantaInesWEB.Controllers
             {
                 JObject respuesta = await _servicioApiDepartamento.EditarDepartamento(dept);
                 if ((bool)respuesta["success"])
-                    return RedirectToAction("GestionEmpleados"/*, new { message = "Se ha modificado correctamente" }*/);
+                    return RedirectToAction("GestionEmpleados", "Empleados", new { message = "Se ha modificado correctamente" });
                 //else return RedirectToAction("GestionEmpleados", new { message2 = "El nombre del departamento ingresado ya existe" });
             }
             catch (Exception ex)
@@ -75,6 +75,29 @@ namespace SantaInesWEB.Controllers
                 Console.WriteLine(ex.ToString());
             }
             return NoContent();
+        }
+
+        public IActionResult EliminarDepartamento(Guid id)
+        {
+            try
+            {
+                return PartialView(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException!;
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AccionEliminarDepartamento(Guid id)
+        {
+            JObject respuesta;
+            respuesta = await _servicioApiDepartamento.EliminarDepartamento(id);
+            if ((bool)respuesta["success"])
+                return RedirectToAction("GestionEmpleados", "Empleados", new { message = "Se ha eliminado correctamente" });
+            else
+                return NoContent();
         }
     }
 }

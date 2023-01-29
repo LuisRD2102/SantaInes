@@ -10,5 +10,6 @@ namespace SantaInesWEB.Servicios.ServicioDepartamento
         Task<JObject> RegistrarDepartamento(DepartamentoModel dept);
         Task<JObject> EditarDepartamento(DepartamentoModel dept);
         Task<DepartamentoModel> MostrarInfoDepartamento(Guid id);
+        Task<JObject> EliminarDepartamento(Guid id);
     }
 }

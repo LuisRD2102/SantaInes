@@ -23,10 +23,10 @@
             {
                 <div class="modal-body">
                     @Html.TextBoxFor(m => m.id, new { @Value = Model.id, @type="hidden"})
-                    <span>Nombre: </span>
+                    <span class="span">Nombre: </span>
                     @Html.TextBoxFor(m => m.nombre, new { @Value = Model.nombre, Class="form-control", placeholder="Nombre: "})
                     @Html.ValidationMessageFor(m => m.nombre ,null, new { @class = "text-danger" })
-                    <span style="margin-top:15px">Descripcion: </span>
+                    <span style="margin-top:15px" class="span">Descripcion: </span>
                     @Html.TextAreaFor(m => m.descripcion, new { @Value = Model.descripcion, Class="form-control", placeholder="Nombre: "})
                     @Html.ValidationMessageFor(m => m.descripcion ,null, new { @class = "text-danger" })
                     <br />

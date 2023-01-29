@@ -37,7 +37,7 @@
 
 <div class="top-bar" >
     <div class="titulo-top">
-        <h2>Gestión de Empleados</h2>
+        <h2>Gestión de Empleados y Departamentos</h2>
     </div>
 </div>
 
@@ -194,7 +194,7 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
                                 <button id="btnEditar" type="button" class="dropdown-item" data-toggle="editarDepartamento-modal" data-target="#popUpEditar" data-url="@Url.Action("EditarDepartamento","Departamentos",new { id = "idDepartamento" })">Editar</button>
-                                @*<button id="btnEliminar" type="button" class="dropdown-item" data-toggle="eliminarDepartamento-modal" data-target="#popUpEliminar" data-url="@Url.Action("VentanaEliminarDepartamento","Departamento",new { id = "idDepartamento" })">Eliminar</button>*@
+                                <button id="btnEliminar" type="button" class="dropdown-item" data-toggle="eliminarDepartamento-modal" data-target="#popUpEliminar" data-url="@Url.Action("EliminarDepartamento","Departamentos",new { id = "idDepartamento" })">Eliminar</button>
                             </ul>
                         </div>
                 </td>
@@ -209,10 +209,11 @@
 
 
 @section Scripts{
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.13.1/features/pageResize/dataTables.pageResize.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js" defer></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.13.1/features/pageResize/dataTables.pageResize.min.js" defer></script>
     <script src="~/js/Empleado.js"></script>
     <script src="~/js/Departamento.js"></script>
+
     <@*script type="text/javascript" src="jquery.dataTables.js"></script>*@
           @*<script type="text/javascript" src="dataTables.scrollingPagination.js"></script>*@
 

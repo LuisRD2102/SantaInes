@@ -128,6 +128,17 @@ namespace SantaInesWEB.Servicios.ServicioDepartamento
             return departamento;
         }
 
+        public async Task<JObject> EliminarDepartamento(Guid id)
+        {
+            var cliente = _httpClientFactory.CreateClient("DevConnection");
+            var response = await cliente.DeleteAsync($"Departamento/EliminarDepartamento/{id}");
+
+            var respuesta = await response.Content.ReadAsStringAsync();
+            JObject json_respuesta = JObject.Parse(respuesta);
+
+            return json_respuesta;
+        }
+
 
 
     }

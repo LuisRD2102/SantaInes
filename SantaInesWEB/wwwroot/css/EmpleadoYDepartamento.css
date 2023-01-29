@@ -1,7 +1,9 @@
 :root {
     --primary-color: #74b71b;
     --primary-color-dark: #537624;
+    --table-color: #212529;
     --sidebar-color: #11101D;
+    --color-text: #E1E1E1;
     --color-white: #fff;
     --color-light: rgba(132, 139, 200, 0.18);
     --card-border-radius: 2rem;
@@ -62,7 +64,7 @@ h1{
 .dropdown-toggle {
     white-space: nowrap;
     cursor:pointer;
-    background-color: white;
+    background-color: var(--table-color);
     border: none;
     border-radius: 100%;
     height: 30px;
@@ -73,6 +75,7 @@ h1{
 main .dropdown i {
     display: flex;
     margin: auto;
+    color:var(--color-text);
     justify-content: center;
     font-size: 14px;
 }
@@ -113,9 +116,10 @@ main .dropdown-toggle:hover {
     color: #212529;
     text-align: left;
     list-style: none;
-    background-color: #fff;
+    background-color: var(--table-color);
     background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: var(--color-text); /*Cambiar*/
+    border: 0.5px solid var(--primary-color-dark);
     border-radius: 0.25rem;
 }
 
@@ -158,7 +162,8 @@ main .dropdown-toggle:hover {
     padding: 0.25rem 1rem;
     clear: both;
     font-weight: 400;
-    color: #212529;
+    /*color: #212529;*/ /*Cambiar*/
+    color:var(--color-text); /*Cambiar*/
     text-align: inherit;
     text-decoration: none;
     white-space: nowrap;
@@ -168,8 +173,8 @@ main .dropdown-toggle:hover {
 }
 
     .dropdown-item:hover, .dropdown-item:focus {
-        color: #1e2125;
-        background-color: #e9ecef;
+        color: var(--color-text);
+        background-color: #11101D;
     }
 
     .dropdown-item.active, .dropdown-item:active {
@@ -263,6 +268,7 @@ main .wrapperTable {
 main .Empleados .titulo-empleado {
     margin-top: 1.2rem;
     margin-left: 1rem;
+    color:var(--color-text); /*Cambiar*/
 }
     
 
@@ -378,18 +384,21 @@ main .contenedor .departamentos {
 main .departamentos .titulo-departamento {
     margin-top: 1.2rem;
     margin-left: 1rem;
+    color: var(--color-text); /*Cambiar*/
 }
 
 
 /*Tabla responsive*/
 main .table-responsive {
-    background-color: white;
+    /* background-color: white;*/
+    background-color: var(--table-color); /*Cambiar*/
     margin: auto;
+    color: var(--color-text); /*Cambiar*/
     border-radius: var(--card-border-radius);
     box-shadow: var(--box-shadow);
     height: auto;
     height: 80vh !important;
-    transition:all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 main .table-responsive:hover{
@@ -397,18 +406,19 @@ main .table-responsive:hover{
 }
 
 table.dataTable thead th {
-    background-color: var(--primary-color);
-    color: white;
+    /*background-color: var(--primary-color);*/
+    /*color: white;*/
+    color: var(--color-text); /*Cambiar*/
     text-align: center !important;
-    font-weight:500 !important;
-    
+    font-weight: 500 !important;
 }
 
 
 table.dataTable{
     width:100% !important;
     margin-top: 0.8rem !important;
-    height:100% !important;    
+    height:100% !important;  
+    font-size:14px;
 }
 
 table.dataTable tr:hover{
@@ -526,7 +536,7 @@ main .agregar i {
     }
 
     main .table-responsive {
-        background-color: white;
+        
         margin: auto;
         border-radius: var(--card-border-radius);
         height: 40vh;
@@ -558,7 +568,7 @@ main .agregar i {
     }
 
     main .table-responsive {
-        background-color: white;
+        background-color: #212529; /*Cambiar*/
         margin: auto;
         border-radius: var(--card-border-radius);
         height: 40vh;
@@ -652,8 +662,7 @@ main .agregar i {
         /*min-height:10px;*/
     }
 
-    main .table-responsive {
-        background-color: white;
+    main .table-responsive {     
         margin: auto;
         border-radius: var(--card-border-radius);
         height: 35vh !important;

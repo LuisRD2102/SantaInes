@@ -19,26 +19,11 @@ $(function () {
 
 //Script para mostrar ventana Editar Departamento
 
-//$(function () {
-//    var PlaceHolderElement = $('#PlaceHolderModificarDepartamento');
-//    $('button[data-toggle="editarDepartamento-modal"]').click(function (event) {
-//        var id = $(this).closest('tr').find('.id').text();
-//        console.log(id);
-//        var url = $(this).data('url').replace("idDepartamento", id);
-//        $.get(url).done(function (data) {
-//            PlaceHolderElement.html(data);
-//            PlaceHolderElement.find('.modal').modal('show');
-//        })
-//    })
-//})
-
 $(function () {
     var PlaceHolderElement = $('#PlaceHolderModificarDepartamento');
     $('button[data-toggle="editarDepartamento-modal"]').click(function (event) {
-        var rowNode = $(this).closest('tr');
-        
+        var rowNode = $(this).closest('tr');        
         var id = $('#table-departamento').DataTable().row(rowNode).data()[0].toString();
-        console.log(id);
         var url = $(this).data('url').replace("idDepartamento", id);
         $.get(url).done(function (data) {
             PlaceHolderElement.html(data);
@@ -52,7 +37,8 @@ $(function () {
 $(function () {
     var PlaceHolderElement = $('#PlaceHolderEliminarDepartamento');
     $('button[data-toggle="eliminarDepartamento-modal"]').click(function (event) {
-        var id = $(this).closest('tr').find('.id').text();
+        var rowNode = $(this).closest('tr');
+        var id = $('#table-departamento').DataTable().row(rowNode).data()[0].toString();
         var url = $(this).data('url').replace("idDepartamento", id);
         $.get(url).done(function (data) {
             PlaceHolderElement.html(data);

@@ -277,7 +277,8 @@ body {
 }
 .home-section{
   position: relative;
-  background: #E4E9F7;
+  /*background: #E4E9F7;*/
+  background: #11101D; /*Cambiar*/
   min-height: 100vh;
   top: 0;
   left: 78px;
