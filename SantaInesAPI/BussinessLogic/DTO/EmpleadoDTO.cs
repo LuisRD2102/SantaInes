@@ -11,7 +11,7 @@ namespace SantaInesAPI.Persistence.Entity
         public string nombre_completo { get; set; }
         public string apellido_completo { get; set; }
         public string rol { get; set; }
-        public Guid id_departamento { get; set; }
+        public Guid? id_departamento { get; set; }
         public Guid? id_itinerario { get; set; }
     }
 }

@@ -101,7 +101,7 @@ namespace SantaInesAPI.Migrations
                     b.Property<int>("cedula")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("id_departamento")
+                    b.Property<Guid?>("id_departamento")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("id_itinerario")
@@ -198,13 +198,13 @@ namespace SantaInesAPI.Migrations
                     b.HasOne("SantaInesAPI.Persistence.Entity.Empleado", "Empleado")
                         .WithMany("Citas")
                         .HasForeignKey("doctor")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SantaInesAPI.Persistence.Entity.Usuario", "Usuario")
                         .WithMany("Citas")
                         .HasForeignKey("paciente")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Empleado");
@@ -216,9 +216,7 @@ namespace SantaInesAPI.Migrations
                 {
                     b.HasOne("SantaInesAPI.Persistence.Entity.Departamento", "Departamento")
                         .WithMany("Empleados")
-                        .HasForeignKey("id_departamento")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("id_departamento");
 
                     b.HasOne("SantaInesAPI.Persistence.Entity.Itinerario", "Itinerario")
                         .WithOne("Empleado")

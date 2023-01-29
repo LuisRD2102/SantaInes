@@ -76,24 +76,83 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
         }
 
+        //public DepartamentoDTO EliminarDepartamentoDAO(Guid id)
+        //{
+        //    try
+        //    {
+        //        var departamento = _context.Departamentos
+        //            .Where(d => d.id == id).First();
+
+        //        _context.Departamentos.Remove(departamento);
+        //        _context.SaveChanges();
+
+        //        return DepartamentoMapper.EntityToDTO(departamento);
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message + " || " + ex.StackTrace);
+        //        throw new Exception("Fallo al eliminar por id: " + id, ex);
+        //    }
+        //}
+
         public DepartamentoDTO EliminarDepartamentoDAO(Guid id)
         {
+            var departamentoDTO = new DepartamentoDTO();
+
             try
             {
                 var departamento = _context.Departamentos
-                    .Where(d => d.id == id).First();
+                        .Where(d => d.id == id).First();
 
-                _context.Departamentos.Remove(departamento);
-                _context.SaveChanges();
+                if (departamento != null)
+                {
+                    if (QuitarAsociacion(id))
+                    {
+                        departamentoDTO = DepartamentoMapper.EntityToDTO(departamento);
+                    }
 
-                return DepartamentoMapper.EntityToDTO(departamento);
+                    _context.Departamentos.Remove(departamento);
+                    _context.SaveChanges();
+
+
+                }
+                return departamentoDTO;
+            }
+            catch (Exception ex)
+            {
+                throw new ExceptionsControl("No se encuentra el departamento" + " " + id, ex);
+            }
+        }
+
+        public bool QuitarAsociacion(Guid deptID)
+        {
+            var asociacionQuitada = false;
+            try
+            {
+                var listaEmpleados = _context.Empleados.Where(x => x.id_departamento == deptID);
+
+                if (listaEmpleados != null)
+                {
+
+                    foreach (var item in listaEmpleados)
+                    {
+                        item.id_departamento = null;
+
+                    }
+                    _context.UpdateRange(listaEmpleados);
+                    _context.SaveChanges();
+                    return asociacionQuitada = true;
+
+                }
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message + " || " + ex.StackTrace);
-                throw new Exception("Fallo al eliminar por id: " + id, ex);
+                throw new ExceptionsControl("Fallo al quitar asociacion a un grupo", ex);
             }
+
+            return asociacionQuitada;
         }
 
         public DepartamentoDTO ConsultarPorID(Guid id)

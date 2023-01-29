@@ -111,7 +111,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             {
                 var empleado = _context.Empleados.Where(e => e.username == username).First();
 
-                Guid idDepartamento = empleado.id_departamento;
+                Guid? idDepartamento = empleado.id_departamento;
                 _context.Empleados.Remove(empleado);
                 _context.SaveChanges();
 
