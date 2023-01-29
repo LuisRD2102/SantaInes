@@ -9,5 +9,6 @@ namespace SantaInesAPI.Persistence.DAO.Interface
         public DepartamentoDTO AgregarDepartamentoDAO(Departamento departamento);
         public DepartamentoDTO ActualizarDepartamentoDAO(Departamento departamento);
         public DepartamentoDTO EliminarDepartamentoDAO(Guid id);
+        public DepartamentoDTO ConsultarPorID(Guid id);
     }
 }

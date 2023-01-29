@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SantaInesAPI.BussinessLogic.DTO;
 using SantaInesAPI.BussinessLogic.Mapper;
+using SantaInesAPI.Persistence.DAO.Implementations;
 using SantaInesAPI.Persistence.DAO.Interface;
 using ServicesDeskUCABWS.BussinesLogic.Exceptions;
 using ServicesDeskUCABWS.BussinesLogic.Response;
@@ -91,5 +92,23 @@ namespace SantaInesAPI.Controllers
 			}
 			return response;
 		}
+
+        [HttpGet]
+        [Route("ConsultarDepartamentoPorID/{id}")]
+        public ApplicationResponse<DepartamentoDTO> ConsultarPorID([FromRoute] Guid id)
+        {
+            var response = new ApplicationResponse<DepartamentoDTO>();
+            try
+            {
+                response.Data = _daoDepartamento.ConsultarPorID(id);
+            }
+            catch (ExceptionsControl ex)
+            {
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
+            }
+            return response;
+        }
     }
 }

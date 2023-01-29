@@ -46,5 +46,35 @@ namespace SantaInesWEB.Controllers
             }
             return NoContent();
         }
+
+        public async Task<IActionResult> EditarDepartamento(Guid id)
+        {
+            try
+            {
+                DepartamentoModel departamento = new DepartamentoModel();
+                departamento = await _servicioApiDepartamento.MostrarInfoDepartamento(id);
+                return PartialView(departamento);
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException!;
+            }
+        }
+
+        public async Task<IActionResult> ModificarDepartamento(DepartamentoModel dept)
+        {
+            try
+            {
+                JObject respuesta = await _servicioApiDepartamento.EditarDepartamento(dept);
+                if ((bool)respuesta["success"])
+                    return RedirectToAction("GestionEmpleados"/*, new { message = "Se ha modificado correctamente" }*/);
+                //else return RedirectToAction("GestionEmpleados", new { message2 = "El nombre del departamento ingresado ya existe" });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return NoContent();
+        }
     }
 }

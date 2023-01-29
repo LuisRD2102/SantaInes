@@ -5,19 +5,14 @@
 }
 
 <head>
-    <link rel="stylesheet" href="~/css/EmpleadoYDepartamento.css" /> 
+    <link rel="stylesheet" href="~/css/EmpleadoYDepartamento.css" />
+    <link rel="stylesheet" href="~/css/Toaster.css" />
     <link rel="stylesheet" href="~/css/Modal.css" /> 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">  
+
 </head>
 
-<!--Alerta de mensajes exitosos-->
-@if (Context.Request.Query["message"].Count() > 0)
-{
-    <div class="alert alert-success text-center alert-dismissible fade show p-3" role="alert">
-        <p class="fs-6 m-0">@Context.Request.Query["message"]</p>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-}
+
 
 @*<!--Alerta de mensajes de error-->
 @if (Context.Request.Query["message2"].Count() > 0)
@@ -45,6 +40,30 @@
         <h2>Gestión de Empleados</h2>
     </div>
 </div>
+
+<!--Alerta de mensajes exitosos ARREGLAR-->
+@if (Context.Request.Query["message"].Count() > 0)
+{
+    @*<div class="alert alert-success text-center alert-dismissible fade show p-3" role="alert">
+        <p class="fs-6 m-0">@Context.Request.Query["message"]</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>*@
+   
+
+@*<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="..." class="rounded me-2" alt="...">
+      <strong class="me-auto">Prueba</strong>
+      <small>11 mins ago</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      @Context.Request.Query["message"]
+    </div>
+  </div>
+</div>*@
+}
 
  <div class="contenedor">
 
@@ -108,11 +127,9 @@
 
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
-                             @*   <button id="btnEditar" type="button" class="dropdown-item" data-toggle="editarDepartamento-modal" data-target="#popUpEditar" data-url="@Url.Action("VentanaEditarDepartamento","Departamento",new { id = "idDepartamento" })">Editar</button>
-                                <button id="btnEliminar" type="button" class="dropdown-item" data-toggle="eliminarDepartamento-modal" data-target="#popUpEliminar" data-url="@Url.Action("VentanaEliminarDepartamento","Departamento",new { id = "idDepartamento" })">Eliminar</button>
-                                <button type="button" class="dropdown-item" onclick="location.href='@Url.Action("VistaEstadosDepartamentos", "DepartamentoEstado",new{ id =@item.id, nombre = @item.nombre} )'">Ver Estados</button>
-                                <button type="button" class="dropdown-item" onclick="location.href='@Url.Action("VistaCargosDepartamentos", "DepartamentoCargo",new{ id =@item.id, nombre = @item.nombre} )'">Ver Cargos</button>*@
-
+                       @*         <button id="btnEditar" type="button" class="dropdown-item" data-toggle="editarDepartamento-modal" data-target="#popUpEditar" data-url="@Url.Action("VentanaEditarDepartamento","Departamento",new { id = "idDepartamento" })">Editar</button>
+                                <button id="btnEliminar" type="button" class="dropdown-item" data-toggle="eliminarDepartamento-modal" data-target="#popUpEliminar" data-url="@Url.Action("VentanaEliminarDepartamento","Departamento",new { id = "idDepartamento" })">Eliminar</button>*@
+                       
                                 </ul>
                             </div>
                     </td>
@@ -153,13 +170,14 @@
                     <th>
                         Descripcion
                     </th>
+                        <th></th>
                     
                 </tr>
             </thead>
             @foreach (var item in Model.Item2)
             {
                 <tr>
-                    <td>
+                    <td class="id">
                         @Html.DisplayFor(i => item.id)
                     </td>
                     <td>
@@ -168,21 +186,18 @@
                     <td>
                         @Html.DisplayFor(i => item.descripcion)
                     </td>
-                    @*<td>
-                <div class="dropdown">
+                    <td>
+                        <div class="dropdown">
 
-                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></button>
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-vertical-rounded'></i></button>
 
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
-                <button id="btnEditar" type="button" class="dropdown-item" data-toggle="editarDepartamento-modal" data-target="#popUpEditar" data-url="@Url.Action("VentanaEditarDepartamento","Departamento",new { id = "idDepartamento" })">Editar</button>
-                <button id="btnEliminar" type="button" class="dropdown-item" data-toggle="eliminarDepartamento-modal" data-target="#popUpEliminar" data-url="@Url.Action("VentanaEliminarDepartamento","Departamento",new { id = "idDepartamento" })">Eliminar</button>
-                <button type="button" class="dropdown-item" onclick="location.href='@Url.Action("VistaEstadosDepartamentos", "DepartamentoEstado",new{ id =@item.id, nombre = @item.nombre} )'">Ver Estados</button>
-                <button type="button" class="dropdown-item" onclick="location.href='@Url.Action("VistaCargosDepartamentos", "DepartamentoCargo",new{ id =@item.id, nombre = @item.nombre} )'">Ver Cargos</button>
-
-                </ul>
-                </div>
-                </td>*@
+                                <button id="btnEditar" type="button" class="dropdown-item" data-toggle="editarDepartamento-modal" data-target="#popUpEditar" data-url="@Url.Action("EditarDepartamento","Departamentos",new { id = "idDepartamento" })">Editar</button>
+                                @*<button id="btnEliminar" type="button" class="dropdown-item" data-toggle="eliminarDepartamento-modal" data-target="#popUpEliminar" data-url="@Url.Action("VentanaEliminarDepartamento","Departamento",new { id = "idDepartamento" })">Eliminar</button>*@
+                            </ul>
+                        </div>
+                </td>
                 </tr>
             }
         </table>
@@ -242,6 +257,9 @@
                     "target": 0,
                     "visible": false,
                     "searchable": false,
+                }, {
+                    "target": 3,
+                    "orderable": false,
                 }
             ],
             "stripeClasses": []

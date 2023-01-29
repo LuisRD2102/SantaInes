@@ -164,6 +164,7 @@ main .dropdown-toggle:hover {
     white-space: nowrap;
     background-color: transparent;
     border: 0;
+    cursor:pointer;
 }
 
     .dropdown-item:hover, .dropdown-item:focus {
@@ -174,7 +175,7 @@ main .dropdown-toggle:hover {
     .dropdown-item.active, .dropdown-item:active {
         color: #fff;
         text-decoration: none;
-        background-color: #0d6efd;
+        background-color: var(--primary-color);
     }
 
     .dropdown-item.disabled, .dropdown-item:disabled {
@@ -185,6 +186,9 @@ main .dropdown-toggle:hover {
 
 .dropdown-menu.show {
     display: block;
+    border-radius:var(--border-radius-2);
+    box-shadow:var(--box-shadow);
+    
 }
 
 .dropdown-header {
@@ -382,9 +386,14 @@ main .table-responsive {
     background-color: white;
     margin: auto;
     border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
     height: auto;
-    height:80vh !important; 
-   
+    height: 80vh !important;
+    transition:all 0.5s ease;
+}
+
+main .table-responsive:hover{
+    box-shadow:none;
 }
 
 table.dataTable thead th {

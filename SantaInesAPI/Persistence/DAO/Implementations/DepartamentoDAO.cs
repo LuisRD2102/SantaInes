@@ -3,6 +3,7 @@ using SantaInesAPI.BussinessLogic.Mapper;
 using SantaInesAPI.Persistence.DAO.Interface;
 using SantaInesAPI.Persistence.Database;
 using SantaInesAPI.Persistence.Entity;
+using ServicesDeskUCABWS.BussinesLogic.Exceptions;
 
 namespace SantaInesAPI.Persistence.DAO.Implementations
 {
@@ -95,6 +96,22 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
         }
 
-       
+        public DepartamentoDTO ConsultarPorID(Guid id)
+        {
+            try
+            {
+
+                var departamento = _context.Departamentos
+               .Where(d => d.id == id).First();
+                return DepartamentoMapper.EntityToDTO(departamento);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ExceptionsControl("No se encuentra el departamento" + " " + id, ex);
+            }
+        }
+
+
     }
 }
