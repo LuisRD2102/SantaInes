@@ -26,13 +26,15 @@ namespace SantaInesWEB.Models
         public string apellido_completo { get; set; }
 
 
+        [Required(ErrorMessage = "Escoja un sexo")]
+        public string sexo { get; set; }
+
         [Required(ErrorMessage = "Seleccione el rol")]
         public string rol { get; set; }
-
+       
 
         [Required(ErrorMessage = "Seleccione el departamento")]
         public Guid? id_departamento { get; set; }
-
 
         public Guid? id_itinerario { get; set; }
 

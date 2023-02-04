@@ -28,15 +28,27 @@
                     @Html.TextBoxFor(m => m.Item1.cedula, new {Class="form-control", placeholder="Cedula: ", type="number"})
                     @Html.ValidationMessageFor(m => m.Item1.cedula ,null, new { @class = "text-danger" })
                     <br />
+
                     @Html.TextBoxFor(m => m.Item1.nombre_completo, new {Class="form-control", placeholder="Nombre(s): "})
                     @Html.ValidationMessageFor(m => m.Item1.nombre_completo ,null, new { @class = "text-danger" })
                     <br />
+
                     @Html.TextBoxFor(m => m.Item1.apellido_completo, new {Class="form-control", placeholder="Apellido(s): "})
                     @Html.ValidationMessageFor(m => m.Item1.apellido_completo ,null, new { @class = "text-danger" })
                     <br />
+
+                    @Html.DropDownListFor(m => m.Item1.sexo, new List<SelectListItem>{
+                        new SelectListItem{Value = "", Text = "Sexo"},
+                        new SelectListItem{Value = "M", Text = "Masculino"},
+                        new SelectListItem{Value = "F", Text = "Femenino"}
+                        }, new {Class="form-select",Style = "color:#E1E1E1", id="sexo"} )
+                    @Html.ValidationMessageFor(m => m.Item1.sexo,null, new { @class = "text-danger" })
+                    <br />
+
                     @Html.TextBoxFor(m => m.Item1.username, new {Class="form-control", placeholder="Usuario: "})
                     @Html.ValidationMessageFor(m => m.Item1.username ,null, new { @class = "text-danger" })
                     <br />
+
                     @Html.TextBoxFor(m => m.Item1.password, new {Class="form-control", placeholder="Contraseña: "})
                     @Html.ValidationMessageFor(m => m.Item1.password ,null, new { @class = "text-danger" })
                     <br />
@@ -64,6 +76,10 @@
 
 <script>
     document.querySelector('#rol').onchange = function () {
+        this.style.color = '#E1E1E1';
+    }
+
+    document.querySelector('#sexo').onchange = function () {
         this.style.color = '#E1E1E1';
     }
 

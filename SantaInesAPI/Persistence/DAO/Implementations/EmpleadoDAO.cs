@@ -31,6 +31,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                         username = e.username,
                         password = e.password,
                         cedula = e.cedula,
+                        sexo = e.sexo,
                         nombre_completo = e.nombre_completo,
                         apellido_completo = e.apellido_completo,
                         rol = e.rol,
@@ -54,22 +55,25 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 if (!(ExisteCedula(empleado))) {
                     _context.Empleados.Add(empleado);
                     _context.SaveChanges();
-                }               
+                }
 
-                var data = _context.Empleados.Where(e => e.username == empleado.username)
-                            .Select(e => new EmpleadoDTO
-                            {
-                                username = e.username,
-                                password = e.password,
-                                cedula = e.cedula,
-                                nombre_completo = e.nombre_completo,
-                                apellido_completo = e.apellido_completo,
-                                rol = e.rol,
-                                id_departamento = e.id_departamento,
-                                id_itinerario = e.id_itinerario
-                            });
+                var data = _context.Empleados.Where(e => e.username == empleado.username).First();
+                return EmpleadoMapper.EntityToDTO(data);
 
-                return data.First();
+                //var data = _context.Empleados.Where(e => e.username == empleado.username)
+                //            .Select(e => new EmpleadoDTO
+                //            {
+                //                username = e.username,
+                //                password = e.password,
+                //                cedula = e.cedula,
+                //                nombre_completo = e.nombre_completo,
+                //                apellido_completo = e.apellido_completo,
+                //                rol = e.rol,
+                //                id_departamento = e.id_departamento,
+                //                id_itinerario = e.id_itinerario
+                //            });
+
+                //return data.First();
 
             }
             catch (Exception ex)
@@ -89,6 +93,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                         username = e.username,
                         password = e.password,
                         cedula = e.cedula,
+                        sexo = e.sexo,
                         nombre_completo = e.nombre_completo,
                         apellido_completo = e.apellido_completo,
                         rol = e.rol,
