@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Project.Service;
 using SantaInesAPI.BussinessLogic.DTO;
 using SantaInesAPI.BussinessLogic.Mapper;
 using SantaInesAPI.Persistence.DAO.Interface;
@@ -23,65 +25,67 @@ namespace SantaInesAPI.Controllers
             this._log = log;
         }
 
-        [HttpGet]
-        [Route("ConsultaCitas/")]
-        public ApplicationResponse<List<CitaDTO>> ConsultarCitaDAO()
+        public class AppointmentSlotRange
         {
-			var response = new ApplicationResponse<List<CitaDTO>>();
-			try
-            {
-				response.Data = _dao.ConsultarCitasDAO();
-            }
-			catch (ExceptionsControl ex)
-			{
-				response.Success = false;
-				response.Message = ex.Mensaje;
-				response.Exception = ex.Excepcion.ToString();
-			}
-			return response;
-		}
+            public DateTime Start { get; set; }
+            public DateTime End { get; set; }
+            public string Resource { get; set; }
+            public string Scale { get; set; }
+        }
+
+        // GET: api/Citas
+        [HttpGet]
+        public async Task<IEnumerable<Cita>> GetAppointments([FromQuery] DateTime start, [FromQuery] DateTime end, [FromQuery] string? doctor)
+        {
+            return await _dao.ConsultarCitasDAO(start, end, doctor);
+        }
+
+        //[HttpPost]
+        //public async Task<ActionResult<Cita>> PostAppointmentSlot(Cita appointmentSlot)
+        //{
+        //    _dao.
+
+        //    return CreatedAtAction("GetAppointmentSlot", new { id = appointmentSlot.Id }, appointmentSlot);
+        //}
 
         [HttpPost]
-        [Route("CrearCita/")]
-        public ApplicationResponse<CitaDTO> AgregarCita([FromBody] CitaDTO dto1)
+        [Route("create")]
+        public async Task<ActionResult<HttpStatusCode>> PostAppointmentSlots(AppointmentSlotRange range)
         {
-			var response = new ApplicationResponse<CitaDTO>();
-			try
+            try
             {
-				response.Data = _dao.AgregarCitaDAO(CitaMapper.DtoToEntity(dto1));
+                return await _dao.AgregarCitaDAO(range);
             }
-			catch (ExceptionsControl ex)
-			{
-				response.Success = false;
-				response.Message = ex.Mensaje;
-				response.Exception = ex.Excepcion.ToString();
-			}
-			return response;
-		}
+            catch (ExceptionsControl ex)
+            {
+                throw ex.InnerException!;
+            }
 
-        [HttpPut]
-        [Route("ActualizarCita/")]
-        public ApplicationResponse<CitaDTO> ActualizarCita([FromBody] CitaDTO empleado)
-        {
-			var response = new ApplicationResponse<CitaDTO>();
-			try
-            {
-				response.Data = _dao.ActualizarCitaDAO(CitaMapper.DtoToEntity(empleado));
-            }
-			catch (ExceptionsControl ex)
-			{
-				response.Success = false;
-				response.Message = ex.Mensaje;
-				response.Exception = ex.Excepcion.ToString();
-			}
-			return response;
-		}
+        }
+
+        //      [HttpPut]
+        //      [Route("ActualizarCita/")]
+        //      public ApplicationResponse<CitaDTO> ActualizarCita([FromBody] CitaDTO empleado)
+        //      {
+        //	var response = new ApplicationResponse<CitaDTO>();
+        //	try
+        //          {
+        //		response.Data = _dao.ActualizarCitaDAO(CitaMapper.DtoToEntity(empleado));
+        //          }
+        //	catch (ExceptionsControl ex)
+        //	{
+        //		response.Success = false;
+        //		response.Message = ex.Mensaje;
+        //		response.Exception = ex.Excepcion.ToString();
+        //	}
+        //	return response;
+        //}
 
         [HttpDelete]
         [Route("EliminarCita/{id}")]
-        public ApplicationResponse<CitaDTO> EliminarCita([FromRoute] Guid id)
+        public ApplicationResponse<Cita> EliminarCita([FromRoute] Guid id)
         {
-			var response = new ApplicationResponse<CitaDTO>();
+			var response = new ApplicationResponse<Cita>();
 			try
             {
 				response.Data = _dao.EliminarCitaDAO(id);
@@ -94,6 +98,9 @@ namespace SantaInesAPI.Controllers
 			}
 			return response;
 		}
+
+
+
 
 
 

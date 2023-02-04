@@ -1,14 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SantaInesAPI.Persistence.Entity
 {
     public class Empleado
     {
         [Key]
+        [JsonPropertyName("id")]
         public string username { get; set; }
         public string password { get; set; }
         public int cedula { get; set; }
+        public string sexo { get; set; }
+        [JsonPropertyName("name")]
         public string nombre_completo { get; set; }
         public string apellido_completo { get; set; }
         public string rol { get; set; }

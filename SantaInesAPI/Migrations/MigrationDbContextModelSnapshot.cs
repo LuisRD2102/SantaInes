@@ -28,15 +28,24 @@ namespace SantaInesAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("End")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("doctor")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("fecha_hora")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("nombre_paciente")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("paciente")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("id");
@@ -116,6 +125,10 @@ namespace SantaInesAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("rol")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("sexo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

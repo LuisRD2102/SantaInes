@@ -1,9 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore;
+using Project.Service;
 using SantaInesAPI.BussinessLogic.DTO;
 using SantaInesAPI.BussinessLogic.Mapper;
 using SantaInesAPI.Persistence.DAO.Interface;
 using SantaInesAPI.Persistence.Database;
 using SantaInesAPI.Persistence.Entity;
+using System.Collections;
+using System.Net;
+using static SantaInesAPI.Controllers.CitaController;
 
 namespace SantaInesAPI.Persistence.DAO.Implementations
 {
@@ -15,49 +21,46 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
         {
             _context = context;
         }
-        public CitaDTO ActualizarCitaDAO(Cita cita)
+        //    public CitaDTO ActualizarCitaDAO(Cita cita)
+        //    {
+        //        try
+        //        {
+        //            _context.Citas.Update(cita);
+        //            _context.SaveChanges();
+
+        //            var data = _context.Citas.Where(c => c.id == cita.id).Select(
+        //                c => new CitaDTO
+        //                {
+        //                    id = c.id,
+        //                    doctor = c.doctor,
+        //                    fecha_hora = c.fecha_hora,
+        //                    paciente = c.paciente
+        //                }
+        //            );
+        //            return data.First();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine(ex.Message + " || " + ex.StackTrace);
+        //            throw new Exception("Fallo al actualizar: " + cita.id, ex);
+        //        }
+        //    }
+
+        public async Task<ActionResult<HttpStatusCode>> AgregarCitaDAO(AppointmentSlotRange range)
         {
             try
             {
-                _context.Citas.Update(cita);
-                _context.SaveChanges();
+                var doctor = await _context.Empleados.Where(u => u.rol == "Doctor" && u.username == range.Resource).FirstAsync();
 
-                var data = _context.Citas.Where(c => c.id == cita.id).Select(
-                    c => new CitaDTO
-                    {
-                        id = c.id,
-                        doctor = c.doctor,
-                        fecha_hora = c.fecha_hora,
-                        paciente = c.paciente
-                    }
-                );
-                return data.First();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + " || " + ex.StackTrace);
-                throw new Exception("Fallo al actualizar: " + cita.id, ex);
-            }
-        }
+                var slots = Timeline.GenerateSlots(range.Start, range.End, range.Scale);
+                slots.ForEach(slot => {
+                    slot.Empleado = doctor;
+                    _context.Citas.Add(slot);
+                });
 
-        public CitaDTO AgregarCitaDAO(Cita cita)
-        {
-            try
-            {
-                _context.Citas.Add(cita);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
-                var data = _context.Citas.Where(c => c.id == cita.id)
-                            .Select(c => new CitaDTO
-                            {
-                                id = c.id,
-                                doctor = c.doctor,
-                                fecha_hora = c.fecha_hora,
-                                paciente = c.paciente
-
-                            });
-
-                return data.First();
+                return HttpStatusCode.NoContent;
 
             }
             catch (Exception ex)
@@ -67,22 +70,18 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
         }
 
-        public List<CitaDTO> ConsultarCitasDAO()
+        public async Task<IEnumerable<Cita>> ConsultarCitasDAO(DateTime start, DateTime end, string? doctor)
         {
             try
             {
-                var lista = _context.Citas.Select(
-                    c => new CitaDTO
-                    {
-                        id = c.id,
-                        doctor = c.doctor,
-                        fecha_hora = c.fecha_hora,
-                        paciente = c.paciente
-                    }
-                );
-
-                return lista.ToList();
-
+                if (doctor == null)
+                {
+                    return await _context.Citas.Where(e => !((e.End <= start) || (e.Start >= end))).Include(e => e.Empleado).ToListAsync();
+                }
+                else
+                {
+                    return await _context.Citas.Where(e => e.Empleado.username == doctor && !((e.End <= start) || (e.Start >= end))).Include(e => e.Empleado).ToListAsync();
+                }
             }
             catch (Exception ex)
             {
@@ -91,7 +90,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
         }
 
-        public CitaDTO EliminarCitaDAO(Guid id)
+        public Cita EliminarCitaDAO(Guid id)
         {
             try
             {
@@ -101,7 +100,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 _context.Citas.Remove(cita);
                 _context.SaveChanges();
 
-                return CitaMapper.EntityToDTO(cita);
+                return cita;
 
             }
             catch (Exception ex)

@@ -1,0 +1,81 @@
+.navigator_default_main {
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    font-family: Poppins;
+    font-size: 12px;
+}
+
+    .navigator_default_main *, .navigator_default_main *:before, .navigator_default_main *:after {
+        box-sizing: border-box;
+    }
+
+.navigator_default_line {
+    border-bottom: 1px solid #ffffff;
+}
+/* month header */
+.navigator_default_title, .navigator_default_titleleft, .navigator_default_titleright {
+    border-top: 1px solid #ffffff;
+    color: #e1e1e1;
+    background: #212529;
+}
+
+.navigator_default_title {
+    text-align: center;
+}
+
+.navigator_default_titleleft, .navigator_default_titleright {
+    text-align: center;
+}
+/* day headers */
+.navigator_default_dayheader {
+    color: #e1e1e1;
+    background: #212529;
+    padding: 0px;
+    text-align: center;
+}
+/* day cells */
+.navigator_default_cell {
+    color: #e1e1e1;
+    background: #212529;
+    text-align: center;
+}
+
+.navigator_default_cell_text {
+    padding: 0px;
+}
+
+.navigator_default_weeknumber {
+    color: #ffff;
+    background: #ffff;
+    text-align: center;
+    padding: 0px;
+}
+
+.navigator_default_weekend {
+    color: #e1e1e1;
+    background: #11101d;
+    text-align: center;
+    padding: 0px;
+}
+
+.navigator_default_dayother {
+    color: gray;
+}
+
+.navigator_default_todaybox {
+    border: 1px solid red;
+}
+
+.navigator_default_busy {
+    font-weight: bold;
+}
+
+.navigator_default_select .navigator_default_cell_box {
+    background-color: #74b71b;
+    opacity: 0.5;
+}
+
+.scheduler_default_corner_inner + div {
+    display: none;
+}

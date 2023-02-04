@@ -1,4 +1,5 @@
-﻿using SantaInesAPI.BussinessLogic.DTO;
+﻿using Microsoft.AspNetCore.Mvc;
+using SantaInesAPI.BussinessLogic.DTO;
 using SantaInesAPI.Persistence.Entity;
 
 namespace SantaInesAPI.Persistence.DAO.Interface
@@ -10,5 +11,6 @@ namespace SantaInesAPI.Persistence.DAO.Interface
         public EmpleadoDTO ActualizarEmpleadoDAO(Empleado empleado);
         public EmpleadoDTO EliminarEmpleadoDAO(String empleado);
         public EmpleadoDTO VerificarDatosLogin(string username, string pass);
+        public Task<IEnumerable<Empleado>> GetDoctors();
     }
 }

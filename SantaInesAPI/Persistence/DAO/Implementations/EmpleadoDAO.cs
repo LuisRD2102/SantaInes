@@ -1,4 +1,6 @@
-﻿using SantaInesAPI.BussinessLogic.DTO;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SantaInesAPI.BussinessLogic.DTO;
 using SantaInesAPI.BussinessLogic.Mapper;
 using SantaInesAPI.Migrations;
 using SantaInesAPI.Persistence.DAO.Interface;
@@ -160,6 +162,11 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 Console.WriteLine(ex.Message + " || " + ex.StackTrace);
                 throw new Exception("Usuario o contraseña incorrectos", ex);
             }
+        }
+
+        public async Task<IEnumerable<Empleado>> GetDoctors()
+        {
+            return await _context.Empleados.Where(u => u.rol == "Doctor").ToListAsync();
         }
     }
 }
