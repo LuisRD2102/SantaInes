@@ -53,7 +53,7 @@
                 to = from.addMonths(1);
             }
 
-            const { data } = await DayPilot.Http.get(`https://localhost:7270/Citas?start=${from}&end=${to}`);
+            const { data } = await DayPilot.Http.get(`https://localhost:7270/Citas/Doctor/?start=${from}&end=${to}`);
             const options = {
                 events: data
             };
@@ -207,7 +207,7 @@
         onBeforeEventRender: (args) => {
             switch (args.data.status) {
                 case "free":
-                    args.data.backColor = "#74b71b";  //verde
+                    args.data.backColor = "#0096FF";  //azul
                     args.data.barHidden = true;
                     args.data.borderColor = "darker";
                     args.data.fontColor = "white";
@@ -220,7 +220,7 @@
                     args.data.fontColor = "white";
                     break;
                 case "confirmed":
-                    args.data.backColor = "#00ffff";  // azul
+                    args.data.backColor = "#74b71b";  // verde
                     args.data.barHidden = true;
                     args.data.borderColor = "darker";
                     args.data.fontColor = "white";

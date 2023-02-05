@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Project.Service;
-using SantaInesAPI.BussinessLogic.DTO;
-using SantaInesAPI.BussinessLogic.Mapper;
+using Project.DayPilot_Handler;
 using SantaInesAPI.Persistence.DAO.Interface;
 using SantaInesAPI.Persistence.Entity;
 using ServicesDeskUCABWS.BussinesLogic.Exceptions;
@@ -25,28 +22,65 @@ namespace SantaInesAPI.Controllers
             this._log = log;
         }
 
-        public class AppointmentSlotRange
-        {
-            public DateTime Start { get; set; }
-            public DateTime End { get; set; }
-            public string Resource { get; set; }
-            public string Scale { get; set; }
-        }
-
-        // GET: api/Citas
+        //Para la vista del doctores
         [HttpGet]
-        public async Task<IEnumerable<Cita>> GetAppointments([FromQuery] DateTime start, [FromQuery] DateTime end, [FromQuery] string? doctor)
+        [Route("/Citas/Doctor")]
+        public async Task<IEnumerable<Cita>> ConsultarCitas([FromQuery] DateTime start, [FromQuery] DateTime end, [FromQuery] string? doctor)
         {
-            return await _dao.ConsultarCitasDAO(start, end, doctor);
+            try
+            {
+                return await _dao.ConsultarCitas(start, end, doctor);
+            }
+            catch (ExceptionsControl ex)
+            {
+                throw ex.InnerException!;
+            }
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult<Cita>> PostAppointmentSlot(Cita appointmentSlot)
-        //{
-        //    _dao.
+        //Para la vista del paciente
+        [HttpGet]
+        [Route("/Citas/Libres")]
+        public async Task<IEnumerable<Cita>> ConsultarCitasLibres ([FromQuery] DateTime start, [FromQuery] DateTime end, [FromQuery] string patient)
+        {
+            try
+            {
 
-        //    return CreatedAtAction("GetAppointmentSlot", new { id = appointmentSlot.Id }, appointmentSlot);
-        //}
+                var citas = await _dao.ConsultarCitasLibres(start, end, patient);
+                return citas;
+            }
+            catch (ExceptionsControl ex)
+            {
+                throw ex.InnerException!;
+            }
+        }
+
+
+        [HttpPut]
+        [Route("/Citas/{id}/request")]
+        public async Task<ActionResult<HttpStatusCode>> ActualizarCita(Guid id, AppointmentSlotRequest slotRequest)
+        {
+            try
+            {
+                return await _dao.ActualizarCita(id, slotRequest);
+            }
+            catch (ExceptionsControl ex)
+            {
+                throw ex.InnerException!;
+            }
+        }
+
+        [HttpPut("/Citas/ActualizarCita/{id}")]
+        public async Task<ActionResult<HttpStatusCode>> ActualizarSlotCita(Guid id, AppointmentSlotUpdate updateSlotInfo)
+        {
+            try
+            {
+                return await _dao.ActualizarSlotCita(id, updateSlotInfo);
+            }
+            catch (ExceptionsControl ex)
+            {
+                throw ex.InnerException!;
+            }
+        }
 
         [HttpPost]
         [Route("create")]
@@ -54,7 +88,7 @@ namespace SantaInesAPI.Controllers
         {
             try
             {
-                return await _dao.AgregarCitaDAO(range);
+                return await _dao.AgregarCita(range);
             }
             catch (ExceptionsControl ex)
             {
@@ -63,24 +97,6 @@ namespace SantaInesAPI.Controllers
 
         }
 
-        //      [HttpPut]
-        //      [Route("ActualizarCita/")]
-        //      public ApplicationResponse<CitaDTO> ActualizarCita([FromBody] CitaDTO empleado)
-        //      {
-        //	var response = new ApplicationResponse<CitaDTO>();
-        //	try
-        //          {
-        //		response.Data = _dao.ActualizarCitaDAO(CitaMapper.DtoToEntity(empleado));
-        //          }
-        //	catch (ExceptionsControl ex)
-        //	{
-        //		response.Success = false;
-        //		response.Message = ex.Mensaje;
-        //		response.Exception = ex.Excepcion.ToString();
-        //	}
-        //	return response;
-        //}
-
         [HttpDelete]
         [Route("EliminarCita/{id}")]
         public ApplicationResponse<Cita> EliminarCita([FromRoute] Guid id)
@@ -88,7 +104,7 @@ namespace SantaInesAPI.Controllers
 			var response = new ApplicationResponse<Cita>();
 			try
             {
-				response.Data = _dao.EliminarCitaDAO(id);
+				response.Data = _dao.EliminarCita(id);
             }
 			catch (ExceptionsControl ex)
 			{
@@ -98,11 +114,6 @@ namespace SantaInesAPI.Controllers
 			}
 			return response;
 		}
-
-
-
-
-
 
     }
 }

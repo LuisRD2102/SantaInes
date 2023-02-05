@@ -24,11 +24,13 @@
     </div>
 
     <ul class="nav-list">
+
         <li>
            <i class='bx bx-search' ></i>
            <input type="text" placeholder="Search...">
            <span class="tooltip">Search</span>
         </li>
+
         <li>
           <a asp-controller="Home" asp-action="Index">
             <i class='bx bx-grid-alt'></i>
@@ -36,55 +38,55 @@
           </a>
            <span class="tooltip">Dashboard</span>
         </li>
+
         <li>
-         <a asp-controller="Registro" asp-action="Registro">
-           <i class='bx bx-user' ></i>
-           <span class="links_name" >Registro</span>
-         </a>
-         <span class="tooltip">Registro</span>
+            <a asp-controller="Registro" asp-action="Registro">
+                <i class='bx bx-user' ></i>
+                <span class="links_name" >Registro</span>
+            </a>
+            <span class="tooltip">Registro</span>
         </li>
+
         <li>
-         <a asp-controller="Empleados" asp-action="GestionEmpleados">
-           <i class='bx bx-buildings' ></i>
-           <span class="links_name">Empleados</span>
-         </a>
-                <span class="tooltip">Empleados</span>
+             <a asp-controller="Empleados" asp-action="GestionEmpleados">
+               <i class='bx bx-buildings' ></i>
+               <span class="links_name">Empleados</span>
+            </a>
+            <span class="tooltip">Empleados</span>
         </li>
+
         <li>
-         <a asp-controller="Prueba" asp-action="PruebaDepartamento">
-           <i class='bx bx-pie-chart-alt-2' ></i>
-           <span class="links_name">Prueba</span>
-         </a>
-                <span class="tooltip">Prueba</span>
+             <a asp-controller="Citas" asp-action="GestionCitas">
+               <i class='bx bx-calendar' ></i>
+               <span class="links_name">Citas</span>
+             </a>
+             <span class="tooltip">Citas</span>
         </li>
+
         <li>
-         <a asp-controller="Citas" asp-action="GestionCitas">
-           <i class='bx bx-folder' ></i>
-           <span class="links_name">Citas</span>
-         </a>
-         <span class="tooltip">Citas</span>
+            <a asp-controller="Itinerarios" asp-action="GestionItinerarios">
+               <i class='bx bx-calendar-edit' ></i>
+               <span class="links_name">Itinerarios</span>
+            </a>
+            <span class="tooltip">Itinerarios</span>
         </li>
+
         <li>
-                <a asp-controller="Itinerarios" asp-action="GestionItinerarios">
-           <i class='bx bx-cart-alt' ></i>
-           <span class="links_name">Itinerarios</span>
-         </a>
-                <span class="tooltip">Itinerarios</span>
+            <a asp-controller="Citas" asp-action="GestionCitasDoctor">
+                <i class='bx bx-book-add'></i>
+               <span class="links_name">Citas pendientes</span>
+            </a>
+               <span class="tooltip">Citas pendientes</span>
         </li>
-        <li>
-         <a href="#">
-           <i class='bx bx-heart' ></i>
-           <span class="links_name">Saved</span>
-         </a>
-         <span class="tooltip">Saved</span>
-        </li>
-        <li>
+
+@*        <li>
          <a href="#">
            <i class='bx bx-cog' ></i>
            <span class="links_name">Setting</span>
          </a>
          <span class="tooltip">Setting</span>
-        </li>
+        </li>*@
+
          <li class="profile">
              <a asp-controller ="Login" asp-action="Login" class="log-out">
                  <div class="profile-details">           

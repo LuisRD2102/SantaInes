@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SantaInesAPI.Persistence.Entity
 {
@@ -16,9 +17,9 @@ namespace SantaInesAPI.Persistence.Entity
         public string apellido_completo { get; set; }
         public string rol { get; set; }
         public Guid? id_departamento { get; set; }
+        [NotMapped]
         public virtual Departamento Departamento { get; set; }
+        [NotMapped]
         public virtual List<Cita> Citas { get; set; }
-        public Guid? id_itinerario { get; set; }
-        public virtual Itinerario? Itinerario { get; set; }
     }
 }

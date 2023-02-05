@@ -39,11 +39,7 @@ namespace SantaInesAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("doctor")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("nombre_paciente")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("paciente")
                         .HasColumnType("nvarchar(450)");
@@ -113,9 +109,6 @@ namespace SantaInesAPI.Migrations
                     b.Property<Guid?>("id_departamento")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("id_itinerario")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("nombre_completo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -136,28 +129,7 @@ namespace SantaInesAPI.Migrations
 
                     b.HasIndex("id_departamento");
 
-                    b.HasIndex("id_itinerario")
-                        .IsUnique()
-                        .HasFilter("[id_itinerario] IS NOT NULL");
-
                     b.ToTable("Empleados");
-                });
-
-            modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Itinerario", b =>
-                {
-                    b.Property<Guid>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("hora_fin")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("hora_inicio")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Itinerarios");
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Usuario", b =>
@@ -210,15 +182,11 @@ namespace SantaInesAPI.Migrations
                 {
                     b.HasOne("SantaInesAPI.Persistence.Entity.Empleado", "Empleado")
                         .WithMany("Citas")
-                        .HasForeignKey("doctor")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("doctor");
 
                     b.HasOne("SantaInesAPI.Persistence.Entity.Usuario", "Usuario")
                         .WithMany("Citas")
-                        .HasForeignKey("paciente")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("paciente");
 
                     b.Navigation("Empleado");
 
@@ -231,13 +199,7 @@ namespace SantaInesAPI.Migrations
                         .WithMany("Empleados")
                         .HasForeignKey("id_departamento");
 
-                    b.HasOne("SantaInesAPI.Persistence.Entity.Itinerario", "Itinerario")
-                        .WithOne("Empleado")
-                        .HasForeignKey("SantaInesAPI.Persistence.Entity.Empleado", "id_itinerario");
-
                     b.Navigation("Departamento");
-
-                    b.Navigation("Itinerario");
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Usuario", b =>
@@ -265,12 +227,6 @@ namespace SantaInesAPI.Migrations
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Empleado", b =>
                 {
                     b.Navigation("Citas");
-                });
-
-            modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Itinerario", b =>
-                {
-                    b.Navigation("Empleado")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Usuario", b =>

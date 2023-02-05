@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SantaInesAPI.BussinessLogic.DTO;
+using Project.DayPilot_Handler;
 using SantaInesAPI.Persistence.Entity;
 using System.Net;
-using static SantaInesAPI.Controllers.CitaController;
 
 namespace SantaInesAPI.Persistence.DAO.Interface
 {
     public interface ICitaDAO
     {
-        public Task<IEnumerable<Cita>> ConsultarCitasDAO(DateTime start, DateTime end, string? doctor);
-        public Task<ActionResult<HttpStatusCode>> AgregarCitaDAO(AppointmentSlotRange range);
-        //public CitaDTO ActualizarCitaDAO(Cita cita);
-        public Cita EliminarCitaDAO(Guid id);
+        public Task<IEnumerable<Cita>> ConsultarCitas(DateTime start, DateTime end, string? doctor);
+        public Task<IEnumerable<Cita>> ConsultarCitasLibres(DateTime start, DateTime end, string patient);
+        public Task<ActionResult<HttpStatusCode>> AgregarCita(AppointmentSlotRange range);
+        public Task<ActionResult<HttpStatusCode>> ActualizarCita(Guid id, AppointmentSlotRequest slotRequest);
+        public Task<ActionResult<HttpStatusCode>> ActualizarSlotCita(Guid id, AppointmentSlotUpdate update);
+        public Cita EliminarCita(Guid id);
     }
 }

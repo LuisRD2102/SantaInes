@@ -75,7 +75,7 @@ main .contenedor-calendario:hover{
         width: 94.9%;
         margin: 0 auto;
         gap: 1.6rem;
-        grid-template-columns: 30.2rem auto;
+        grid-template-columns: 30.65rem auto;
     }
 
     main .contenedor-calendario {

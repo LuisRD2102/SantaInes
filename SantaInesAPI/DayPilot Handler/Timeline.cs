@@ -1,6 +1,7 @@
-﻿using SantaInesAPI.Persistence.Entity;
+﻿using SantaInesAPI.DayPilot_Handler;
+using SantaInesAPI.Persistence.Entity;
 
-namespace Project.Service
+namespace Project.DayPilot_Handler
 {
     public class Timeline
     {
@@ -90,11 +91,4 @@ namespace Project.Service
 
       
     }
-
-    public class TimeCell
-    {
-        public DateTime Start;
-        public DateTime End;
-    }
-
 }

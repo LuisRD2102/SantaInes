@@ -19,17 +19,29 @@ namespace SantaInesWEB.Controllers
             _servicioCita = servicioCita;
 
         }
-        public async Task<IActionResult> GestionCitas()
+        public IActionResult GestionCitas()
         {
             try
             {
-                List<CitaModel> listaCitas = await _servicioCita.MostrarCitas();
-                return View(listaCitas);
+                return View();
             }
             catch (Exception ex)
             {
                 throw ex.InnerException!;
             }
         }
+
+        public IActionResult GestionCitasDoctor()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException!;
+            }
+        }
+
     }
 }

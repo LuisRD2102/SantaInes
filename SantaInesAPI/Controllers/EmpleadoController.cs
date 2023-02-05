@@ -98,8 +98,7 @@ namespace SantaInesAPI.Controllers
 			return response;
 		}
 
-        // GET: api/Empleado/Doctores
-        [EnableCors]
+
         [HttpGet]
         [Route("Doctores/")]
         public async Task<IEnumerable<Empleado>> GetDoctors()
