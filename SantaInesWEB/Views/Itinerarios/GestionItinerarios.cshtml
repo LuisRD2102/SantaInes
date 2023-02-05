@@ -5,18 +5,30 @@
 
 <head>
     <link rel="stylesheet" href="~/css/Calendar.css"/>
-    <link rel="stylesheet" href="~/css/EmpleadoYDepartamento.css"/>
+    <link rel="stylesheet" href="~/css/Itinerario.css"/>
+@*    <link rel="stylesheet" href="~/css/EmpleadoYDepartamento.css" />*@
     <link rel="stylesheet" href="~/css/Scheduler.css"/>
 </head>
 
-<div style="display:flex; justify-content:space-between;">
+<div class="top-bar">
+    <div class="titulo-top">
+        <h2>Itinerarios</h2>
+    </div>
+</div>
 
-    <div id="nav"></div>
+<div class="contenedor">
+    <div>
+        <div id="nav" class="calendario"></div>
+    </div>
+    
 
     @*El input mantiene funcional el calendario (No Borrar)*@
     <input type="radio" style="display:none" value="hours" name="scale" id='scale-hours' checked>
-
-    <div id="scheduler"></div>
+    
+    <div class="contenedor-calendario">
+        <div id="scheduler"></div>
+    </div>
+    
 
 </div>
 
@@ -166,7 +178,7 @@
 
     const nav = new DayPilot.Navigator("nav", {
         selectMode: "month",
-        showMonths: 3,
+        showMonths: 6,
         skipMonths: 3,
         locale: "es-mx",
         onTimeRangeSelected: args => {
@@ -198,20 +210,20 @@
         onBeforeEventRender: (args) => {
             switch (args.data.status) {
                 case "free":
-                    args.data.backColor = "#00FF00";  // blue
+                    args.data.backColor = "#74b71b";  //verde
                     args.data.barHidden = true;
                     args.data.borderColor = "darker";
                     args.data.fontColor = "white";
                     args.data.deleteDisabled = app.elements.scaleChecked.value === "shifts"; // only allow deleting in the more detailed hour scale mode
                     break;
                 case "waiting":
-                    args.data.backColor = "#e69138";  // orange
+                    args.data.backColor = "#ff6a00";  //naranja
                     args.data.barHidden = true;
                     args.data.borderColor = "darker";
                     args.data.fontColor = "white";
                     break;
                 case "confirmed":
-                    args.data.backColor = "#6aa84f";  // green
+                    args.data.backColor = "#00ffff";  // azul
                     args.data.barHidden = true;
                     args.data.borderColor = "darker";
                     args.data.fontColor = "white";
