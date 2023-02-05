@@ -25,13 +25,10 @@
 
 
 .contenedor {
-    /*display: flex;
-    justify-content: space-between;*/
     display: grid;
     width: 94.9%;
     margin: 0 auto;
     gap: 1.6rem;
-    /*grid-template-columns: 44.8rem auto;*/
     grid-template-columns: 28rem auto;
 }
 
@@ -69,4 +66,16 @@ main .contenedor-calendario {
 
 main .contenedor-calendario:hover{
     box-shadow: none;
+}
+
+@media screen and (max-width: 1368px) {
+
+    .contenedor {
+        display: grid;
+        width: 94.9%;
+        margin: 0 auto;
+        gap: 1.6rem;
+        grid-template-columns: 30.2rem auto;
+    }
+
 }
