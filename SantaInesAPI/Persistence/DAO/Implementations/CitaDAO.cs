@@ -45,7 +45,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
         {
             try
             {
-                return await _context.Citas.Where(e => (e.Status == "free" || (e.Status != "free" && e.paciente == patient)) && !((e.End <= start) || (e.Start >= end))).Include(e => e.Empleado).ToListAsync();
+                return await _context.Citas.Where(e => (e.Status == "Libre" || (e.Status != "Libre" && e.patient == patient)) && !((e.End <= start) || (e.Start >= end))).Include(e => e.Empleado).Include(e => e.Empleado.Departamento).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -60,11 +60,11 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             {
                 if (doctor == null)
                 {
-                    return await _context.Citas.Where(e => !((e.End <= start) || (e.Start >= end))).Include(e => e.Empleado).Where(e => e.Empleado.rol == "Doctor").ToListAsync();
+                    return await _context.Citas.Where(e => !((e.End <= start) || (e.Start >= end))).Include(e => e.Empleado).Include(u => u.Usuario).Where(e => e.Empleado.rol == "Doctor").ToListAsync();
                 }
                 else
                 {
-                    return await _context.Citas.Where(e => e.Empleado.username == doctor && !((e.End <= start) || (e.Start >= end))).Include(e => e.Empleado).Where(e => e.Empleado.rol == "Doctor").ToListAsync();
+                    return await _context.Citas.Where(e => e.Empleado.username == doctor && !((e.End <= start) || (e.Start >= end))).Include(e => e.Empleado).Include(u => u.Usuario).Where(e => e.Empleado.rol == "Doctor").ToListAsync();
                 }
             }
             catch (Exception ex)
@@ -104,12 +104,11 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 {
                     return HttpStatusCode.NoContent;
                 }
-                appointmentSlot.paciente = slotRequest.Patient;
-                appointmentSlot.Status = "waiting";
-                appointmentSlot.Usuario = await _context.Usuario.FindAsync(appointmentSlot.paciente);
+                appointmentSlot.patient = slotRequest.Patient;
+                appointmentSlot.Status = "En espera";
+                appointmentSlot.Usuario = await _context.Usuario.FindAsync(appointmentSlot.patient);
                 _context.Citas.Update(appointmentSlot);
                 await _context.SaveChangesAsync();
-                //Console.WriteLine(await _context.Citas.FindAsync(id));
                 return HttpStatusCode.NoContent;
             }
             catch (Exception ex)
@@ -132,10 +131,6 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 appointmentSlot.Start = update.Start;
                 appointmentSlot.End = update.End;
 
-                if (update.Name != null)
-                {
-                    appointmentSlot.paciente = update.Name;
-                }
                 if (update.Status != null)
                 {
                     appointmentSlot.Status = update.Status;

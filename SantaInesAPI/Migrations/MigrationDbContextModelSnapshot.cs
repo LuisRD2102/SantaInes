@@ -41,14 +41,14 @@ namespace SantaInesAPI.Migrations
                     b.Property<string>("doctor")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("paciente")
+                    b.Property<string>("patient")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("id");
 
                     b.HasIndex("doctor");
 
-                    b.HasIndex("paciente");
+                    b.HasIndex("patient");
 
                     b.ToTable("Citas");
                 });
@@ -186,7 +186,7 @@ namespace SantaInesAPI.Migrations
 
                     b.HasOne("SantaInesAPI.Persistence.Entity.Usuario", "Usuario")
                         .WithMany("Citas")
-                        .HasForeignKey("paciente");
+                        .HasForeignKey("patient");
 
                     b.Navigation("Empleado");
 

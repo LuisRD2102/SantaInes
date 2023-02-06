@@ -26,7 +26,7 @@ namespace SantaInesAPI.Persistence.Database
             modelBuilder.Entity<Cita>()
             .HasOne(b => b.Usuario)
             .WithMany(i => i.Citas)
-            .HasForeignKey(b => b.paciente);
+            .HasForeignKey(b => b.patient);
 
             modelBuilder.Entity<Cita>()
             .HasOne(b => b.Empleado)

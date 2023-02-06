@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Citas Doctor gestion";
+    ViewData["Title"] = "Gestion de citas";
 }
 
 <script src="~/lib/daypilot/daypilot-all.min.js"></script>
@@ -95,19 +95,19 @@
         },
         onBeforeEventRender: (args) => {
             switch (args.data.status) {
-                case "free":
+                case "Libre":
                     args.data.backColor = "#3d85c6";  // blue
                     args.data.barHidden = true;
                     args.data.borderColor = "darker";
                     args.data.fontColor = "white";
                     break;
-                case "waiting":
+                case "En espera":
                     args.data.backColor = "#e69138";  // orange
                     args.data.barHidden = true;
                     args.data.borderColor = "darker";
                     args.data.fontColor = "white";
                     break;
-                case "confirmed":
+                case "Confirmada":
                     args.data.backColor = "#6aa84f";  // green
                     args.data.barHidden = true;
                     args.data.borderColor = "darker";
@@ -119,14 +119,14 @@
 
             const form = [
                 { name: "Editar Cita" },
-                { name: "Nombre", id: "text" },
                 {
                     name: "Estado", id: "status", type: "select", options: [
-                        { name: "Free", id: "free" },
-                        { name: "Waiting", id: "waiting" },
-                        { name: "Confirmed", id: "confirmed" },
+                        { name: "Libre", id: "Libre" },
+                        { name: "En espera", id: "En espera" },
+                        { name: "Confirmada", id: "Confirmada" },
                     ]
                 },
+                { name: "Paciente", id: "pacienteNombre", disabled: true },
                 { name: "Inicio", id: "start", dateFormat: "MMMM d, yyyy h:mm tt", disabled: true },
                 { name: "Fin", id: "end", dateFormat: "MMMM d, yyyy h:mm tt", disabled: true },
                 { name: "Doctor", id: "resource", disabled: true, options: app.doctors },

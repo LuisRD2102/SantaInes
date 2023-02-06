@@ -23,7 +23,6 @@ const app = {
         const patient = app.patientId;
 
         const {data} = await DayPilot.Http.get(`https://localhost:7270/Citas/Libres?start=${start}&end=${end}&patient=${patient}`);
-
         if (day) {
             calendar.startDate = day;
         }
@@ -61,32 +60,33 @@ const calendar = new DayPilot.Calendar("calendar", {
     eventResizeHandling: "Disabled",
     eventArrangement: "SideBySide",
     onBeforeEventRender: (args) => {
+        console.log(args.data.empleado.departamento.nombre);
         switch (args.data.status) {
-          case "free":
+          case "Libre":
             args.data.backColor = "#3d85c6";  // blue
             args.data.barHidden = true;
             args.data.borderColor = "darker";
             args.data.fontColor = "white";
-            args.data.html = `Disponible<br/>${args.data.doctorName}`;
+            args.data.html = `Disponible<br/>${args.data.doctorName}<br/>${args.data.empleado.departamento.nombre}`;
             break;
-          case "waiting":
+          case "En espera":
             args.data.backColor = "#e69138";  // orange
             args.data.barHidden = true;
             args.data.borderColor = "darker";
             args.data.fontColor = "white";
-            args.data.html = "Cita por confirmar";
+            args.data.html = `Cita por confirmar<br/>${args.data.doctorName}<br/>${args.data.empleado.departamento.nombre}`;
             break;
-          case "confirmed":
+          case "Confirmada":
             args.data.backColor = "#6aa84f";  // green
             args.data.barHidden = true;
             args.data.borderColor = "darker";
             args.data.fontColor = "white";
-            args.data.html = "Cita confirmada";
+                    args.data.html = `Cita confirmada<br/>${args.data.doctorName}<br/>${args.data.empleado.departamento.nombre}`;
             break;
         }
     },
     onEventClick: async (args) => {
-        if (args.e.data.status !== "free") {
+        if (args.e.data.status !== "Libre") {
           calendar.message("La hora seleccionada no está disponible");
           return;
         }
@@ -119,7 +119,7 @@ const calendar = new DayPilot.Calendar("calendar", {
 
             await DayPilot.Http.put(`https://localhost:7270/Citas/${data.id}/request`, modal.result);
 
-        args.e.data.status = "waiting";
+        args.e.data.status = "En espera";
         calendar.events.update(args.e.data);
 
     }

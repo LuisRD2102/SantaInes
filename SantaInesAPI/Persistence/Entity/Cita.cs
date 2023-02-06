@@ -15,8 +15,7 @@ namespace SantaInesAPI.Persistence.Entity
 
         public string Status { get; set; } = "Libre";
 
-        [JsonPropertyName("patient")]
-        public string? paciente { get; set; }
+        public string? patient { get; set; }
 
         public virtual Usuario? Usuario { get; set; }
 
@@ -27,10 +26,13 @@ namespace SantaInesAPI.Persistence.Entity
         [NotMapped]
         public string Resource { get { return Empleado.username; } }
 
-        //VER CUAL SERÁ EL TEXTO QUE SE MUESTRA
         [JsonPropertyName("text")]
         [NotMapped]
-        public string? pacienteNombre { get; set; }
+        public string? infoCita { get { return Usuario!=null ? "Cita: "+ Status +"\n" + "Paciente: " +Usuario?.nombre_completo.Split(' ').First() + " " + Usuario?.apellido_completo.Split(' ').First() + "\n" + "C.I: " + Usuario?.cedula : "Libre"; } }
+        
+        [JsonPropertyName("pacienteNombre")]
+        [NotMapped]
+        public string? pacienteNombre { get { return Usuario != null ? Usuario?.nombre_completo + " " + Usuario?.apellido_completo : null; } }
 
         [NotMapped]
         public string DoctorName { get { return (Empleado.sexo.ToUpper() == "M" ? "Dr. " : "Dra. ") + Empleado.nombre_completo.Split(' ').First() + ' ' + Empleado.apellido_completo.Split(' ').First();} }
