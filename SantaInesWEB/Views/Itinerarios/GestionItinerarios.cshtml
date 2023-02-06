@@ -54,6 +54,7 @@
             }
 
             const { data } = await DayPilot.Http.get(`https://localhost:7270/Citas/Doctor/?start=${from}&end=${to}`);
+            data.forEach(item => item.text=null)
             const options = {
                 events: data
             };
@@ -80,19 +81,11 @@
             const start = new DayPilot.Date(date).firstDayOfMonth();
             const days = start.daysInMonth();
             const scale = app.elements.scaleChecked.value;
-            //const businessOnly = app.elements.businessOnly.checked;
 
             let morningShiftStarts = 7;
             let morningShiftEnds = 13;
             let afternoonShiftStarts = 13;
             let afternoonShiftEnds = 21;
-
-            //if (!businessOnly) {
-            //    morningShiftStarts = 0;
-            //    morningShiftEnds = 12;
-            //    afternoonShiftStarts = 12;
-            //    afternoonShiftEnds = 24;
-            //}
 
             const timeline = [];
 
@@ -155,11 +148,6 @@
         init() {
             app.loadResources();
             app.loadEvents(DayPilot.Date.today());
-
-            //app.elements.businessOnly.addEventListener("click", () => {
-            //    scheduler.timeline = app.getTimeline();
-            //    scheduler.update();
-            //});
 
             app.elements.radios.forEach(item => {
                 item.addEventListener("change", () => {
@@ -245,7 +233,6 @@
             };
 
             dp.clearSelection();
-            //alert(params);
             const { data } = await DayPilot.Http.post("https://localhost:7270/Citas/create", params);
             app.loadEvents();
         }

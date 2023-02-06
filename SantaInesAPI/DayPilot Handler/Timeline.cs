@@ -31,7 +31,7 @@ namespace Project.DayPilot_Handler
                         var slot = new Cita();
                         slot.Start = slotStart;
                         slot.End = slotEnd;
-                        slot.Status = "free";
+                        slot.Status = "Libre";
 
                         result.Add(slot);
 
