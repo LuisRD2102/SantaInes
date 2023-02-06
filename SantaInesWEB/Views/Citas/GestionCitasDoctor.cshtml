@@ -2,16 +2,37 @@
     ViewData["Title"] = "Gestion de citas";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Calendar.css" />
+    <link rel="stylesheet" href="~/css/Modal.css" />
+    <link rel="stylesheet" href="~/css/Itinerario.css" />
+    <link rel="stylesheet" href="~/css/Calendar-Citas.css" />
+    <link rel="stylesheet" href="~/css/Scheduler.css" />
+</head>
+
 <script src="~/lib/daypilot/daypilot-all.min.js"></script>
 
-<div class="column-left">
-    <div id="nav"></div>
-</div>
-<div class="column-main">
-    <div class="space">
-        <select id="doctor" name="doctor"></select>
+<div class="top-bar">
+    <div class="titulo-top">
+        <h2>Citas pendientes</h2>
     </div>
-    <div id="calendar"></div>
+</div>
+
+<div class="contenedor">
+    <div class="column-left">
+        <div id="nav"></div>
+    </div>
+    <div class="column-main">
+        <div class="titulo-citas-pendientes">
+            <h1>Disponibilidad</h1>        
+            <div class="space">
+                <select class="form-select" id="doctor" name="doctor"></select>
+            </div>
+        </div>
+        <div class="contenedor-calendario">
+            <div id="calendar"></div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -59,7 +80,7 @@
 
     const nav = new DayPilot.Navigator("nav", {
         selectMode: "week",
-        showMonths: 3,
+        showMonths: 6,
         skipMonths: 3,
         onTimeRangeSelected: (args) => {
             app.loadEvents(args.start.firstDayOfWeek(), args.start.addDays(7));
