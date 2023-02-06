@@ -60,7 +60,6 @@ const calendar = new DayPilot.Calendar("calendar", {
     eventResizeHandling: "Disabled",
     eventArrangement: "SideBySide",
     onBeforeEventRender: (args) => {
-        console.log(args.data.empleado.departamento.nombre);
         switch (args.data.status) {
           case "Libre":
             args.data.backColor = "#3d85c6";  // blue
@@ -114,8 +113,6 @@ const calendar = new DayPilot.Calendar("calendar", {
         if (modal.canceled) {
           return;
         }
-
-            console.log(data);
 
             await DayPilot.Http.put(`https://localhost:7270/Citas/${data.id}/request`, modal.result);
 
