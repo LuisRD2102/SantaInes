@@ -127,8 +127,8 @@
 
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
-                       @*         <button id="btnEditar" type="button" class="dropdown-item" data-toggle="editarDepartamento-modal" data-target="#popUpEditar" data-url="@Url.Action("VentanaEditarDepartamento","Departamento",new { id = "idDepartamento" })">Editar</button>
-                                <button id="btnEliminar" type="button" class="dropdown-item" data-toggle="eliminarDepartamento-modal" data-target="#popUpEliminar" data-url="@Url.Action("VentanaEliminarDepartamento","Departamento",new { id = "idDepartamento" })">Eliminar</button>*@
+                                    <button id="btnEditar" type="button" class="dropdown-item" data-toggle="editarEmpleado-modal" data-target="#popUpEditar" data-url="@Url.Action("EditarEmpleado","Empleados",new { username = "Usuario" })">Editar</button>
+                                    <button id="btnEliminar" type="button" class="dropdown-item" data-toggle="eliminarEmpleado-modal" data-target="#popUpEliminar" data-url="@Url.Action("EliminarEmpleado","Empleados",new { username = "Usuario" })">Eliminar</button>
                        
                                 </ul>
                             </div>

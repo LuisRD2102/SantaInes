@@ -6,16 +6,19 @@ using SantaInesAPI.Migrations;
 using SantaInesAPI.Persistence.DAO.Interface;
 using SantaInesAPI.Persistence.Database;
 using SantaInesAPI.Persistence.Entity;
+using ServicesDeskUCABWS.BussinesLogic.Exceptions;
 
 namespace SantaInesAPI.Persistence.DAO.Implementations
 {
     public class EmpleadoDAO : IEmpleadoDAO
     {
         private readonly MigrationDbContext _context;
+        private readonly ICitaDAO _citaDAO;
 
-        public EmpleadoDAO(MigrationDbContext context)
+        public EmpleadoDAO(MigrationDbContext context, ICitaDAO citaDAO)
         {
             _context = context;
+            _citaDAO = citaDAO;
         }
 
         public EmpleadoDTO ActualizarEmpleadoDAO(Empleado empleado)
@@ -59,21 +62,6 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 var data = _context.Empleados.Where(e => e.username == empleado.username).First();
                 return EmpleadoMapper.EntityToDTO(data);
 
-                //var data = _context.Empleados.Where(e => e.username == empleado.username)
-                //            .Select(e => new EmpleadoDTO
-                //            {
-                //                username = e.username,
-                //                password = e.password,
-                //                cedula = e.cedula,
-                //                nombre_completo = e.nombre_completo,
-                //                apellido_completo = e.apellido_completo,
-                //                rol = e.rol,
-                //                id_departamento = e.id_departamento,
-                //                id_itinerario = e.id_itinerario
-                //            });
-
-                //return data.First();
-
             }
             catch (Exception ex)
             {
@@ -110,30 +98,123 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
         }
 
-        public EmpleadoDTO EliminarEmpleadoDAO(String username)
+        //public EmpleadoDTO EliminarEmpleadoDAO(String username)
+        //{
+        //    try
+        //    {
+        //        var empleado = _context.Empleados.Where(e => e.username == username).First();
+
+        //        Guid? idDepartamento = empleado.id_departamento;
+        //        _context.Empleados.Remove(empleado);
+        //        _context.SaveChanges();
+
+        //        var departamentoAsoc = _context.Departamentos.Where(d => d.id == idDepartamento).First();
+
+        //        _context.Departamentos.Remove(departamentoAsoc);
+        //        _context.SaveChanges();
+
+        //        return EmpleadoMapper.EntityToDTO(empleado);
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message + " || " + ex.StackTrace);
+        //        throw new Exception("Fallo al Eliminar por empleado: " + username, ex);
+        //    }
+        //}
+
+        public EmpleadoDTO EliminarEmpleadoDAO(string username)
         {
+            var empleadoDTO = new EmpleadoDTO();
+
             try
             {
-                var empleado = _context.Empleados.Where(e => e.username == username).First();
+                var empleado = _context.Empleados
+                        .Where(d => d.username == username).Include(u => u.Citas).First();
 
-                Guid? idDepartamento = empleado.id_departamento;
-                _context.Empleados.Remove(empleado);
-                _context.SaveChanges();
+                if (empleado != null)
+                {
+                    if (QuitarAsociacionDepartamentos(empleado.id_departamento))
+                    {
+                        empleadoDTO = EmpleadoMapper.EntityToDTO(empleado);
+                    }
 
-                var departamentoAsoc = _context.Departamentos.Where(d => d.id == idDepartamento).First();
+                    if (QuitarAsociacionCitas(empleado))
+                    {
+                        empleadoDTO = EmpleadoMapper.EntityToDTO(empleado);
+                    }
 
-                _context.Departamentos.Remove(departamentoAsoc);
-                _context.SaveChanges();
+                    _context.Empleados.Remove(empleado);
+                    _context.SaveChanges();
 
-                return EmpleadoMapper.EntityToDTO(empleado);
+
+                }
+                return empleadoDTO;
+            }
+            catch (Exception ex)
+            {
+                throw new ExceptionsControl("No se encuentra el empleado" + " " + username, ex);
+            }
+        }
+
+        public bool QuitarAsociacionCitas(Empleado empleado)
+        {
+            var asociacionQuitada = false;
+            try
+            {
+                              
+                if (empleado.Citas != null)
+                {
+                    foreach (var cita in empleado.Citas.ToList())
+                    {
+                        cita.doctor = null;
+                        cita.patient = null;
+                       _citaDAO.EliminarCita(cita.id);
+                    }
+
+                    _context.SaveChanges();
+                    return asociacionQuitada = true;
+                }              
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message + " || " + ex.StackTrace);
-                throw new Exception("Fallo al Eliminar por empleado: " + username, ex);
+                throw new ExceptionsControl("Fallo al quitar asociacion a un grupo", ex);
             }
+
+            return asociacionQuitada;
         }
+
+        public bool QuitarAsociacionDepartamentos(Guid? deptID)
+        {
+            var asociacionQuitada = false;
+            try
+            {
+                var listaEmpleados = _context.Empleados.Where(x => x.id_departamento == deptID && x.rol == "Doctor" );
+
+                if (listaEmpleados != null)
+                {
+
+                    foreach (var item in listaEmpleados)
+                    {
+                        item.id_departamento = null;
+
+                    }
+                    _context.UpdateRange(listaEmpleados);
+                    _context.SaveChanges();
+                    return asociacionQuitada = true;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new ExceptionsControl("Fallo al quitar asociacion a un grupo", ex);
+            }
+
+            return asociacionQuitada;
+        }
+
 
         public bool ExisteCedula(Empleado empleado)
         {
@@ -164,6 +245,22 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             {
                 Console.WriteLine(ex.Message + " || " + ex.StackTrace);
                 throw new Exception("Usuario o contraseña incorrectos", ex);
+            }
+        }
+
+        public EmpleadoDTO ConsultarPorUsername(string username)
+        {
+            try
+            {
+
+                var empleado = _context.Empleados
+               .Where(d => d.username == username).First();
+                return EmpleadoMapper.EntityToDTO(empleado);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ExceptionsControl("No se encuentra el empleado" + " " + username, ex);
             }
         }
 

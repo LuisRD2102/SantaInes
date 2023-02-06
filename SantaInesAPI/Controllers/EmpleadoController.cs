@@ -100,6 +100,25 @@ namespace SantaInesAPI.Controllers
 
 
         [HttpGet]
+        [Route("ConsultarEmpleadoPorUsername/{username}")]
+        public ApplicationResponse<EmpleadoDTO> ConsultarPorID([FromRoute] string username)
+        {
+            var response = new ApplicationResponse<EmpleadoDTO>();
+            try
+            {
+                response.Data = _dao.ConsultarPorUsername(username);
+            }
+            catch (ExceptionsControl ex)
+            {
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
+            }
+            return response;
+        }
+
+
+        [HttpGet]
         [Route("Doctores/")]
         public async Task<IEnumerable<Empleado>> GetDoctors()
 		{

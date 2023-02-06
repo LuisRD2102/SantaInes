@@ -118,6 +118,34 @@ namespace SantaInesWEB.Servicios.ServicioEmpleado
 
         }
 
+        public async Task<EmpleadoModel> MostrarInfoEmpleado(string username)
+        {
+            EmpleadoModel empleado = new EmpleadoModel();
+
+            var cliente = _httpClientFactory.CreateClient("DevConnection");
+
+            try
+            {
+                var responseEmpleado = await cliente.GetAsync($"Empleado/ConsultarEmpleadoPorUsername/{username}");
+
+                if (responseEmpleado.IsSuccessStatusCode)
+                {
+                    var respuestaEmpleado = await responseEmpleado.Content.ReadAsStringAsync();
+                    JObject json_respuestaEmpleado = JObject.Parse(respuestaEmpleado);
+
+                    string stringDataRespuestaEmpleado = json_respuestaEmpleado["data"].ToString();
+                    var resultadoEmpleado = JsonConvert.DeserializeObject<EmpleadoModel>(stringDataRespuestaEmpleado);
+                    empleado = resultadoEmpleado;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException!;
+            }
+            return empleado;
+        }
+
+
         public async Task<JObject> RegistrarEmpleado(EmpleadoModel empleado)
         {
             var cliente = _httpClientFactory.CreateClient("DevConnection");
@@ -142,6 +170,44 @@ namespace SantaInesWEB.Servicios.ServicioEmpleado
             }
 
             return _json_respuesta;
+        }
+
+
+        public async Task<JObject> EditarEmpleado(EmpleadoModel empleado)
+        {
+            var cliente = _httpClientFactory.CreateClient("DevConnection");
+
+            var content = new StringContent(JsonConvert.SerializeObject(empleado), Encoding.UTF8, "application/json");
+
+            try
+            {
+                var response = await cliente.PutAsync("Empleado/ActualizarEmpleado", content);
+                var respuesta = await response.Content.ReadAsStringAsync();
+                JObject _json_respuesta = JObject.Parse(respuesta);
+                return _json_respuesta;
+
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"ERROR de conexión con la API: '{ex.Message}'");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            return _json_respuesta;
+        }
+
+        public async Task<JObject> EliminarEmpleado(string username)
+        {
+            var cliente = _httpClientFactory.CreateClient("DevConnection");
+            var response = await cliente.DeleteAsync($"Empleado/EliminarEmpleado/{username}");
+
+            var respuesta = await response.Content.ReadAsStringAsync();
+            JObject json_respuesta = JObject.Parse(respuesta);
+
+            return json_respuesta;
         }
     }
 }

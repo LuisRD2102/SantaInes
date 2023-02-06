@@ -30,7 +30,7 @@ namespace SantaInesWEB.Controllers
             try
             {
                 var resp = await _servicioApiDepartamento.MostrarTabla();
-                List<SelectListItem> listItemsDepartamentos = crearDepatamentoDropDown(resp);
+                List<SelectListItem> listItemsDepartamentos = crearDepartamentoDropDown(resp);
                 var tupla = new Tuple<EmpleadoModel, List<SelectListItem>>(null!, listItemsDepartamentos);
                 return PartialView(tupla);
             }
@@ -40,8 +40,8 @@ namespace SantaInesWEB.Controllers
             }
         }
 
-         private static List<SelectListItem> crearDepatamentoDropDown(List<DepartamentoModel> lista)
-        {
+         private static List<SelectListItem> crearDepartamentoDropDown(List<DepartamentoModel> lista)
+         {
             List<SelectListItem> listItems = new List<SelectListItem>();
 
             foreach (var item in lista)
@@ -54,7 +54,7 @@ namespace SantaInesWEB.Controllers
             }
 
             return listItems;
-        }
+         }
 
         [HttpPost]
         public async Task<IActionResult> GuardarEmpleado([Bind(Prefix = "Item1")] EmpleadoModel empleado)
@@ -75,6 +75,63 @@ namespace SantaInesWEB.Controllers
                 Console.WriteLine(ex.ToString());
             }
             return NoContent();
+        }
+
+        public async Task<IActionResult> EditarEmpleado(string username)
+        {
+            try
+            {
+                EmpleadoModel empleado = new EmpleadoModel();
+                var resp = await _servicioApiDepartamento.MostrarTabla();
+                List<SelectListItem> listItemsDepartamentos = crearDepartamentoDropDown(resp);
+                empleado = await _servicioApiEmpleado.MostrarInfoEmpleado(username);
+                var tupla = new Tuple<EmpleadoModel, List<SelectListItem>>(empleado, listItemsDepartamentos);
+                
+                return PartialView(tupla);
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException!;
+            }
+        }
+
+        public async Task<IActionResult> ModificarEmpleado([Bind(Prefix = "Item1")] EmpleadoModel empleado)
+        {
+            try
+            {
+                JObject respuesta = await _servicioApiEmpleado.EditarEmpleado(empleado);
+                if ((bool)respuesta["success"])
+                    return RedirectToAction("GestionEmpleados", "Empleados", new { message = "Se ha modificado correctamente" });
+                //else return RedirectToAction("GestionEmpleados", new { message2 = "El nombre del departamento ingresado ya existe" });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return NoContent();
+        }
+
+        public IActionResult EliminarEmpleado(string username)
+        {
+            try
+            {
+                return PartialView((object)username);
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException!;
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AccionEliminarEmpleado(string username)
+        {
+            JObject respuesta;
+            respuesta = await _servicioApiEmpleado.EliminarEmpleado(username);
+            if ((bool)respuesta["success"])
+                return RedirectToAction("GestionEmpleados", "Empleados", new { message = "Se ha eliminado correctamente" });
+            else
+                return NoContent();
         }
     }
 }

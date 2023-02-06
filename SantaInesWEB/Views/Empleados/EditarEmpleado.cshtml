@@ -1,0 +1,49 @@
+﻿@model Tuple<SantaInesWEB.Models.EmpleadoModel, List<SelectListItem>>
+
+@{
+    ViewData["Title"] = "Editar Empleado";
+}
+
+<head>
+    <title>@ViewData["Editar Empleado"]</title>
+</head>
+
+
+<!-- Ventana Emergente -->
+<div class="modal fade" id="popUpEditar" tabindex="-1" role="dialog" aria-labelledby="popUpEditarTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Editar Empleado</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("ModificarEmpleado", "Empleados", FormMethod.Post))
+            {
+                <div class="modal-body">
+
+                    @Html.TextBoxFor(m => m.Item1.cedula, new { @Value = Model.Item1.cedula, @type="hidden"})
+                    @Html.TextBoxFor(m => m.Item1.sexo, new { @Value = Model.Item1.sexo, @type="hidden"})
+                    @Html.TextBoxFor(m => m.Item1.rol, new { @Value = Model.Item1.rol, @type="hidden"})
+                    @Html.TextBoxFor(m => m.Item1.username, new { @Value = Model.Item1.username, @type="hidden"})
+                    <span style="margin-top:15px"  class="span">Contraseña: </span>
+                    @Html.TextBoxFor(m => m.Item1.password, new { @Value = Model.Item1.password, Class="form-control", placeholder="Contraseña: "})
+                    <span style="margin-top:15px" class="span">Nombre(s): </span>
+                    @Html.TextBoxFor(m => m.Item1.nombre_completo, new { @Value = Model.Item1.nombre_completo, Class="form-control", placeholder="Nombre(s): "})
+                    <span style ="margin-top:15px" class="span">Apellido(s): </span>
+                    @Html.TextBoxFor(m => m.Item1.apellido_completo, new { @Value = Model.Item1.apellido_completo, Class="form-control", placeholder="Apellido(s): "})
+                    <span style="margin-top:15px" class="span">Departamento: </span>
+                    @Html.DropDownListFor(m => m.Item1.id_departamento, Model.Item2,"Departamento",new {@Class = "form-select"})
+                                      
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="botonCancelar" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="botonCrear">Editar</button>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

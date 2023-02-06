@@ -9,8 +9,9 @@ namespace SantaInesAPI.Persistence.DAO.Interface
         public List<EmpleadoDTO> ConsultarEmpleadoDAO();
         public EmpleadoDTO AgregarEmpleadoDAO(Empleado empleado);
         public EmpleadoDTO ActualizarEmpleadoDAO(Empleado empleado);
-        public EmpleadoDTO EliminarEmpleadoDAO(String empleado);
+        public EmpleadoDTO EliminarEmpleadoDAO(string empleado);
         public EmpleadoDTO VerificarDatosLogin(string username, string pass);
+        public EmpleadoDTO ConsultarPorUsername(string username);
         public Task<IEnumerable<Empleado>> GetDoctors();
     }
 }

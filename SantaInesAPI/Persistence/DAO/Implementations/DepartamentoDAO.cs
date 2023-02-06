@@ -75,27 +75,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 throw ex.InnerException!;
             }
         }
-
-        //public DepartamentoDTO EliminarDepartamentoDAO(Guid id)
-        //{
-        //    try
-        //    {
-        //        var departamento = _context.Departamentos
-        //            .Where(d => d.id == id).First();
-
-        //        _context.Departamentos.Remove(departamento);
-        //        _context.SaveChanges();
-
-        //        return DepartamentoMapper.EntityToDTO(departamento);
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message + " || " + ex.StackTrace);
-        //        throw new Exception("Fallo al eliminar por id: " + id, ex);
-        //    }
-        //}
-
+         
         public DepartamentoDTO EliminarDepartamentoDAO(Guid id)
         {
             var departamentoDTO = new DepartamentoDTO();

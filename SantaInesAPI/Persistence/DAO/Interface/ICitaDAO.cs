@@ -13,5 +13,6 @@ namespace SantaInesAPI.Persistence.DAO.Interface
         public Task<ActionResult<HttpStatusCode>> ActualizarCita(Guid id, AppointmentSlotRequest slotRequest);
         public Task<ActionResult<HttpStatusCode>> ActualizarSlotCita(Guid id, AppointmentSlotUpdate update);
         public Cita EliminarCita(Guid id);
+        public Guid ObtenerCitaPorUsername(string username);
     }
 }

@@ -4,6 +4,7 @@ using Project.DayPilot_Handler;
 using SantaInesAPI.Persistence.DAO.Interface;
 using SantaInesAPI.Persistence.Database;
 using SantaInesAPI.Persistence.Entity;
+using ServicesDeskUCABWS.BussinesLogic.Exceptions;
 using System.Net;
 
 namespace SantaInesAPI.Persistence.DAO.Implementations
@@ -52,6 +53,22 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 Console.WriteLine(ex.Message + " : " + ex.StackTrace);
                 throw ex.InnerException!;
             }
+        }
+
+        public Guid ObtenerCitaPorUsername(string username)
+        {
+            try
+            {
+                var cita = _context.Citas.Where(c => c.doctor == username).First();
+
+                return cita.id;
+            }
+            catch (Exception ex)
+            {
+                throw new ExceptionsControl("No hay coincidencias", ex);
+            }
+
+
         }
 
         public async Task<IEnumerable<Cita>> ConsultarCitas(DateTime start, DateTime end, string? doctor)
