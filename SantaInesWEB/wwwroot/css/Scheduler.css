@@ -34,7 +34,7 @@
 
 ::-webkit-scrollbar {
     width: 10px !important;
-    
+    background-color: var(--table-color);
 }
 
 

@@ -2,14 +2,33 @@
     ViewData["Title"] = "Citas";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Calendar.css" />
+    <link rel="stylesheet" href="~/css/Itinerario.css" />
+    <link rel="stylesheet" href="~/css/Calendar-Citas.css" />
+    <link rel="stylesheet" href="~/css/Scheduler.css" />
+</head>
+
 <script src="~/lib/daypilot/daypilot-all.min.js"></script>
 
-<div class="column-left">
-    <div id="nav"></div>
+<div class="top-bar">
+    <div class="titulo-top">
+        <h2>Citas</h2>
+    </div>
 </div>
-<div class="column-main">
-    <div class="toolbar">Available time slots:</div>
-    <div id="calendar"></div>
+
+<div class="contenedor">
+    <div class="column-left">
+        <div id="nav"></div>
+    </div>
+    <div class="column-main">
+        <div class="titulo">
+            <h1>Disponibilidad</h1>
+        </div>
+        <div class="contenedor-calendario">
+            <div id="calendar"></div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -39,7 +58,7 @@ const app = {
 
 const nav = new DayPilot.Navigator("nav", {
     selectMode: "week",
-    showMonths: 3,
+    showMonths: 6,
     locale:"es-mx",
     skipMonths: 3,
     onTimeRangeSelected: (args) => {
