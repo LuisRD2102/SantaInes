@@ -41,5 +41,6 @@ namespace SantaInesWEB.Models
 		[EmailAddress(ErrorMessage = "Introduzca un correo válido")]
 		public string email { get; set; }
         public Guid id_direccion { get; set; }
+        public List<UsuarioModel> usuarios { get; set; }
     }
 }

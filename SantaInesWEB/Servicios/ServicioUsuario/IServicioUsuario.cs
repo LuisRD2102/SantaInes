@@ -8,5 +8,6 @@ namespace SantaInesWEB.Servicios.ServicioUsuario
 	{
 		Task<JObject> RegistrarUsuario(UsuarioModel user);
         Task<JObject> ValidarUsuarioLogin(string username, string password);
+        Task<List<UsuarioModel>> MostrarTabla();
     }
 }

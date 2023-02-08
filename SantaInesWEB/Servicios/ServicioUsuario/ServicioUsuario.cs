@@ -68,6 +68,39 @@ namespace SantaInesWEB.Servicios.ServicioUsuario
             return _json_respuesta;
         }
 
+        public async Task<List<UsuarioModel>> MostrarTabla()
+        {
+            UsuarioModel usuario = new UsuarioModel();
+
+            var cliente = _httpClientFactory.CreateClient("DevConnection");
+
+            try
+            {
+                var responseUsuario = await cliente.GetAsync("Usuario/ConsultaUsuarios/");
+
+                if (responseUsuario.IsSuccessStatusCode)
+                {
+                    var respuestaUsuario = await responseUsuario.Content.ReadAsStringAsync();
+                    JObject json_respuestaUsuario = JObject.Parse(respuestaUsuario);
+
+                    string stringDataRespuestaUsuario = json_respuestaUsuario["data"].ToString();
+                    var resultadoUsuario = JsonConvert.DeserializeObject<List<UsuarioModel>>(stringDataRespuestaUsuario);
+                    usuario.usuarios = resultadoUsuario;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"ERROR de conexión con la API: '{ex.Message}'");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return usuario.usuarios;
+
+        }
+
 
     }
 }
