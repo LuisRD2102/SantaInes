@@ -108,7 +108,10 @@ section .btn-no-account{
     transition:all 0.5s ease;
 }
 
-section .btn-no-account:hover {
+section .btn-no-account::before{
+    box-shadow:none;
+}
+    section .btn-no-account:hover {
     color:var(--primary-color-dark);
 }
 
