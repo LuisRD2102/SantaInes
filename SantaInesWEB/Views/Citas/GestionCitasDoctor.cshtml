@@ -80,7 +80,7 @@
 
     const nav = new DayPilot.Navigator("nav", {
         selectMode: "week",
-        showMonths: 6,
+        showMonths: 3,
         skipMonths: 3,
         onTimeRangeSelected: (args) => {
             app.loadEvents(args.start.firstDayOfWeek(), args.start.addDays(7));
