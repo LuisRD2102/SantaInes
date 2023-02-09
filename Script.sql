@@ -6,11 +6,12 @@ INSERT INTO dbo.Departamentos values ('A8A48205-5FFB-42AD-8567-1639DB6A60A7','Se
 INSERT INTO dbo.Direccion values ('82348632-9A01-441A-92B5-08EB4752AD64','Libertador','Centro-sur calle 2',1014)
 INSERT INTO dbo.Direccion values ('BBFABEC2-D7DA-449D-9D74-656FE20CAFA7','Libertador','Calle 5 intesección UCV',1053)
 INSERT INTO dbo.Direccion values ('AA6C0B77-3C5D-4D04-8A15-660171326B2F','Chacao','Ocatava avenida parque chacao',1060)
+INSERT INTO dbo.Direccion values ('B4901987-5F75-46E2-A143-8C0FAB47232C','Chacao','Octava avenida parque chacao',1080)
 
 
 INSERT INTO dbo.Usuario values ('pedro','12345678',27666123,'Pedro Carlos','Santana Gomez','1990-01-01','M','4128762931','pedrogmz@gmail.com','82348632-9A01-441A-92B5-08EB4752AD64')
 INSERT INTO dbo.Usuario values ('luis','12345678',12345678,'Luis','Herrera Sandoval','2000-02-03','M','416928371','luisHerare@gmail.com','BBFABEC2-D7DA-449D-9D74-656FE20CAFA7')
-INSERT INTO dbo.Usuario values ('lmromero.18','a',12345678,'Luis','Gutierrez Marquez','2001-02-03','M','416928371','luisGutierrez@gmail.com','BBFABEC2-D7DA-449D-9D74-656FE20CAFA7')
+INSERT INTO dbo.Usuario values ('lmromero.18','a',12345699,'Luis','Gutierrez Marquez','2001-02-03','M','416928372','luisGutierrez@gmail.com','B4901987-5F75-46E2-A143-8C0FAB47232C')
 INSERT INTO dbo.Usuario values ('amanda','12345678',12345678,'Amanda Luisa','Fernandez','2002-06-09','F','424002211','lamanda@gmail.com','AA6C0B77-3C5D-4D04-8A15-660171326B2F')
 
 
