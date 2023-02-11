@@ -24,16 +24,6 @@ namespace SantaInesWEB.Controllers
             {
                 return View(await _servicioApiUsuario.MostrarTabla());
 
-                //List<UsuarioModel> listUsuarios = new List<UsuarioModel>();
-                //HttpClient client = new HttpClient();
-                //var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:7270/Usuario/ConsultaUsuarios");
-                //var _client = await client.SendAsync(request);
-                //if (_client.IsSuccessStatusCode)
-                //{
-                //    var responseStream = await _client.Content.ReadAsStreamAsync();
-                //    listUsuarios = await JsonSerializer.DeserializeAsync<List<UsuarioModel>>(responseStream);
-                //}
-                //return View(listUsuarios);
             }
             catch (Exception ex)
             {

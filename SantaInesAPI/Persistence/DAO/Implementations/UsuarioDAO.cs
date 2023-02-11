@@ -4,6 +4,7 @@ using SantaInesAPI.Migrations;
 using SantaInesAPI.Persistence.DAO.Interface;
 using SantaInesAPI.Persistence.Database;
 using SantaInesAPI.Persistence.Entity;
+using ServicesDeskUCABWS.BussinesLogic.Exceptions;
 
 namespace SantaInesAPI.Persistence.DAO.Implementations
 {
@@ -110,6 +111,23 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 throw ex.InnerException!;
             }
         }
+
+        public UsuarioDTO ConsultarPorUsername(string username)
+        {
+            try
+            {
+
+                var usuario = _context.Usuario
+               .Where(d => d.username == username).First();
+                return UsuarioMapper.EntityToDTO(usuario);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ExceptionsControl("No se encuentra el empleado" + " " + username, ex);
+            }
+        }
+
 
         public UsuarioDTO EliminarUsuarioDAO(String username)
         {

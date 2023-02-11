@@ -79,13 +79,13 @@
                <span class="tooltip">Citas pendientes</span>
         </li>
 
-@*        <li>
-         <a href="#">
+        <li>
+                <a @*asp-controller="Configuracion" asp-action="Configuracion"*@ onclick="location.href='@Url.Action("Configuracion","Configuracion", new{username = @Context.Session.GetString("username")})'">
            <i class='bx bx-cog' ></i>
-           <span class="links_name">Setting</span>
+           <span class="links_name">Configuración</span>
          </a>
-         <span class="tooltip">Setting</span>
-        </li>*@
+         <span class="tooltip">Configuración</span>
+        </li>
 
          <li class="profile">
              <a asp-controller ="Login" asp-action="Login" class="log-out">

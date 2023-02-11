@@ -93,6 +93,24 @@ namespace SantaInesAPI.Controllers
 			}
 			return response;
 		}
+
+        [HttpGet]
+        [Route("ConsultarDireccionPorID/{id}")]
+        public ApplicationResponse<DireccionDTO> ConsultarPorID([FromRoute] Guid id)
+        {
+            var response = new ApplicationResponse<DireccionDTO>();
+            try
+            {
+                response.Data = _DireccionDAO.ConsultarPorID(id);
+            }
+            catch (ExceptionsControl ex)
+            {
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
+            }
+            return response;
+        }
     }
 
     

@@ -101,6 +101,58 @@ namespace SantaInesWEB.Servicios.ServicioUsuario
 
         }
 
+        public async Task<UsuarioModel> MostrarInfoUsuario(string username)
+        {
+            UsuarioModel usuario = new UsuarioModel();
+
+            var cliente = _httpClientFactory.CreateClient("DevConnection");
+
+            try
+            {
+                var responseUsuario = await cliente.GetAsync($"Usuario/ConsultarUsuarioPorUsername/{username}");
+
+                if (responseUsuario.IsSuccessStatusCode)
+                {
+                    var respuestaUsuario = await responseUsuario.Content.ReadAsStringAsync();
+                    JObject json_respuestaUsuario = JObject.Parse(respuestaUsuario);
+
+                    string stringDataRespuestaUsuario = json_respuestaUsuario["data"].ToString();
+                    var resultadoUsuario = JsonConvert.DeserializeObject<UsuarioModel>(stringDataRespuestaUsuario);
+                    usuario = resultadoUsuario;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException!;
+            }
+            return usuario;
+        }
+
+        public async Task<JObject> EditarUsuario(UsuarioModel usuario)
+        {
+            var cliente = _httpClientFactory.CreateClient("DevConnection");
+
+            var content = new StringContent(JsonConvert.SerializeObject(usuario), Encoding.UTF8, "application/json");
+
+            try
+            {
+                var response = await cliente.PutAsync("Usuario/ActualizarUsuario", content);
+                var respuesta = await response.Content.ReadAsStringAsync();
+                JObject _json_respuesta = JObject.Parse(respuesta);
+                return _json_respuesta;
+
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"ERROR de conexión con la API: '{ex.Message}'");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            return _json_respuesta;
+        }
 
     }
 }

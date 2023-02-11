@@ -3,6 +3,7 @@ using SantaInesAPI.BussinessLogic.DTO;
 using SantaInesAPI.BussinessLogic.Mapper;
 using SantaInesAPI.Persistence.DAO.Implementations;
 using SantaInesAPI.Persistence.DAO.Interface;
+using SantaInesAPI.Persistence.Entity;
 using ServicesDeskUCABWS.BussinesLogic.Exceptions;
 using ServicesDeskUCABWS.BussinesLogic.Response;
 
@@ -99,6 +100,24 @@ namespace SantaInesAPI.Controllers
 			}
 			return response;
 		}
+
+        [HttpGet]
+        [Route("ConsultarUsuarioPorUsername/{username}")]
+        public ApplicationResponse<UsuarioDTO> ConsultarPorID([FromRoute] string username)
+        {
+            var response = new ApplicationResponse<UsuarioDTO>();
+            try
+            {
+                response.Data = _dao.ConsultarPorUsername(username);
+            }
+            catch (ExceptionsControl ex)
+            {
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
+            }
+            return response;
+        }
 
     }
 }

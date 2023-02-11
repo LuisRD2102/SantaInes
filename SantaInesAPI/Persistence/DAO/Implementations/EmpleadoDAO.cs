@@ -98,31 +98,6 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
         }
 
-        //public EmpleadoDTO EliminarEmpleadoDAO(String username)
-        //{
-        //    try
-        //    {
-        //        var empleado = _context.Empleados.Where(e => e.username == username).First();
-
-        //        Guid? idDepartamento = empleado.id_departamento;
-        //        _context.Empleados.Remove(empleado);
-        //        _context.SaveChanges();
-
-        //        var departamentoAsoc = _context.Departamentos.Where(d => d.id == idDepartamento).First();
-
-        //        _context.Departamentos.Remove(departamentoAsoc);
-        //        _context.SaveChanges();
-
-        //        return EmpleadoMapper.EntityToDTO(empleado);
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message + " || " + ex.StackTrace);
-        //        throw new Exception("Fallo al Eliminar por empleado: " + username, ex);
-        //    }
-        //}
-
         public EmpleadoDTO EliminarEmpleadoDAO(string username)
         {
             var empleadoDTO = new EmpleadoDTO();

@@ -9,5 +9,6 @@ namespace SantaInesAPI.Persistence.DAO.Interface
         public DireccionDTO AgregarDireccionDAO(Direccion direccion);
         public DireccionDTO ActualizarDireccionDAO(Direccion direccion);
         public DireccionDTO EliminarDireccionDAO(Guid id);
+        public DireccionDTO ConsultarPorID(Guid id);
     }
 }

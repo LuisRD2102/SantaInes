@@ -4,6 +4,7 @@ using SantaInesAPI.BussinessLogic.Mapper;
 using SantaInesAPI.Persistence.DAO.Interface;
 using SantaInesAPI.Persistence.Database;
 using SantaInesAPI.Persistence.Entity;
+using ServicesDeskUCABWS.BussinesLogic.Exceptions;
 
 namespace SantaInesAPI.Persistence.DAO.Implementations
 {
@@ -108,6 +109,22 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             {
                 Console.WriteLine(ex.Message + " || " + ex.StackTrace);
                 throw new Exception("Fallo al Eliminar por id: " + id, ex);
+            }
+        }
+
+        public DireccionDTO ConsultarPorID(Guid id)
+        {
+            try
+            {
+
+                var direccion = _context.Direccion
+               .Where(d => d.id == id).First();
+                return DireccionMapper.EntityToDTO(direccion);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ExceptionsControl("No se encuentra la direccion" + " " + id, ex);
             }
         }
     }
