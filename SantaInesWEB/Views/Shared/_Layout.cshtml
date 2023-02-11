@@ -80,7 +80,7 @@
         </li>
 
         <li>
-                <a @*asp-controller="Configuracion" asp-action="Configuracion"*@ onclick="location.href='@Url.Action("Configuracion","Configuracion", new{username = @Context.Session.GetString("username")})'">
+                <a asp-controller="Configuracion" asp-action="Configuracion" asp-route-username="@Context.Session.GetString("username")">
            <i class='bx bx-cog' ></i>
            <span class="links_name">Configuración</span>
          </a>
