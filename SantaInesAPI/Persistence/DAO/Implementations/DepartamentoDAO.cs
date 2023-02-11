@@ -1,4 +1,5 @@
-﻿using SantaInesAPI.BussinessLogic.DTO;
+﻿using Microsoft.EntityFrameworkCore;
+using SantaInesAPI.BussinessLogic.DTO;
 using SantaInesAPI.BussinessLogic.Mapper;
 using SantaInesAPI.Persistence.DAO.Interface;
 using SantaInesAPI.Persistence.Database;
@@ -62,7 +63,6 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                         id = u.id,
                         nombre = u.nombre,
                         descripcion = u.descripcion
-                        
                     }
                 );
 
@@ -75,7 +75,12 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 throw ex.InnerException!;
             }
         }
-         
+
+        public async Task<IEnumerable<Departamento>> ConsultarDepartamentoDP()
+        {
+            return await _context.Departamentos.ToListAsync();
+        }
+
         public DepartamentoDTO EliminarDepartamentoDAO(Guid id)
         {
             var departamentoDTO = new DepartamentoDTO();

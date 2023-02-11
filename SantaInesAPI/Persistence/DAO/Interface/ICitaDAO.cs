@@ -8,7 +8,7 @@ namespace SantaInesAPI.Persistence.DAO.Interface
     public interface ICitaDAO
     {
         public Task<IEnumerable<Cita>> ConsultarCitas(DateTime start, DateTime end, string? doctor);
-        public Task<IEnumerable<Cita>> ConsultarCitasLibres(DateTime start, DateTime end, string patient);
+        public Task<IEnumerable<Cita>> ConsultarCitasLibres(DateTime start, DateTime end, string patient, string? doctor, Guid? idDepartamento);
         public Task<ActionResult<HttpStatusCode>> AgregarCita(AppointmentSlotRange range);
         public Task<ActionResult<HttpStatusCode>> ActualizarCita(Guid id, AppointmentSlotRequest slotRequest);
         public Task<ActionResult<HttpStatusCode>> ActualizarSlotCita(Guid id, AppointmentSlotUpdate update);

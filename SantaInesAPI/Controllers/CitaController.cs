@@ -40,12 +40,12 @@ namespace SantaInesAPI.Controllers
         //Para la vista del paciente
         [HttpGet]
         [Route("/Citas/Libres")]
-        public async Task<IEnumerable<Cita>> ConsultarCitasLibres ([FromQuery] DateTime start, [FromQuery] DateTime end, [FromQuery] string patient)
+        public async Task<IEnumerable<Cita>> ConsultarCitasLibres ([FromQuery] DateTime start, [FromQuery] DateTime end, [FromQuery] string patient, [FromQuery] string? doctor, [FromQuery] Guid? idDepartamento)
         {
             try
             {
 
-                var citas = await _dao.ConsultarCitasLibres(start, end, patient);
+                var citas = await _dao.ConsultarCitasLibres(start, end, patient,doctor, idDepartamento);
                 return citas;
             }
             catch (ExceptionsControl ex)

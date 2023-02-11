@@ -22,8 +22,16 @@
         <div id="nav"></div>
     </div>
     <div class="column-main">
-        <div class="titulo">
+        <div class="titulo-citas-pendientes">
             <h1>Disponibilidad</h1>
+            <div class="space">
+                <select class="form-select" id="doctor" name="doctor">
+                    <option value="">Todos los doctores</option>
+                </select>
+                <select class="form-select" id="departamento" name="departamento">
+                    <option value="">Todos los departamentos</option>
+                </select>
+            </div>
         </div>
         <div class="contenedor-calendario">
             <div id="calendar"></div>
@@ -33,6 +41,13 @@
 
 <script>
 const app = {
+    doctors: [],
+    departamentos: [],
+    elements: {
+        doctor: document.querySelector("#doctor"),
+        departamento: document.querySelector("#departamento")
+    },
+    
     get patientId() {
             return '@Context.Session.GetString("username")';
     },
@@ -40,8 +55,10 @@ const app = {
         const start = nav.visibleStart() > DayPilot.Date.now() ? nav.visibleStart() : DayPilot.Date.now();
         const end = nav.visibleEnd();
         const patient = app.patientId;
+        const doctor = app.elements.doctor.value;
+        const departamento = app.elements.departamento.value;
 
-        const {data} = await DayPilot.Http.get(`https://localhost:7270/Citas/Libres?start=${start}&end=${end}&patient=${patient}`);
+            const { data } = await DayPilot.Http.get(`https://localhost:7270/Citas/Libres?start=${start}&end=${end}&patient=${patient}&doctor=${doctor}&idDepartamento=${departamento}`);
         if (day) {
             calendar.startDate = day;
         }
@@ -51,7 +68,40 @@ const app = {
         nav.events.list = data;
         nav.update();
     },
-    init() {
+    async init() {
+
+        //Dropdown Doctores
+        let { data } = await DayPilot.Http.get("https://localhost:7270/Empleado/Doctores");
+
+        app.doctors = data;
+
+        app.doctors.forEach(item => {
+            const option = document.createElement("option");
+            option.value = item.id;
+            option.innerText = item.name;
+            app.elements.doctor.appendChild(option);
+        });
+
+        app.elements.doctor.addEventListener("change", () => {
+            app.loadEvents();
+        });
+
+        //Dropdown departamentos
+        data = await DayPilot.Http.get("https://localhost:7270/Departamento/ConsultaDepartamentosDP");
+            
+        app.departamentos = data.data;
+        app.departamentos.forEach(item => {
+            const option = document.createElement("option");
+            option.value = item.id;
+            option.innerText = item.nombre;
+            app.elements.departamento.appendChild(option);
+        });
+
+        app.elements.departamento.addEventListener("change", () => {
+            app.loadEvents();
+        });
+
+        //Cargar eventos
         app.loadEvents();
     }
 };
@@ -85,21 +135,21 @@ const calendar = new DayPilot.Calendar("calendar", {
             args.data.barHidden = true;
             args.data.borderColor = "darker";
             args.data.fontColor = "white";
-            args.data.html = `Disponible<br/>${args.data.doctorName}<br/>${args.data.empleado.departamento.nombre}`;
+            args.data.html = ``;
             break;
           case "En espera":
             args.data.backColor = "#e69138";  // orange
             args.data.barHidden = true;
             args.data.borderColor = "darker";
             args.data.fontColor = "white";
-            args.data.html = `Cita por confirmar<br/>${args.data.doctorName}<br/>${args.data.empleado.departamento.nombre}`;
+            args.data.html = ``;
             break;
           case "Confirmada":
             args.data.backColor = "#6aa84f";  // green
             args.data.barHidden = true;
             args.data.borderColor = "darker";
             args.data.fontColor = "white";
-                    args.data.html = `Cita confirmada<br/>${args.data.doctorName}<br/>${args.data.empleado.departamento.nombre}`;
+            args.data.html = ``;
             break;
         }
     },
@@ -144,6 +194,38 @@ const calendar = new DayPilot.Calendar("calendar", {
 //HORAS MOSTRADAS EN EL CALENDARIO
 calendar.dayBeginsHour = 7;
 calendar.dayEndsHour = 21;
+
+    calendar.bubble = new DayPilot.Bubble({
+
+        onLoad: function (args) {
+            
+            var ev = args.source;
+
+            args.async = true;
+
+            setTimeout(function () {
+
+                switch (ev.data.status) {
+                    case "Libre":
+                        args.html = `Disponible<br/>${ev.data.doctorName}<br/>${ev.data.empleado.departamento.nombre}`;
+                        break;
+                    case "En espera":
+                        args.html = `Cita por confirmar<br/>${ev.data.doctorName}<br/>${ev.data.empleado.departamento.nombre}`;
+                        break;
+                    case "Confirmada":
+                        args.html = `Cita confirmada<br/>${ev.data.doctorName}<br/>${ev.data.empleado.departamento.nombre}`;
+                        break;
+                }
+
+                args.loaded();
+
+            });
+
+        }
+
+    });
+
+calendar.heightSpec = 'Parent100Pct';
 
 calendar.init();
 

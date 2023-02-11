@@ -42,11 +42,18 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
         }
 
-        public async Task<IEnumerable<Cita>> ConsultarCitasLibres(DateTime start, DateTime end, string patient)
+        public async Task<IEnumerable<Cita>> ConsultarCitasLibres(DateTime start, DateTime end, string patient, string? doctor, Guid? idDepartamento)
         {
             try
             {
-                return await _context.Citas.Where(e => (e.Status == "Libre" || (e.Status != "Libre" && e.patient == patient)) && !((e.End <= start) || (e.Start >= end))).Include(e => e.Empleado).Include(e => e.Empleado.Departamento).ToListAsync();
+                if (doctor==null && idDepartamento == null)
+                    return await _context.Citas.Where(e => (e.Status == "Libre" || (e.Status != "Libre" && e.patient == patient)) && !((e.End <= start) || (e.Start >= end))).Include(e => e.Empleado).Include(e => e.Empleado.Departamento).ToListAsync();
+                else if (doctor!=null && idDepartamento==null)
+                    return await _context.Citas.Where(e => (e.Status == "Libre" || (e.Status != "Libre" && e.patient == patient)) && !((e.End <= start) || (e.Start >= end)) && e.doctor == doctor).Include(e => e.Empleado).Include(e => e.Empleado.Departamento).ToListAsync();
+                else if (doctor == null && idDepartamento != null)
+                    return await _context.Citas.Where(e => (e.Status == "Libre" || (e.Status != "Libre" && e.patient == patient)) && !((e.End <= start) || (e.Start >= end))).Include(e => e.Empleado).Include(e => e.Empleado.Departamento).Where(d => d.Empleado.Departamento.id == idDepartamento).ToListAsync();
+                else
+                    return await _context.Citas.Where(e => (e.Status == "Libre" || (e.Status != "Libre" && e.patient == patient)) && !((e.End <= start) || (e.Start >= end)) && e.doctor == doctor).Include(e => e.Empleado).Include(e => e.Empleado.Departamento).Where(d => d.Empleado.Departamento.id == idDepartamento).ToListAsync();
             }
             catch (Exception ex)
             {

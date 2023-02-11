@@ -28,7 +28,7 @@ namespace SantaInesAPI.Persistence.Entity
 
         [JsonPropertyName("text")]
         [NotMapped]
-        public string? infoCita { get { return Usuario!=null ? "Cita: "+ Status +"\n" + "Paciente: " +Usuario?.nombre_completo.Split(' ').First() + " " + Usuario?.apellido_completo.Split(' ').First() + "\n" + "C.I: " + Usuario?.cedula : "Libre"; } }
+        public string? infoCita { get { return Usuario!=null ? "Cita: "+ Status + "<br/>" + "Paciente: " +Usuario?.nombre_completo.Split(' ').First() + " " + Usuario?.apellido_completo.Split(' ').First() + "<br/>" + "C.I: " + Usuario?.cedula : "Libre"; } }
         
         [JsonPropertyName("pacienteNombre")]
         [NotMapped]

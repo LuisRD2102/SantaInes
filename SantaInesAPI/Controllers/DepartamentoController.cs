@@ -3,6 +3,7 @@ using SantaInesAPI.BussinessLogic.DTO;
 using SantaInesAPI.BussinessLogic.Mapper;
 using SantaInesAPI.Persistence.DAO.Implementations;
 using SantaInesAPI.Persistence.DAO.Interface;
+using SantaInesAPI.Persistence.Entity;
 using ServicesDeskUCABWS.BussinesLogic.Exceptions;
 using ServicesDeskUCABWS.BussinesLogic.Response;
 
@@ -37,6 +38,20 @@ namespace SantaInesAPI.Controllers
 			}
 			return response;
 		}
+
+        [HttpGet]
+        [Route("ConsultaDepartamentosDP/")]
+        public async Task<IEnumerable<Departamento>> ConsultarDepartamentoDP()
+        {
+            try
+            {
+                return await _daoDepartamento.ConsultarDepartamentoDP();
+            }
+            catch (ExceptionsControl ex)
+            {
+                throw ex.InnerException!;
+            }
+        }
 
         [HttpPost]
         [Route("CrearDepartamento/")]

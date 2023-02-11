@@ -26,7 +26,7 @@
         <div class="titulo-citas-pendientes">
             <h1>Disponibilidad</h1>        
             <div class="space">
-                <select class="form-select" id="doctor" name="doctor"></select>
+                <select class="form-select" id="doctor" name="doctor" style="@(Context.Session.GetString("rol") == "Doctor" ? "display:none" : "")"></select>
             </div>
         </div>
         <div class="contenedor-calendario">
@@ -41,10 +41,10 @@
         elements: {
             doctor: document.querySelector("#doctor")
         },
-        async loadEvents(day) {
+        async loadEvents(day) {      
             const start = nav.visibleStart();
             const end = nav.visibleEnd();
-            const doctor = app.elements.doctor.value;
+            const doctor = "@Context.Session.GetString("rol")" == "Doctor" ? "@Context.Session.GetString("username")" : app.elements.doctor.value;
 
             const { data } = await DayPilot.Http.get(`https://localhost:7270/Citas/Doctor?start=${start}&end=${end}&doctor=${doctor}`);
 
@@ -119,18 +119,21 @@
                     args.data.barHidden = true;
                     args.data.borderColor = "darker";
                     args.data.fontColor = "white";
+                    args.data.html = ``;
                     break;
                 case "En espera":
                     args.data.backColor = "#e69138";  // orange
                     args.data.barHidden = true;
                     args.data.borderColor = "darker";
                     args.data.fontColor = "white";
+                    args.data.html = ``;
                     break;
                 case "Confirmada":
                     args.data.backColor = "#6aa84f";  // green
                     args.data.barHidden = true;
                     args.data.borderColor = "darker";
                     args.data.fontColor = "white";
+                    args.data.html = ``;
                     break;
             }
         },
@@ -176,6 +179,38 @@
     //HORAS MOSTRADAS EN EL CALENDARIO
     calendar.dayBeginsHour = 7;
     calendar.dayEndsHour = 21;
+    calendar.heightSpec = 'Parent100Pct';
+
+    calendar.bubble = new DayPilot.Bubble({
+
+        onLoad: function (args) {
+
+            var ev = args.source;
+            console.log(ev.data.status);
+
+            args.async = true;
+
+            setTimeout(function () {
+
+                switch (ev.data.status) {
+                    case "Libre":
+                        args.html = ev.data.text;
+                        break;
+                    case "En espera":
+                        args.html = ev.data.text;
+                        break;
+                    case "Confirmada":
+                        args.html = ev.data.text;
+                        break;
+                }
+
+                args.loaded();
+
+            });
+
+        }
+
+    });
 
     calendar.init();
 
