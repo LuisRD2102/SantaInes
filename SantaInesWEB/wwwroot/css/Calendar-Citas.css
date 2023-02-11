@@ -100,6 +100,10 @@ main .contenedor-calendario{
     border-radius: var(--card-border-radius);
 }
 
+/*.calendar_default_main *:nth-last-of-type(n+2){
+    border-bottom-left-radius:var(--card-border-radius) !important;
+}*/
+
    /* .calendar_default_main, .calendar_default_main td {
         font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
         font-size: 13px;
