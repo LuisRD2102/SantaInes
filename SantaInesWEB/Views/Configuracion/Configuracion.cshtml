@@ -21,7 +21,7 @@
 
 <div class="top-bar">
     <div class="titulo-top">
-        <h2>Configuración perfil: @Context.Session.GetString("nombre_completo").Split(' ').First()  @Context.Session.GetString("apellido_completo")[0].</h2>
+        <h2>Configuración perfil</h2>
     </div>
 </div>
 
@@ -36,10 +36,10 @@
             @Html.TextBoxFor(m => m.Item1.cedula, new { @Value = Model.Item1.cedula, @type="hidden"})
             @Html.TextBoxFor(m => m.Item1.sexo, new { @Value = Model.Item1.sexo, @type="hidden"})
             @Html.TextBoxFor(m => m.Item1.username, new { @Value = Model.Item1.username, @type="hidden"})
-            @Html.TextBoxFor(m => m.Item1.fecha_Nacimiento, new { @Value = Model.Item1.fecha_Nacimiento, @type="hidden"})
             @Html.TextBoxFor(m => m.Item1.id_direccion, new { @Value = Model.Item1.id_direccion, @type="hidden"})
+            @Html.TextBoxFor(m => m.Item1.fecha_Nacimiento, new { @Value = Model.Item1.fecha_Nacimiento, @type="hidden"})
             @Html.TextBoxFor(m => m.Item1.password, new { @Value = Model.Item1.password, @type="hidden"})
-            @Html.TextBoxFor(m => m.Item1.password2, new { @Value = Model.Item1.password, @type="hidden"})
+       
 
             <div class="flex">
                 <div class="in-flex" >

@@ -49,7 +49,7 @@ namespace SantaInesWEB.Controllers
                 JObject respuestaDireccion = await _servicioApiDireccion.EditarDireccion(direccion);
 
                 if ((bool)respuestaUsuario["success"] && (bool)respuestaDireccion["success"])
-                    return RedirectToAction("Configuracion", new { message = "Se ha modificado correctamente" });
+                    return RedirectToAction("Configuracion", new { message = "Se ha modificado correctamente", username = usuario.username });
                 
             }
             catch (Exception ex)

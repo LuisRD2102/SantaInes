@@ -29,7 +29,7 @@ namespace SantaInesWEB.Models
 
 		[Required(ErrorMessage = "Introduzca su fecha de nacimiento")]
 		[DataType(DataType.Date)]
-		public SqlDateTime fecha_Nacimiento { get; set; }
+		public DateTime fecha_Nacimiento { get; set; }
 
 		[Required(ErrorMessage = "Seleccione su sexo")]
 		public string sexo { get; set; }
