@@ -1,4 +1,4 @@
-﻿@model SantaInesWEB.Models.DepartamentoModel;
+﻿@model SantaInesWEB.Models.GraphModel;
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -7,55 +7,48 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 
-    <div>
+    <div style="width:300px; height:300px;">
         <canvas id="myChart"></canvas>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+ 
     <script>
+
         const CHART_COLORS = {
+            blue: 'rgb(54, 162, 235)',
             red: 'rgb(255, 99, 132)',
             orange: 'rgb(255, 159, 64)',
             yellow: 'rgb(255, 205, 86)',
-            green: 'rgb(75, 192, 192)',
-            blue: 'rgb(54, 162, 235)',
+            green: 'rgb(75, 192, 192)',            
             purple: 'rgb(153, 102, 255)',
             grey: 'rgb(201, 203, 207)'
         };
         const ctx = document.getElementById('myChart');
-   
+       
        const data = {
-          labels: [
-            'Pink',
-            'Orange',
-            'Yellow',
-            'Blue'
-
-          ],
+          labels: @Html.Raw(Json.Serialize(Model.labels)),
           datasets: [{
-            label: 'My First Dataset',
-            data: [300, 50, 100,500],
+            label: 'Cantidad de Citas',
+            data: @Html.Raw(Json.Serialize(Model.data)),
             backgroundColor: Object.values(CHART_COLORS),
             hoverOffset: 4
           }]
         };
 
+      
 
         new Chart(ctx, {
-           
+             
               type: 'pie',
               data: data,
               options: {
                 responsive: true,
                 plugins: {
                   legend: {
-                    position: 'top',
-                  },
-                  title: {
-                    display: true,
-                    text: 'Chart.js Pie Chart'
+                    position: 'bottom',
                   }
+                  
                 }
               }
             
