@@ -4,6 +4,6 @@ namespace SantaInesAPI.Persistence.DAO.Interface
 {
     public interface IDashboardDAO
     {
-        public DashboardDTO GraficaGenero();
+        public DashboardDTO GraficaGenero(int mes);
     }
 }

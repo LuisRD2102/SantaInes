@@ -19,13 +19,13 @@ namespace SantaInesAPI.Controllers
         }
 
         [HttpGet]
-        [Route("GetGraficaGenero/")]
-        public ApplicationResponse<DashboardDTO> ConsultarDepartamento()
+        [Route("GetGraficaGenero/{mes}")]
+        public ApplicationResponse<DashboardDTO> ConsultarDepartamento([FromRoute] int mes)
         {
 			var response = new ApplicationResponse<DashboardDTO>();
 			try
             {
-                response.Data = _dao.GraficaGenero();
+                response.Data = _dao.GraficaGenero(mes);
             }
 			catch (ExceptionsControl ex)
 			{

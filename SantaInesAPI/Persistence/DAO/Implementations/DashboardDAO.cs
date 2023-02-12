@@ -14,16 +14,15 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             _context = context;
         }
 
-        public DashboardDTO GraficaGenero()
+        public DashboardDTO GraficaGenero(int mes)
         {
             try
             {
                 DashboardDTO dto = new DashboardDTO();
                 dto.labels = new string[] { "Hombre", "Mujeres"};
                 var dataTemp = new int[2];
-                var mesActual = DateTime.Now.Month;
-                dataTemp[0] = _context.Citas.Where(c => c.Start.Month == mesActual && c.Usuario.sexo == Char.ToString('M') && c.Status=="Confirmada").Include(u => u.Usuario).Count();
-                dataTemp[1] = _context.Citas.Where(c => c.Start.Month == mesActual && c.Usuario.sexo == Char.ToString('F') && c.Status == "Confirmada").Include(u => u.Usuario).Count();
+                dataTemp[0] = _context.Citas.Where(c => c.Start.Month == mes && c.Usuario.sexo == Char.ToString('M') && c.Status=="Confirmada").Include(u => u.Usuario).Count();
+                dataTemp[1] = _context.Citas.Where(c => c.Start.Month == mes && c.Usuario.sexo == Char.ToString('F') && c.Status == "Confirmada").Include(u => u.Usuario).Count();
                 dto.data = dataTemp;
                 return dto;
             }
