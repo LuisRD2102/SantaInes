@@ -15,7 +15,7 @@ namespace SantaInesWEB.Servicios.ServicioGrafica
             this._httpClientFactory = _httpClientFactory;
         }
 
-        public async Task<GraphModel> GraficaGenero()
+        public async Task<GraphModel> GraficaGenero(int? mes)
         {
             GraphModel graph = new GraphModel();
 
@@ -23,7 +23,7 @@ namespace SantaInesWEB.Servicios.ServicioGrafica
 
             try
             {
-                var response = await cliente.GetAsync("Dashboard/GetGraficaGenero/");
+                var response = await cliente.GetAsync($"Dashboard/GetGraficaGenero/{mes}");
 
                 if (response.IsSuccessStatusCode)
                 {

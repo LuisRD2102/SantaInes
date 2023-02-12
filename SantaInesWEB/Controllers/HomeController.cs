@@ -17,11 +17,13 @@ namespace SantaInesWEB.Controllers
             _servicioApiGrafica = servicioApiGrafica;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? mes)
         {
             GraphModel grafica = new GraphModel();
-            grafica = await _servicioApiGrafica.GraficaGenero();
-            return View(grafica);
+            mes = mes is not null ? mes : DateTime.Now.Month;
+            grafica = await _servicioApiGrafica.GraficaGenero(mes);
+            var tupla = new Tuple<GraphModel, int?>(grafica, mes);
+            return View(tupla);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

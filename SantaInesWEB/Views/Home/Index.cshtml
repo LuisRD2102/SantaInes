@@ -1,38 +1,76 @@
-﻿@model SantaInesWEB.Models.GraphModel;
+﻿@model Tuple<SantaInesWEB.Models.GraphModel, int?>;
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Dashboard";
 }
- 
-<div class="text-center">
-    <h1 class="display-4" style="color:white">Dashboard</h1>
 
-    <div style="width:300px; height:300px;">
-        <canvas id="myChart"></canvas>
+<head>
+    <link rel="stylesheet" href="~/css/Dashboard.css" />
+    <link rel="stylesheet" href="~/css/Modal.css" />
+    
+
+</head>
+ 
+<div class="top-bar">
+    <div class="titulo-top">
+        <h2>Dashboard</h2>
+    </div>
+</div>
+
+
+<div class="contenedor">
+    <div class="column">
+        <div style="display:flex; justify-content:center;">
+            <select class="form-select" id="fecha" onchange="location.href ='@Url.Action("Index", "Home")?mes=' + this.value">
+                <option value=1>Enero</option>
+                <option value=2>Febrero</option>
+                <option value=3>Marzo</option>
+                <option value=4>Abril</option>
+                <option value=5>Mayo</option>
+                <option value=6>Junio</option>
+                <option value=7>Julio</option>
+                <option value=8>Agosto</option>
+                <option value=9>Septiembre</option>
+                <option value=10>Octubre</option>
+                <option value=11>Noviembre</option>
+                <option value=12>Dicimbre</option>
+            </select>
+        </div>     
+
+        <div class="card">
+            <canvas id="myChart"></canvas>
+        </div>
     </div>
 
+ </div>
+
+ 
+ @section Scripts{
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
     <script>
 
+        //Inicializador fecha
+        $(document).ready(function () {
+            $("#fecha").val(@Model.Item2);
+        });
+
         const ctx = document.getElementById('myChart');
-       
-       const data = {
-          labels: @Html.Raw(Json.Serialize(Model.labels)),
-          datasets: [{
-            label: 'Cantidad de Citas',
-            data: @Html.Raw(Json.Serialize(Model.data)),
-          }]
+
+        const data = {
+            labels: @Html.Raw(Json.Serialize(Model.Item1.labels)),
+            datasets: [{
+                label: 'Cantidad de Citas',
+                data: @Html.Raw(Json.Serialize(Model.Item1.data)),
+            }]
         };
 
-      
-
         new Chart(ctx, {
-             
-              type: 'pie',
-              data: data,
-              options: {
+
+            type: 'pie',
+            data: data,
+            options: {
                 responsive: true,
                 plugins: {
                     legend: {
@@ -51,10 +89,9 @@
                         mode: 'label',
                     }
                 }
-              }
-            
+            }
+
         });
     </script>
+ }
 
-
-</div>

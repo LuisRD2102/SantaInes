@@ -20,7 +20,7 @@ namespace SantaInesAPI.Controllers
 
         [HttpGet]
         [Route("GetGraficaGenero/{mes}")]
-        public ApplicationResponse<DashboardDTO> ConsultarDepartamento([FromRoute] int mes)
+        public ApplicationResponse<DashboardDTO> GraficaGenero([FromRoute] int mes)
         {
 			var response = new ApplicationResponse<DashboardDTO>();
 			try
