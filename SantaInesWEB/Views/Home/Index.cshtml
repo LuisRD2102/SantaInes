@@ -1,4 +1,4 @@
-﻿@model Tuple<SantaInesWEB.Models.GraphModel, int?>;
+﻿@model DashboardModel;
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -37,7 +37,8 @@
         </div>     
 
         <div class="card">
-            <canvas id="myChart"></canvas>
+            <canvas id="graficoGenero"></canvas>
+            <canvas id="graficoRangoEdades"></canvas>
         </div>
     </div>
 
@@ -51,25 +52,25 @@
 
     <script>
 
+        const autocolors = window['chartjs-plugin-autocolors'];
+        Chart.register(autocolors);
+
         //Inicializador fecha
         $(document).ready(function () {
-            $("#fecha").val(@Model.Item2);
+            $("#fecha").val(@Model.mes);
         });
 
-        const ctx = document.getElementById('myChart');
 
-        const data = {
-            labels: @Html.Raw(Json.Serialize(Model.Item1.labels)),
-            datasets: [{
-                label: 'Cantidad de Citas',
-                data: @Html.Raw(Json.Serialize(Model.Item1.data)),
-            }]
-        };
-
-        new Chart(ctx, {
-
+        //Grafico de generos
+        new Chart($("#graficoGenero"), {
             type: 'pie',
-            data: data,
+            data: {
+                labels: @Html.Raw(Json.Serialize(Model.graficaGenero.labels)),
+                datasets: [{
+                    label: 'Cantidad de Citas',
+                    data: @Html.Raw(Json.Serialize(Model.graficaGenero.data)),
+                }]
+            },
             options: {
                 responsive: true,
                 plugins: {
@@ -85,12 +86,51 @@
                         }
                     },
                     autocolors: {
-                        enabled: true,
-                        mode: 'label',
+                        enabled:false,
                     }
                 }
             }
+        });
 
+
+        //Grafico de rango de edades
+        new Chart($("#graficoRangoEdades"), {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Serialize(Model.graficaRangoEdad.labels)),
+                datasets: [{
+                    label: 'Cantidad de Citas',
+                    data: @Html.Raw(Json.Serialize(Model.graficaRangoEdad.data)),
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                scales: {
+                    y: {
+                        ticks: { color: 'white', beginAtZero: true }
+                    },
+                    x: {
+                        ticks: { color: 'white', beginAtZero: true }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        display: true,
+                        labels: {
+                            color: 'white',
+                            font: {
+                                size: 12,
+                                family: 'Poppins'
+                            }
+                        }
+                    },
+                    autocolors: {
+                        mode: 'data',
+                    }
+                }
+            }
         });
     </script>
  }

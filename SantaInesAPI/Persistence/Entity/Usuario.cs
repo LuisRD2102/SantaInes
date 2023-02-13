@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.SqlTypes;
+using System.Text.Json.Serialization;
 
 namespace SantaInesAPI.Persistence.Entity
 {
@@ -19,6 +20,16 @@ namespace SantaInesAPI.Persistence.Entity
         public Guid id_direccion { get; set; }
         public virtual Direccion Direccion { get; set; }
         public virtual List<Cita> Citas { get; set; }
+
+        [JsonPropertyName("edadPaciente")]
+        [NotMapped]
+        public int edad { get {
+                DateTime now = DateTime.Today;
+                int age = now.Year - fecha_nacimiento.Year;
+                if (now < fecha_nacimiento.AddYears(age))
+                    age--;
+                return age;
+            } }
 
     }
 }

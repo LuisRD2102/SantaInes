@@ -98,7 +98,8 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                         sexo = u.sexo,
                         telefono = u.telefono,
                         email = u.email,
-                        id_direccion = u.id_direccion
+                        id_direccion = u.id_direccion,
+                        edad = u.edad
                     }
                 );
 

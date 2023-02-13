@@ -19,11 +19,14 @@ namespace SantaInesWEB.Controllers
 
         public async Task<IActionResult> Index(int? mes)
         {
-            GraphModel grafica = new GraphModel();
-            mes = mes is not null ? mes : DateTime.Now.Month;
-            grafica = await _servicioApiGrafica.GraficaGenero(mes);
-            var tupla = new Tuple<GraphModel, int?>(grafica, mes);
-            return View(tupla);
+            DashboardModel modeloDashboard = new DashboardModel();
+            modeloDashboard.mes = mes is not null ? mes : DateTime.Now.Month;
+            modeloDashboard.graficaGenero = await _servicioApiGrafica.GraficaGenero(modeloDashboard.mes);
+            modeloDashboard.graficaTopDoctores = await _servicioApiGrafica.GraficaTopDoctores(modeloDashboard.mes);
+            modeloDashboard.graficaDepartamentos = await _servicioApiGrafica.GraficaDepartamentoPorCitas(modeloDashboard.mes);
+            modeloDashboard.graficaRangoEdad = await _servicioApiGrafica.GraficaPacientesRangoEdad();
+
+            return View(modeloDashboard);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

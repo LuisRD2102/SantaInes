@@ -36,5 +36,60 @@ namespace SantaInesAPI.Controllers
 			return response;
 		}
 
+        [HttpGet]
+        [Route("GraficaDepartamentoPorCitas/{mes}")]
+        public ApplicationResponse<DashboardDTO> GraficaDepartamentoPorCitas([FromRoute] int mes)
+        {
+            var response = new ApplicationResponse<DashboardDTO>();
+            try
+            {
+                response.Data = _dao.GraficaDepartamentoPorCitas(mes);
+            }
+            catch (ExceptionsControl ex)
+            {
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("GraficaTopDoctores/{mes}")]
+        public ApplicationResponse<DashboardDTO> GraficaTopDoctores([FromRoute] int mes)
+        {
+            var response = new ApplicationResponse<DashboardDTO>();
+            try
+            {
+                response.Data = _dao.GraficaTopDoctores(mes);
+            }
+            catch (ExceptionsControl ex)
+            {
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
+            }
+            return response;
+        }
+
+
+        [HttpGet]
+        [Route("GraficaPacientesRangoEdad/")]
+        public ApplicationResponse<DashboardDTO> GraficaPacientesRangoEdad()
+        {
+            var response = new ApplicationResponse<DashboardDTO>();
+            try
+            {
+                response.Data = _dao.GraficaPacientesRangoEdad();
+            }
+            catch (ExceptionsControl ex)
+            {
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
+            }
+            return response;
+        }
+
     }
 }
