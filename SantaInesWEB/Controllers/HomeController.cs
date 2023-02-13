@@ -20,11 +20,18 @@ namespace SantaInesWEB.Controllers
         public async Task<IActionResult> Index(int? mes)
         {
             DashboardModel modeloDashboard = new DashboardModel();
+            //Graficas
             modeloDashboard.mes = mes is not null ? mes : DateTime.Now.Month;
             modeloDashboard.graficaGenero = await _servicioApiGrafica.GraficaGenero(modeloDashboard.mes);
             modeloDashboard.graficaTopDoctores = await _servicioApiGrafica.GraficaTopDoctores(modeloDashboard.mes);
             modeloDashboard.graficaDepartamentos = await _servicioApiGrafica.GraficaDepartamentoPorCitas(modeloDashboard.mes);
             modeloDashboard.graficaRangoEdad = await _servicioApiGrafica.GraficaPacientesRangoEdad();
+
+            //Estadisticas
+            modeloDashboard.CantidadCitasConfirmadas = await _servicioApiGrafica.CantidadCitasConfirmadas(modeloDashboard.mes);
+            modeloDashboard.CantidadCitasPendientes = await _servicioApiGrafica.CantidadCitasPendientes(modeloDashboard.mes);
+            modeloDashboard.CantidadDoctores = await _servicioApiGrafica.CantidadDoctores();
+            modeloDashboard.CantidadPacientes = await _servicioApiGrafica.CantidadPacientes();
 
             return View(modeloDashboard);
         }

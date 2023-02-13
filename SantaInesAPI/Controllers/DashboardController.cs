@@ -91,5 +91,77 @@ namespace SantaInesAPI.Controllers
             return response;
         }
 
+        [HttpGet]
+        [Route("CantidadCitasPendientes/{mes}")]
+        public ApplicationResponse<DashboardNumberDTO> CantidadCitasPendientes([FromRoute] int mes)
+        {
+            var response = new ApplicationResponse<DashboardNumberDTO>();
+            try
+            {
+                response.Data = _dao.CantidadCitasPendientes(mes);
+            }
+            catch (ExceptionsControl ex)
+            {
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("CantidadCitasConfirmadas/{mes}")]
+        public ApplicationResponse<DashboardNumberDTO> CantidadCitasConfirmadas([FromRoute] int mes)
+        {
+            var response = new ApplicationResponse<DashboardNumberDTO>();
+            try
+            {
+                response.Data = _dao.CantidadCitasConfirmadas(mes);
+            }
+            catch (ExceptionsControl ex)
+            {
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("CantidadPacientes/")]
+        public ApplicationResponse<DashboardNumberDTO> CantidadPacientes()
+        {
+            var response = new ApplicationResponse<DashboardNumberDTO>();
+            try
+            {
+                response.Data = _dao.CantidadPacientes();
+            }
+            catch (ExceptionsControl ex)
+            {
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("CantidadDoctores/")]
+        public ApplicationResponse<DashboardNumberDTO> CantidadDoctores()
+        {
+            var response = new ApplicationResponse<DashboardNumberDTO>();
+            try
+            {
+                response.Data = _dao.CantidadDoctores();
+            }
+            catch (ExceptionsControl ex)
+            {
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
+            }
+            return response;
+        }
+
     }
 }

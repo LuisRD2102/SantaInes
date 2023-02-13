@@ -20,7 +20,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             try
             {
                 DashboardDTO dto = new DashboardDTO();
-                dto.labels = new string[] { "Hombre", "Mujeres"};
+                dto.labels = new string[] { "Hombres", "Mujeres"};
                 var dataTemp = new int[2];
                 dataTemp[0] = _context.Citas.Where(c => c.Start.Month == mes && c.Usuario.sexo == Char.ToString('M') && c.Status=="Confirmada").Include(u => u.Usuario).Count();
                 dataTemp[1] = _context.Citas.Where(c => c.Start.Month == mes && c.Usuario.sexo == Char.ToString('F') && c.Status == "Confirmada").Include(u => u.Usuario).Count();
@@ -121,6 +121,70 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
 
                 dto.labels[5] = ("Vejez (60 años o mas)");
                 dto.data[5] = (_context.Usuario.ToList().Where(u => u.edad >= 60).Count());
+
+                return dto;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
+                throw ex.InnerException!;
+            }
+        }
+
+        public DashboardNumberDTO CantidadCitasPendientes(int mes)
+        {
+            try
+            {
+                DashboardNumberDTO dto = new DashboardNumberDTO();
+                dto.data = _context.Citas.Where(c => c.Start.Month == mes && c.Status== "En espera").Count();
+
+                return dto;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
+                throw ex.InnerException!;
+            }
+        }
+
+        public DashboardNumberDTO CantidadCitasConfirmadas(int mes)
+        {
+            try
+            {
+                DashboardNumberDTO dto = new DashboardNumberDTO();
+                dto.data = _context.Citas.Where(c => c.Start.Month == mes && c.Status == "Confirmada").Count();
+
+                return dto;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
+                throw ex.InnerException!;
+            }
+        }
+
+        public DashboardNumberDTO CantidadPacientes()
+        {
+            try
+            {
+                DashboardNumberDTO dto = new DashboardNumberDTO();
+                dto.data = _context.Usuario.Count();
+
+                return dto;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
+                throw ex.InnerException!;
+            }
+        }
+
+        public DashboardNumberDTO CantidadDoctores()
+        {
+            try
+            {
+                DashboardNumberDTO dto = new DashboardNumberDTO();
+                dto.data = _context.Empleados.Where(d=> d.rol=="Doctor").Count();
 
                 return dto;
             }

@@ -142,5 +142,132 @@ namespace SantaInesWEB.Servicios.ServicioGrafica
             }
             return graph;
         }
+
+        public async Task<StatsModel> CantidadCitasPendientes(int? mes)
+        {
+            StatsModel graph = new StatsModel();
+
+            var cliente = _httpClientFactory.CreateClient("DevConnection");
+
+            try
+            {
+                var response = await cliente.GetAsync($"Dashboard/CantidadCitasPendientes/{mes}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var respuesta = await response.Content.ReadAsStringAsync();
+                    JObject json_respuestaUsuario = JObject.Parse(respuesta);
+
+                    string stringDataRespuesta = json_respuestaUsuario["data"].ToString();
+                    var resultado = JsonConvert.DeserializeObject<StatsModel>(stringDataRespuesta);
+                    graph = resultado;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"ERROR de conexión con la API: '{ex.Message}'");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return graph;
+        }
+        public async Task<StatsModel> CantidadCitasConfirmadas(int? mes)
+        {
+            StatsModel graph = new StatsModel();
+
+            var cliente = _httpClientFactory.CreateClient("DevConnection");
+
+            try
+            {
+                var response = await cliente.GetAsync($"Dashboard/CantidadCitasConfirmadas/{mes}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var respuesta = await response.Content.ReadAsStringAsync();
+                    JObject json_respuestaUsuario = JObject.Parse(respuesta);
+
+                    string stringDataRespuesta = json_respuestaUsuario["data"].ToString();
+                    var resultado = JsonConvert.DeserializeObject<StatsModel>(stringDataRespuesta);
+                    graph = resultado;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"ERROR de conexión con la API: '{ex.Message}'");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return graph;
+        }
+
+        public async Task<StatsModel> CantidadPacientes()
+        {
+            StatsModel graph = new StatsModel();
+
+            var cliente = _httpClientFactory.CreateClient("DevConnection");
+
+            try
+            {
+                var response = await cliente.GetAsync($"Dashboard/CantidadPacientes/");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var respuesta = await response.Content.ReadAsStringAsync();
+                    JObject json_respuestaUsuario = JObject.Parse(respuesta);
+
+                    string stringDataRespuesta = json_respuestaUsuario["data"].ToString();
+                    var resultado = JsonConvert.DeserializeObject<StatsModel>(stringDataRespuesta);
+                    graph = resultado;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"ERROR de conexión con la API: '{ex.Message}'");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return graph;
+        }
+
+        public async Task<StatsModel> CantidadDoctores()
+        {
+            StatsModel graph = new StatsModel();
+
+            var cliente = _httpClientFactory.CreateClient("DevConnection");
+
+            try
+            {
+                var response = await cliente.GetAsync($"Dashboard/CantidadDoctores/");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var respuesta = await response.Content.ReadAsStringAsync();
+                    JObject json_respuestaUsuario = JObject.Parse(respuesta);
+
+                    string stringDataRespuesta = json_respuestaUsuario["data"].ToString();
+                    var resultado = JsonConvert.DeserializeObject<StatsModel>(stringDataRespuesta);
+                    graph = resultado;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"ERROR de conexión con la API: '{ex.Message}'");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return graph;
+        }
     }
 }

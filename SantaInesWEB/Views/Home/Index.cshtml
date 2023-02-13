@@ -6,7 +6,7 @@
 <head>
     <link rel="stylesheet" href="~/css/Dashboard.css" />
     <link rel="stylesheet" href="~/css/Modal.css" />
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
 
 </head>
  
@@ -18,27 +18,140 @@
 
 
 <div class="contenedor">
+    <!--Columna 1-->
     <div class="column">
         <div style="display:flex; justify-content:center;">
-            <select class="form-select" id="fecha" onchange="location.href ='@Url.Action("Index", "Home")?mes=' + this.value">
-                <option value=1>Enero</option>
-                <option value=2>Febrero</option>
-                <option value=3>Marzo</option>
-                <option value=4>Abril</option>
-                <option value=5>Mayo</option>
-                <option value=6>Junio</option>
-                <option value=7>Julio</option>
-                <option value=8>Agosto</option>
-                <option value=9>Septiembre</option>
-                <option value=10>Octubre</option>
-                <option value=11>Noviembre</option>
-                <option value=12>Dicimbre</option>
-            </select>
-        </div>     
+           @* <div class="stats">*@
+                <select class="form-select" id="fecha" onchange="location.href ='@Url.Action("Index", "Home")?mes=' + this.value">
+                    <option value=1>Enero</option>
+                    <option value=2>Febrero</option>
+                    <option value=3>Marzo</option>
+                    <option value=4>Abril</option>
+                    <option value=5>Mayo</option>
+                    <option value=6>Junio</option>
+                    <option value=7>Julio</option>
+                    <option value=8>Agosto</option>
+                    <option value=9>Septiembre</option>
+                    <option value=10>Octubre</option>
+                    <option value=11>Noviembre</option>
+                    <option value=12>Dicimbre</option>
+                </select>
+            @*</div>*@
+           
+        </div>
+        <div class="card-stats">
+            <div class="contenido">                
+                <center>
+                    <div class="circulo" style="background-color:#45a2a3">
+                        <span class="material-symbols-sharp">
+                            done_all
+                        </span>
+                    </div>                   
+                    
+                    <div class="flex">
+                        <div style="width:100%">
+                            <h1>@Model.CantidadCitasConfirmadas.data</h1>
+                            <h5>Citas confirmadas</h5>
+                        </div>                    
+                    </div>                                     
+                </center>
+            </div>
+        </div>
 
+        <div class="card-stats">
+            <div class="contenido">
+                <center>
+                    <div class="circulo" style="background-color:#73a247 ">
+                        <span class="material-symbols-sharp">
+                            pending_actions
+                        </span>
+                    </div>
+
+                    <div class="flex">
+                        <div style="width:96%">
+                            <h1>@Model.CantidadCitasPendientes.data</h1>
+                            <h5>Citas pendientes</h5>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+
+        <div class="card-stats">
+            <div class="contenido">                
+                <center>
+                    <div class="circulo" style="background-color:#a24546">
+                        <span class="material-symbols-sharp">
+                            personal_injury
+                        </span>
+                    </div>
+
+                    <div class="flex">
+                        <div style="width:96%">
+                            <h1>@Model.CantidadPacientes.data</h1>
+                            <h5>Cantidad de pacientes</h5>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+
+        <div class="card-stats">
+            <div class="contenido">
+                <center>
+                    <div class="circulo" style="background-color:#581845">
+                        <span class="material-symbols-sharp">
+                            stethoscope
+                        </span>
+                    </div>
+
+                    <div class="flex">
+                        <div style="width:96%">
+                            <h1>@Model.CantidadDoctores.data</h1>
+                            <h5>Cantidad de doctores</h5>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+      
+    </div>
+    <!--Columna 2-->
+    <div class="column">
         <div class="card">
-            <canvas id="graficoGenero"></canvas>
-            <canvas id="graficoRangoEdades"></canvas>
+            <div class="contenido">
+                <center>
+                    <h2>Departamentos con más citas confirmadas</h2>
+                    <canvas id="graficaDepartamentos"></canvas>
+                </center>
+            </div>
+        </div>
+        <div class="card">          
+            <div class="contenido">
+                <center>
+                    <h2>Top 5 doctores con mas citas confirmadas</h2>
+                    <canvas id="graficaTopDoctores"></canvas>
+                </center>
+            </div>
+        </div>
+    </div>
+    <!--Columna 3-->
+    <div class="column">
+        <div class="card">
+            <div>
+                <center>
+                    <h2>Citas Confirmadas (Hombres vs Mujeres)</h2>
+                    <canvas id="graficoGenero"></canvas>
+                </center>
+            </div>
+        </div>
+        <div class="card">
+            <div class="contenido">
+                <center>
+                    <h2>Pacientes en sistema por edad</h2>
+                    <canvas id="graficoRangoEdades"></canvas>
+                </center>
+            </div>
         </div>
     </div>
 
@@ -99,7 +212,7 @@
             data: {
                 labels: @Html.Raw(Json.Serialize(Model.graficaRangoEdad.labels)),
                 datasets: [{
-                    label: 'Cantidad de Citas',
+                    label: 'Cantidad de Pacientes',
                     data: @Html.Raw(Json.Serialize(Model.graficaRangoEdad.data)),
                 }]
             },
@@ -117,9 +230,73 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
+                        display: false,
+                        labels: {
+                            color: 'white',
+                            font: {
+                                size: 12,
+                                family: 'Poppins'
+                            }
+                        }
+                    },
+                    autocolors: {
+                        mode: 'data',
+                    }
+                }
+            }
+        });
+
+        //Grafica de departamentos
+        new Chart($("#graficaDepartamentos"), {
+            type: 'doughnut',
+            data: {
+                labels: @Html.Raw(Json.Serialize(Model.graficaDepartamentos.labels)),
+                datasets: [{
+                    label: 'Cantidad de Citas',
+                    data: @Html.Raw(Json.Serialize(Model.graficaDepartamentos.data)),
+                }]
+            },
+            options: {
+                
+                responsive: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
                         display: true,
                         labels: {
                             color: 'white',
+                            font: {
+                                size: 12,
+                                family: 'Poppins'
+                            }
+                        }
+                    },
+                    autocolors: {
+                        mode: 'data',
+                    }
+                }
+            }
+        });
+
+        //Grafica de departamentos
+        new Chart($("#graficaTopDoctores"), {
+            type: 'polarArea',
+            data: {
+                labels: @Html.Raw(Json.Serialize(Model.graficaTopDoctores.labels)),
+                datasets: [{
+                    label: 'Cantidad de Citas',
+                    data: @Html.Raw(Json.Serialize(Model.graficaTopDoctores.data)),
+                }]
+            },
+            options: {
+                responsive: false,                             
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        textAlign: 'left',
+                        display: true,
+                        labels: {
+                            color: 'white',                           
                             font: {
                                 size: 12,
                                 family: 'Poppins'

@@ -10,5 +10,9 @@ namespace SantaInesWEB.Servicios.ServicioGrafica
         Task<GraphModel> GraficaDepartamentoPorCitas(int? mes);
         Task<GraphModel> GraficaTopDoctores(int? mes);
         Task<GraphModel> GraficaPacientesRangoEdad();
+        Task<StatsModel> CantidadCitasPendientes(int? mes);
+        Task<StatsModel> CantidadCitasConfirmadas(int? mes);
+        Task<StatsModel> CantidadPacientes();
+        Task<StatsModel> CantidadDoctores();
     }
 }

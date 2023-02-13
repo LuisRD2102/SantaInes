@@ -8,5 +8,9 @@ namespace SantaInesAPI.Persistence.DAO.Interface
         public DashboardDTO GraficaDepartamentoPorCitas(int mes);
         public DashboardDTO GraficaTopDoctores(int mes);
         public DashboardDTO GraficaPacientesRangoEdad();
+        public DashboardNumberDTO CantidadCitasPendientes(int mes);
+        public DashboardNumberDTO CantidadCitasConfirmadas(int mes);
+        public DashboardNumberDTO CantidadPacientes();
+        public DashboardNumberDTO CantidadDoctores();
     }
 }
