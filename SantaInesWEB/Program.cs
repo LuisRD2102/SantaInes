@@ -2,6 +2,7 @@ using SantaInesWEB.Servicios.ServicioDepartamento;
 using SantaInesWEB.Servicios.ServicioDireccion;
 using SantaInesWEB.Servicios.ServicioEmpleado;
 using SantaInesWEB.Servicios.ServicioGrafica;
+using SantaInesWEB.Servicios.ServicioHistoriaMedica;
 using SantaInesWEB.Servicios.ServicioUsuario;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,7 @@ builder.Services.AddScoped<IServicioEmpleado, ServicioEmpleado>();
 builder.Services.AddScoped<IServicioDireccion, ServicioDireccion>();
 builder.Services.AddScoped<IServicioCita, ServicioCita>();
 builder.Services.AddScoped<IServicioGrafica, ServicioGrafica>();
+builder.Services.AddScoped<IServicioHistoriaMedica, ServicioHistoriaMedica>();
 
 builder.Services.AddHttpClient("DevConnection", config =>
 {
