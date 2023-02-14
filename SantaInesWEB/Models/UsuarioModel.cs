@@ -42,5 +42,6 @@ namespace SantaInesWEB.Models
 		public string email { get; set; }
         public Guid id_direccion { get; set; }
         public List<UsuarioModel> usuarios { get; set; }
+        public Guid idHistoria { get; set; }
     }
 }

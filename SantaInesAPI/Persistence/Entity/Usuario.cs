@@ -20,6 +20,8 @@ namespace SantaInesAPI.Persistence.Entity
         public Guid id_direccion { get; set; }
         public virtual Direccion Direccion { get; set; }
         public virtual List<Cita> Citas { get; set; }
+        public Guid idHistoria { get; set; }
+        public virtual HistoriaMedica HistoriaMedica { get; set; }
 
         [JsonPropertyName("edadPaciente")]
         [NotMapped]

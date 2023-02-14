@@ -25,6 +25,7 @@ builder.Services.AddTransient<IDireccionDAO, DireccionDAO>();
 builder.Services.AddTransient<IEmpleadoDAO, EmpleadoDAO>();
 builder.Services.AddTransient<ICitaDAO, CitaDAO>();
 builder.Services.AddTransient<IDashboardDAO, DashboardDAO>();
+builder.Services.AddTransient<IHistoriaMedicaDAO, HistoriaMedicaDAO>();
 
 builder.Services.AddCors();
 

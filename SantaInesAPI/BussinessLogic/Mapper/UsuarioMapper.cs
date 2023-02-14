@@ -19,7 +19,8 @@ namespace SantaInesAPI.BussinessLogic.Mapper
                 telefono = u.telefono,
                 email = u.email,
                 id_direccion = u.id_direccion,
-                edad = u.edad
+                edad = u.edad,
+                idHistoria = u.idHistoria
             };
         }
 
@@ -36,7 +37,8 @@ namespace SantaInesAPI.BussinessLogic.Mapper
                 sexo = u.sexo,
                 telefono = u.telefono,
                 email = u.email,
-                id_direccion = u.id_direccion
+                id_direccion = u.id_direccion,
+                idHistoria = u.idHistoria
             };
         }
 

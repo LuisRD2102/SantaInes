@@ -39,7 +39,7 @@ namespace SantaInesWEB.Controllers
 
 				if ((bool)respuestaDireccion["success"] && (bool)respuestaUsuario["success"])
 				{
-					return RedirectToAction("Registro");
+					return RedirectToAction("Login","Login");
 				}
 								
 			}

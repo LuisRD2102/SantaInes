@@ -11,10 +11,11 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
     public class UsuarioDAO : IUsuarioDAO
     {
         private readonly MigrationDbContext _context;
-
-        public UsuarioDAO(MigrationDbContext context)
+        private readonly IHistoriaMedicaDAO _daoHM;
+        public UsuarioDAO(MigrationDbContext context, IHistoriaMedicaDAO dao )
         {
             _context = context;
+            _daoHM = dao;
         }
 
         public UsuarioDTO ActualizarUsuarioDAO(Usuario usuario)
@@ -36,7 +37,8 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                         sexo = u.sexo,
                         telefono = u.telefono,
                         email = u.email,
-                        id_direccion=u.id_direccion
+                        id_direccion=u.id_direccion,
+                        idHistoria = u.idHistoria
                     }
                 );
                 return data.First();
@@ -53,8 +55,12 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             try
             {
                 if (!(ExisteCedula(usuario))) {
+                    var idHistoria = Guid.NewGuid();
+                    _daoHM.CrearHistoriaMedica(idHistoria);
+                    usuario.idHistoria = idHistoria;
                     _context.Usuario.Add(usuario);
                     _context.SaveChanges();
+                    
                 }               
 
                 var data = _context.Usuario.Where(u => u.username == usuario.username)
@@ -69,7 +75,8 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                                 sexo = u.sexo,
                                 telefono = u.telefono,
                                 email = u.email,
-                                id_direccion = u.id_direccion
+                                id_direccion = u.id_direccion,
+                                idHistoria = u.idHistoria
                             });
 
                 return data.First();
@@ -99,7 +106,8 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                         telefono = u.telefono,
                         email = u.email,
                         id_direccion = u.id_direccion,
-                        edad = u.edad
+                        edad = u.edad,
+                        idHistoria = u.idHistoria
                     }
                 );
 
