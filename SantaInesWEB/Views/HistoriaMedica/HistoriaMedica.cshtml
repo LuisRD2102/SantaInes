@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Historia Médica";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/HistoriaUsuario.css" />
+</head>
+
+<nav>
+    <div class="nav nav-tabs" id="nav-tab">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#nav-antPeronales" type="button" role="tab" aria-selected="true">Ant. Personales</button>
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-antFamiliares" type="button" role="tab" aria-selected="false">Ant. Familiares</button>
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-alergias" type="button" role="tab" aria-selected="false">Alergias</button>
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-tratHabitual" type="button" role="tab" aria-selected="false">Trat. Habitual</button>
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-interQuirur" type="button" role="tab" aria-selected="false">Interven. Quirúrgicas</button>
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-enfCronicas" type="button" role="tab" aria-selected="false">Enferm. Crónicas</button>
+    </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-antPeronales">
+        <textarea rows="4" cols="50">Ant.Per</textarea>
+    </div>
+    <div class="tab-pane fade" id="nav-antFamiliares">
+        <textarea rows="4" cols="50">famil</textarea>
+    </div>
+    <div class="tab-pane fade" id="nav-alergias">
+        <textarea rows="4" cols="50">aler</textarea>
+    </div>
+    <div class="tab-pane fade" id="nav-tratHabitual">
+        <textarea rows="4" cols="50">habitual</textarea>
+    </div>
+    <div class="tab-pane fade" id="nav-interQuirur">
+        <textarea rows="4" cols="50">quierur</textarea>
+    </div>
+    <div class="tab-pane fade" id="nav-enfCronicas">
+        <textarea rows="4" cols="50">cronic</textarea>
+    </div>
+</div>
+
+@section Scripts{
+    
+}
