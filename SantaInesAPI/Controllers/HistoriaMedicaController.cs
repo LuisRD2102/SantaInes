@@ -22,24 +22,6 @@ namespace SantaInesAPI.Controllers
             this._dao = dao;
         }
 
-        //[HttpPost]
-        //[Route("CrearHM/")]
-        //public ApplicationResponse<HistoriaMedicaDTO> AgregarHM()
-        //{
-        //    var response = new ApplicationResponse<HistoriaMedicaDTO>();
-        //    try
-        //    {
-        //        response.Data = _dao.CrearHistoriaMedica();
-        //    }
-        //    catch (ExceptionsControl ex)
-        //    {
-        //        response.Success = false;
-        //        response.Message = ex.Mensaje;
-        //        response.Exception = ex.Excepcion.ToString();
-        //    }
-        //    return response;
-        //}
-
         [HttpGet]
         [Route("ConsultarHM/{id}")]
         public ApplicationResponse<HistoriaMedicaDTO> ConsultarHM([FromRoute] Guid id)

@@ -12,8 +12,8 @@ using SantaInesAPI.Persistence.Database;
 namespace SantaInesAPI.Migrations
 {
     [DbContext(typeof(MigrationDbContext))]
-    [Migration("20230214010451_historiaUsuarioV1")]
-    partial class historiaUsuarioV1
+    [Migration("20230215025405_fixCampoAntFamiliares")]
+    partial class fixCampoAntFamiliares
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

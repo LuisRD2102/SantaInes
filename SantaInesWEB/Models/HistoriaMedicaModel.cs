@@ -1,15 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.SqlTypes;
-using System.Text.Json.Serialization;
 
-namespace SantaInesAPI.Persistence.Entity
+namespace SantaInesWEB.Models
 {
-    public class HistoriaMedica
+    public class HistoriaMedicaModel
     {
-        [Key]
         public Guid idHistoria { get; set; }
         public float? peso { get; set; }
+        [DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)]
         public float? altura { get; set; }
         public string? tipoSangre { get; set; }
         public string? antPeronales { get; set; }
@@ -18,6 +15,6 @@ namespace SantaInesAPI.Persistence.Entity
         public string? tratHabitual { get; set; }
         public string? intQuirurgica { get; set; }
         public string? patologia { get; set; }
-        public Usuario Usuario { get; set; }
+
     }
 }

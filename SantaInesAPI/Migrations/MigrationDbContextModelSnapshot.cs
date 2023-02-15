@@ -144,7 +144,7 @@ namespace SantaInesAPI.Migrations
                     b.Property<float?>("altura")
                         .HasColumnType("real");
 
-                    b.Property<string>("andtFamiliares")
+                    b.Property<string>("antFamiliares")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("antPeronales")

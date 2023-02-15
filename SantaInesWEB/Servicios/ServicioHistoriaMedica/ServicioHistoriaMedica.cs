@@ -1,7 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SantaInesWEB.Models;
-using System.Net.Http;
 
 namespace SantaInesWEB.Servicios.ServicioHistoriaMedica
 {
@@ -14,15 +13,15 @@ namespace SantaInesWEB.Servicios.ServicioHistoriaMedica
         {
             this._httpClientFactory = _httpClientFactory;
         }
-        public async Task<UsuarioModel> MostrarInfoHM(Guid id)
+        public async Task<HistoriaMedicaModel> MostrarInfoHM(Guid id)
         {
-            UsuarioModel historiaMedica = new UsuarioModel(); //Cambiar modelo
+            HistoriaMedicaModel historiaMedica = new HistoriaMedicaModel();
 
             var cliente = _httpClientFactory.CreateClient("DevConnection");
 
             try
             {
-                var response = await cliente.GetAsync($"HistoriaMedica/ConsultarUsuarioPorUsername/{id}");
+                var response = await cliente.GetAsync($"HistoriaMedica/ConsultarHM/{id}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -30,7 +29,7 @@ namespace SantaInesWEB.Servicios.ServicioHistoriaMedica
                     JObject json_respuesta = JObject.Parse(respuesta);
 
                     string stringDataRespuesta = json_respuesta["data"].ToString();
-                    var resultado = JsonConvert.DeserializeObject<UsuarioModel>(stringDataRespuesta);
+                    var resultado = JsonConvert.DeserializeObject<HistoriaMedicaModel>(stringDataRespuesta);
                     historiaMedica = resultado;
                 }
             }

@@ -25,7 +25,7 @@ namespace SantaInesAPI.Migrations
                     altura = table.Column<float>(type: "real", nullable: true),
                     tipoSangre = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     antPeronales = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    andtFamiliares = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    antFamiliares = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     alergias = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     tratHabitual = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     intQuirurgica = table.Column<string>(type: "nvarchar(max)", nullable: true),
