@@ -40,6 +40,25 @@ namespace SantaInesAPI.Controllers
             return response;
         }
 
+        [HttpPut]
+        [Route("ActualizarHistoriaMedica/")]
+        public ApplicationResponse<HistoriaMedicaDTO> ActualizarHistoriaMedica([FromBody] HistoriaMedicaDTO historiaMedica)
+        {
+            var response = new ApplicationResponse<HistoriaMedicaDTO>();
+            try
+            {
+                response.Data = _dao.ActualizarHistoriaMedicaDAO(HistoriaMedicaMapper.DtoToEntity(historiaMedica));
+
+            }
+            catch (ExceptionsControl ex)
+            {
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
+            }
+            return response;
+        }
+
 
     }
 }

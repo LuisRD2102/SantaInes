@@ -4,6 +4,7 @@ using SantaInesWEB.Models;
 using SantaInesWEB.Servicios.ServicioHistoriaMedica;
 using SantaInesWEB.Servicios.ServicioUsuario;
 using SantaInesWEB.Servicios.ServicioDireccion;
+using Newtonsoft.Json.Linq;
 
 namespace SantaInesWEB.Controllers
 {
@@ -38,6 +39,24 @@ namespace SantaInesWEB.Controllers
             {
                 throw ex.InnerException!;
             }
+        }
+
+        public async Task<IActionResult> ActualizarHistoriaMedica([Bind(Prefix = "Item1")] UsuarioModel usuario, [Bind(Prefix = "Item2")] DireccionModel direccion, [Bind(Prefix = "Item3")] HistoriaMedicaModel historiaMedica)
+        {
+            try
+            {
+                JObject respuestaUsuario = await _servicioUsuario.EditarUsuario(usuario);
+                JObject respuestaDireccion = await _servicioApiDireccion.EditarDireccion(direccion);
+                JObject respuestaHistoriaMedica = await _servicioHM.EditarHistoriaMedica(historiaMedica);
+
+                if ((bool)respuestaUsuario["success"] && (bool)respuestaDireccion["success"] && (bool)respuestaHistoriaMedica["success"])
+                    return RedirectToAction("EditarHistoriaMedica", new { message = "Se ha modificado correctamente", username = usuario.username });
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException!;
+            }
+            return NoContent();
         }
 
     }

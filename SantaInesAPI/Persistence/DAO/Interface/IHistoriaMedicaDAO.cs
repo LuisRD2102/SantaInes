@@ -7,5 +7,6 @@ namespace SantaInesAPI.Persistence.DAO.Interface
     {
         public HistoriaMedicaDTO CrearHistoriaMedica(Guid id);
         public HistoriaMedicaDTO GetHistoriaMedica(Guid id);
+        public HistoriaMedicaDTO ActualizarHistoriaMedicaDAO(HistoriaMedica historiaMedic);
     }
 }

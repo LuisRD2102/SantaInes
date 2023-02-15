@@ -23,6 +23,8 @@
 	<script>
         $(function () {
             $("#telefono").mask("(999) 999-9999");
+			$("#cedula").mask("99999999");
+			$("#postal").mask("9999");
         })
 
 		document.querySelector('#fecha').onchange = function () {
@@ -48,7 +50,7 @@
 					<h2>Información General</h2>
 				
 					<div class="form-row">
-						@Html.TextBoxFor(m => m.Item1.cedula, new{Placeholder = "Cédula", type="number"})
+						@Html.TextBoxFor(m => m.Item1.cedula, new{Placeholder = "Cédula",  id="cedula"})
 						@Html.ValidationMessageFor(m => m.Item1.cedula ,null, new { @class = "text-danger" })
 					</div>
 
@@ -120,12 +122,12 @@
 					</div>
 										
 					<div class="form-row">
-						@Html.TextBoxFor(m => m.Item2.codPostal, new{Placeholder = "Código postal", type = "number" })
+						@Html.TextBoxFor(m => m.Item2.codPostal, new{Placeholder = "Código postal", id = "postal" })
 					@Html.ValidationMessageFor(m => m.Item2.codPostal ,null, new { @class = "text-danger-right" })
 					</div>
 
 					<div class="form-row">
-						@Html.TextBoxFor(m => m.Item2.direccion, new{Placeholder = "Dirección" })
+					@Html.TextBoxFor(m => m.Item2.direccion, new{Placeholder = "Dirección" })
 					@Html.ValidationMessageFor(m => m.Item2.direccion ,null, new { @class = "text-danger-right" })
 					</div>										
 					<center class="form-row-last">

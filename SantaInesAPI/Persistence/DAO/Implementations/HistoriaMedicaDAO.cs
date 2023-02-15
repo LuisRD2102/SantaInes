@@ -54,5 +54,23 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 throw new ExceptionsControl("No se encuentra la historia medica" + " " + id, ex);
             }
         }
+
+        public HistoriaMedicaDTO ActualizarHistoriaMedicaDAO(HistoriaMedica historiaMedica)
+        {
+            try
+            {
+                _context.HistoriaMedicas.Update(historiaMedica);
+                _context.SaveChanges();
+
+                var data = _context.HistoriaMedicas.Where(u => u.idHistoria == historiaMedica.idHistoria).First();
+                return HistoriaMedicaMapper.EntityToDTO(data);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
+                throw ex.InnerException!;
+            }
+        }
     }
 }

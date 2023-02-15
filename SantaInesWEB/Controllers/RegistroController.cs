@@ -30,11 +30,10 @@ namespace SantaInesWEB.Controllers
 			
 			try
 			{
-				var id = Guid.NewGuid();
-				dir.id = id;
-				user.id_direccion = id;
-
-				JObject respuestaDireccion = await _servicioApiDireccion.RegistrarDireccion(dir);
+				dir.id = Guid.NewGuid();
+				user.id_direccion = dir.id;
+				user.idHistoria = Guid.NewGuid();
+                JObject respuestaDireccion = await _servicioApiDireccion.RegistrarDireccion(dir);
 				JObject respuestaUsuario = await _servicioApiUsuario.RegistrarUsuario(user);
 
 				if ((bool)respuestaDireccion["success"] && (bool)respuestaUsuario["success"])

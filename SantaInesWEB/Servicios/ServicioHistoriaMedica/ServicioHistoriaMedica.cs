@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SantaInesWEB.Models;
+using System.Text;
 
 namespace SantaInesWEB.Servicios.ServicioHistoriaMedica
 {
@@ -38,6 +39,32 @@ namespace SantaInesWEB.Servicios.ServicioHistoriaMedica
                 throw ex.InnerException!;
             }
             return historiaMedica;
+        }
+
+        public async Task<JObject> EditarHistoriaMedica(HistoriaMedicaModel historiaMedica)
+        {
+            var cliente = _httpClientFactory.CreateClient("DevConnection");
+
+            var content = new StringContent(JsonConvert.SerializeObject(historiaMedica), Encoding.UTF8, "application/json");
+
+            try
+            {
+                var response = await cliente.PutAsync("HistoriaMedica/ActualizarHistoriaMedica", content);
+                var respuesta = await response.Content.ReadAsStringAsync();
+                JObject _json_respuesta = JObject.Parse(respuesta);
+                return _json_respuesta;
+
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"ERROR de conexión con la API: '{ex.Message}'");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            return _json_respuesta;
         }
     }
 }

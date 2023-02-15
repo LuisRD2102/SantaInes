@@ -14,6 +14,8 @@
     <script>
         $(function () {
             $("#telefono").mask("(999) 999-9999");
+            $("#cedula").mask("99999999");
+            $("#postal").mask("9999");
         })
 
     </script>
@@ -33,12 +35,13 @@
 
             @*Usuario*@
 
-            @Html.TextBoxFor(m => m.Item1.cedula, new { @Value = Model.Item1.cedula, @type="hidden"})
+            @Html.TextBoxFor(m => m.Item1.cedula, new { @Value = Model.Item1.cedula, @type="hidden", id="cedula"})
             @Html.TextBoxFor(m => m.Item1.sexo, new { @Value = Model.Item1.sexo, @type="hidden"})
             @Html.TextBoxFor(m => m.Item1.username, new { @Value = Model.Item1.username, @type="hidden"})
             @Html.TextBoxFor(m => m.Item1.id_direccion, new { @Value = Model.Item1.id_direccion, @type="hidden"})
             @Html.TextBoxFor(m => m.Item1.fecha_Nacimiento, new { @Value = Model.Item1.fecha_Nacimiento, @type="hidden"})
             @Html.TextBoxFor(m => m.Item1.password, new { @Value = Model.Item1.password, @type="hidden"})
+            @Html.TextBoxFor(m => m.Item1.idHistoria, new { @Value = Model.Item1.idHistoria, @type="hidden"})
        
 
             <div class="flex">
@@ -76,7 +79,7 @@
                         </div>
                         <div class="in-flex">
                             <span style="margin-top:15px" class="span">Código postal: </span>
-                            @Html.TextBoxFor(m => m.Item2.codPostal, new{@Value = Model.Item2.codPostal,Class="form-control", placeholder = "Código postal", type = "number" })
+                            @Html.TextBoxFor(m => m.Item2.codPostal, new{@Value = Model.Item2.codPostal,Class="form-control", placeholder = "Código postal", id="postal" })
                         </div>
                     </div>                                    
                 </div>
@@ -90,7 +93,7 @@
 
         </div>
         <div class="modal-footer">
-            <button type="button" class="botonCancelar" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="botonCancelar" formaction="@Url.Action("GestionCitas", "Citas")">Cancelar</button>
             <button type="submit" class="botonCrear">Guardar Cambios</button>
         </div>
     }

@@ -55,9 +55,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             try
             {
                 if (!(ExisteCedula(usuario))) {
-                    var idHistoria = Guid.NewGuid();
-                    _daoHM.CrearHistoriaMedica(idHistoria);
-                    usuario.idHistoria = idHistoria;
+                    _daoHM.CrearHistoriaMedica(usuario.idHistoria);
                     _context.Usuario.Add(usuario);
                     _context.SaveChanges();
                     
