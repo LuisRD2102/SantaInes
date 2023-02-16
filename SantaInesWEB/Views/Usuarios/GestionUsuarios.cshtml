@@ -14,7 +14,7 @@
 
 <div class="top-bar">
     <div class="titulo-top">
-        <h2>Gestión de Usuarios</h2>
+        <h2>@(Context.Session.GetString("rol").ToUpper()=="DOCTOR" ? "Pacientes" : "Gestión de Usuarios")</h2>
     </div>
 </div>
 

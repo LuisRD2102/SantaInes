@@ -68,7 +68,7 @@ namespace SantaInesWEB.Servicios.ServicioUsuario
             return _json_respuesta;
         }
 
-        public async Task<List<UsuarioModel>> MostrarTabla()
+        public async Task<List<UsuarioModel>> MostrarTabla(string? rol, string? username)
         {
             UsuarioModel usuario = new UsuarioModel();
 
@@ -76,7 +76,7 @@ namespace SantaInesWEB.Servicios.ServicioUsuario
 
             try
             {
-                var responseUsuario = await cliente.GetAsync("Usuario/ConsultaUsuarios/");
+                var responseUsuario = await cliente.GetAsync($"Usuario/ConsultaUsuarios/{rol}/{username}");
 
                 if (responseUsuario.IsSuccessStatusCode)
                 {
