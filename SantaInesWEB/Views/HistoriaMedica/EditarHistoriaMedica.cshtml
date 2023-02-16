@@ -6,13 +6,25 @@
 <head>
     <link rel="stylesheet" href="~/css/HistoriaMedica.css" />
     <link rel="stylesheet" href="~/css/Modal.css" /> 
+    <link rel="stylesheet" href="~/css/Toaster.css" />
 </head>
 
 <div class="top-bar">
     <div class="titulo-top">
-        <h2>Historia de usuario</h2>
+        <h2>Historia médica</h2>
     </div>
 </div>
+
+<!--Alerta de mensajes exitosos-->
+@if (Context.Request.Query["message"].Count() > 0)
+{
+    <center>
+        <div class="alert alert-success text-center alert-dismissible fade show p-3" role="alert">
+            <p class="fs-6 m-0">@Context.Request.Query["message"]</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </center>
+}
 
 <div class="contenedor">
 

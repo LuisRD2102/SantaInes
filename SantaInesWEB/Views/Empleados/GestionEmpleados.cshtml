@@ -14,16 +14,6 @@
 </head>
 
 
-
-@*<!--Alerta de mensajes de error-->
-@if (Context.Request.Query["message2"].Count() > 0)
-{
-    <div class="alert alert-danger text-center alert-dismissible fade show p-3" role="alert">
-        <p class="fs-6 m-0">@Context.Request.Query["message2"]</p>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-}*@
-
 <!-- Placeholders de las ventanas emergentes -->
 <div id="PlaceHolderAgregarDepartamento"></div>
 <div id="PlaceHolderEliminarDepartamento"></div>
@@ -35,33 +25,32 @@
 <div id="PlaceHolderModificarEmpleado"></div>
 
 
-
 <div class="top-bar" >
     <div class="titulo-top">
         <h2>Gestión de Empleados y Departamentos</h2>
     </div>
 </div>
 
-<!--Alerta de mensajes exitosos ARREGLAR-->
+<!--Alerta de mensajes exitosos-->
 @if (Context.Request.Query["message"].Count() > 0)
 {
-     @*<div class="alert alert-success text-center alert-dismissible fade show p-3" role="alert">
-        <p class="fs-6 m-0">@Context.Request.Query["message"]</p>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>*@
-
-    <div class="toast">
-        <div class="toast-content">
-            <i class="uil uil-check toast-check"></i>
-            <div class="message">
-                <span class="message-text text-1">Success</span>
-                <span class="message-text text-2">Your changes has been saved</span>
-            </div>
+    <center>
+        <div class="alert alert-success text-center alert-dismissible fade show p-3" role="alert">
+            <p class="fs-6 m-0">@Context.Request.Query["message"]</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        <i class="uil uil-multiply toast-close"></i>
-        <div class="progress"></div>
-    </div>
+    </center>
+}
 
+<!--Alerta de mensajes erroneos-->
+@if (Context.Request.Query["message2"].Count() > 0)
+{
+    <center>
+        <div class="alert alert-danger text-center alert-dismissible fade show p-3" role="alert">
+            <p class="fs-6 m-0">@Context.Request.Query["message2"]</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </center>
 }
 
  <div class="contenedor">
@@ -212,8 +201,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.13.1/features/pageResize/dataTables.pageResize.min.js" defer></script>-0
     <script src="~/js/Empleado.js"></script>
     <script src="~/js/Departamento.js"></script>
-    <script src="~/js/Toaster.js"></script>
-
+    
     <script>  
     $(document).ready(function () {
         $('#table-departamento').dataTable({

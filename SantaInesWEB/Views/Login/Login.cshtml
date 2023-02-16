@@ -5,8 +5,23 @@
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Login.css" />
+    <link rel="stylesheet" href="~/css/Toaster.css" />
+</head>
+
 <section class="h-100 gradient-form" style="background-color: #eee;">
     <div class="container py-5 h-100">
+        <!--Alerta de mensajes exitosos-->
+        @if (Context.Request.Query["message"].Count() > 0)
+        {
+            <center>
+                <div class="alert alert-success text-center alert-dismissible fade show p-3" role="alert">
+                    <p class="fs-6 m-0">@Context.Request.Query["message"]</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </center>
+        }
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-xl-10">
                 <div class="card rounded-3 text-black">

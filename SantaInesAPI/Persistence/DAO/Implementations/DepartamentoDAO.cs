@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SantaInesAPI.BussinessLogic.DTO;
 using SantaInesAPI.BussinessLogic.Mapper;
+using SantaInesAPI.Migrations;
 using SantaInesAPI.Persistence.DAO.Interface;
 using SantaInesAPI.Persistence.Database;
 using SantaInesAPI.Persistence.Entity;
@@ -21,17 +22,18 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
         {
             try
             {
-                _context.Departamentos.Update(departamento);
-                _context.SaveChanges();
-
-                var data = _context.Departamentos.Where(u => u.id == departamento.id).First();
+                if (!(ExisteNombre(departamento))) {
+                    _context.Departamentos.Update(departamento);
+                    _context.SaveChanges();
+                }
+                    
+                var data = _context.Departamentos.Where(u => u.id == departamento.id && u.nombre == departamento.nombre).First();
                 return DepartamentoMapper.EntityToDTO(data);
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
-                throw ex.InnerException!;
+                throw new ExceptionsControl("Ya existe el departamento ingresado" + " " + departamento.nombre, ex);
             }
         }
 
@@ -39,8 +41,11 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
         {
             try
             {
-                _context.Departamentos.Add(departamento);
-                _context.SaveChanges();
+                if (!(ExisteNombre(departamento)))
+                {
+                    _context.Departamentos.Add(departamento);
+                    _context.SaveChanges();
+                }
 
                 var data = _context.Departamentos.Where(u => u.id == departamento.id).First();
                 return DepartamentoMapper.EntityToDTO(data);
@@ -48,8 +53,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
-                throw ex.InnerException!;
+                throw new ExceptionsControl("Ya existe el departamento ingresado" + " " + departamento.nombre, ex);
             }
         }
 
@@ -154,6 +158,24 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             {
                 throw new ExceptionsControl("No se encuentra el departamento" + " " + id, ex);
             }
+        }
+
+        public bool ExisteNombre(Departamento dept)
+        {
+            bool existe = false;
+
+            try
+            {
+                var nuevoDept = _context.Departamentos.Where(d => d.nombre.Equals(dept.nombre));
+                if (nuevoDept.Count() != 0)
+                    existe = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " || " + ex.StackTrace);
+                throw new Exception("Empleado no encontrado: " + dept, ex);
+            }
+            return existe;
         }
 
 

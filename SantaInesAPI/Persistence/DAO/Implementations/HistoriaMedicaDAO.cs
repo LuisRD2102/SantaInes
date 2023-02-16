@@ -68,8 +68,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
-                throw ex.InnerException!;
+                throw new ExceptionsControl("No se encuentra la historia medica", ex);
             }
         }
     }

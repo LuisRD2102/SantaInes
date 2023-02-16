@@ -68,7 +68,7 @@ namespace SantaInesWEB.Controllers
                 {
                     return RedirectToAction("GestionEmpleados", new { message = "Se ha agregado correctamente" });
                 }
-                //else return RedirectToAction("GestionEmpleados", new { message2 = "El nombre del departamento ingresado ya existe" });
+                else return RedirectToAction("GestionEmpleados", new { message2 = "La cédula ingresada ya existe" });
             }
             catch (Exception ex)
             {

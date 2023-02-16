@@ -11,5 +11,6 @@ namespace SantaInesAPI.Persistence.DAO.Interface
         public DepartamentoDTO ActualizarDepartamentoDAO(Departamento departamento);
         public DepartamentoDTO EliminarDepartamentoDAO(Guid id);
         public DepartamentoDTO ConsultarPorID(Guid id);
+        public bool ExisteNombre(Departamento dept);
     }
 }

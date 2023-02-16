@@ -25,8 +25,10 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
         {
             try
             {
+             
                 _context.Empleados.Update(empleado);
                 _context.SaveChanges();
+                
 
                 var data = _context.Empleados.Where(e => e.username == empleado.username).Select(
                     e => new EmpleadoDTO
@@ -45,8 +47,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message + " || " + ex.StackTrace);
-                throw new Exception("Fallo al actualizar: " + empleado.username, ex);
+                throw new ExceptionsControl("Ya existe la cedula ingresada" + " " + empleado.cedula, ex);
             }
         }
 
@@ -65,8 +66,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
-                throw ex.InnerException!;
+                throw new ExceptionsControl("Ya existe la cedula ingresada" + " " + empleado.cedula, ex);
             }
         }
 
