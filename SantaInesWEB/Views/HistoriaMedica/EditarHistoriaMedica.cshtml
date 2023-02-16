@@ -4,83 +4,141 @@
 }
 
 <head>
-    <link rel="stylesheet" href="~/css/HistoriaUsuario.css" />
+    <link rel="stylesheet" href="~/css/HistoriaMedica.css" />
+    <link rel="stylesheet" href="~/css/Modal.css" /> 
 </head>
 
-@using (Html.BeginForm("ActualizarHistoriaMedica", "HistoriaMedica", FormMethod.Post))
-    {
-        <div>
-            @*Usuario*@
+<div class="top-bar">
+    <div class="titulo-top">
+        <h2>Historia de usuario</h2>
+    </div>
+</div>
 
-            @Html.TextBoxFor(m => m.Item1.cedula, new { @Value = Model.Item1.cedula, @type="hidden", id="cedula"})
-            @Html.TextBoxFor(m => m.Item1.sexo, new { @Value = Model.Item1.sexo, @type="hidden"})
-            @Html.TextBoxFor(m => m.Item1.username, new { @Value = Model.Item1.username, @type="hidden"})
-            @Html.TextBoxFor(m => m.Item1.id_direccion, new { @Value = Model.Item1.id_direccion, @type="hidden"})
-            @Html.TextBoxFor(m => m.Item1.fecha_Nacimiento, new { @Value = Model.Item1.fecha_Nacimiento, @type="hidden"})
-            @Html.TextBoxFor(m => m.Item1.password, new { @Value = Model.Item1.password, @type="hidden"})
-            @Html.TextBoxFor(m => m.Item1.idHistoria, new { @Value = Model.Item1.idHistoria, @type="hidden"})
+<div class="contenedor">
 
-            @Html.TextBoxFor(m => m.Item1.nombre_Completo, new {@Value = Model.Item1.nombre_Completo,Class="form-control", placeholder="Nombre(s): "})
-            @Html.TextBoxFor(m => m.Item1.apellido_Completo, new {@Value = Model.Item1.apellido_Completo,Class="form-control", placeholder="Apellido(s): "})
-            @Html.TextBoxFor(m => m.Item1.telefono, new {@Value = Model.Item1.telefono,Class="form-control", placeholder="Teléfono: ", id = "telefono"})
-            @Html.TextBoxFor(m => m.Item1.email, new {@Value = Model.Item1.email, Class="form-control", placeholder="Correo Electrónico: "})
+    @using (Html.BeginForm("ActualizarHistoriaMedica", "HistoriaMedica", FormMethod.Post))
+        {
+            <div class="modal-body">
+                @*CAMPOS OCULTOS*@
 
+                @*Usuario*@
 
-            @*Direccion*@
+                @Html.TextBoxFor(m => m.Item1.cedula, new { @Value = Model.Item1.cedula, @type="hidden", id="cedula"})
+                @Html.TextBoxFor(m => m.Item1.sexo, new { @Value = Model.Item1.sexo, @type="hidden"})
+                @Html.TextBoxFor(m => m.Item1.username, new { @Value = Model.Item1.username, @type="hidden"})
+                @Html.TextBoxFor(m => m.Item1.id_direccion, new { @Value = Model.Item1.id_direccion, @type="hidden"})
+                @Html.TextBoxFor(m => m.Item1.fecha_Nacimiento, new { @Value = Model.Item1.fecha_Nacimiento, @type="hidden"})
+                @Html.TextBoxFor(m => m.Item1.password, new { @Value = Model.Item1.password, @type="hidden"})
+                @Html.TextBoxFor(m => m.Item1.idHistoria, new { @Value = Model.Item1.idHistoria, @type="hidden"})
 
-            @Html.TextBoxFor(m => m.Item2.id, new { @Value = Model.Item2.id, @type="hidden"})
+                @*Direccion*@
 
-            @Html.TextBoxFor(m => m.Item2.municipio, new {@Value = Model.Item2.municipio,Class="form-control", placeholder="Municipio: "})
-            @Html.TextBoxFor(m => m.Item2.codPostal, new{@Value = Model.Item2.codPostal,Class="form-control", placeholder = "Código postal", id = "postal"})
-            @Html.TextAreaFor(m => m.Item2.direccion, new {@Value = Model.Item2.direccion,Class="form-control", placeholder="Dirección: "})
+                @Html.TextBoxFor(m => m.Item2.id, new { @Value = Model.Item2.id, @type="hidden"})
 
+                @*HistoriaMedica*@
 
-            @*HistoriaMedica*@
+                @Html.TextBoxFor(m => m.Item3.idHistoria, new { @Value = Model.Item3.idHistoria, @type="hidden"})
 
-            @Html.TextBoxFor(m => m.Item3.idHistoria, new { @Value = Model.Item3.idHistoria, @type="hidden"})
-            @Html.TextBoxFor(m => m.Item3.altura,new{@Value = Model.Item3.altura,Class="form-control",id = "altura", placeholder = "Altura"})
-            @Html.TextBoxFor(m => m.Item3.peso, new{@Value = Model.Item3.peso,Class="form-control",id = "peso", placeholder = "Peso" })
-            @Html.TextBoxFor(m => m.Item3.tipoSangre, new{@Value = Model.Item3.tipoSangre,Class="form-control", placeholder = "Tipo de sangre" })
-        </div>
-
-        <div>
-            <nav>
-                <div class="nav nav-tabs" id="nav-tab">
-                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#nav-antPeronales" type="button" role="tab" aria-selected="true">Ant. Personales</button>
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-antFamiliares" type="button" role="tab" aria-selected="false">Ant. Familiares</button>
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-alergias" type="button" role="tab" aria-selected="false">Alergias</button>
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-tratHabitual" type="button" role="tab" aria-selected="false">Trat. Habitual</button>
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-interQuirur" type="button" role="tab" aria-selected="false">Interven. Quirúrgicas</button>
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-patologias" type="button" role="tab" aria-selected="false">Patologías</button>
+                <div class="flex">
+                    <div class="in-flex">
+                        <span style="margin-top:15px" class="span">Nombre completo: </span>
+                        @Html.TextBoxFor(m => m.Item1.nombre_Completo, new {@Value = Model.Item1.nombre_Completo,Class="form-control", placeholder="Nombre(s): "})
+                    </div>
+                    <div class="in-flex">
+                        <span style="margin-top:15px" class="span">Apellido completo: </span>
+                        @Html.TextBoxFor(m => m.Item1.apellido_Completo, new {@Value = Model.Item1.apellido_Completo,Class="form-control", placeholder="Apellido(s): "})
+                    </div>
                 </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-antPeronales">
-                    @Html.TextAreaFor(t => t.Item3.antPeronales,4,50, new { Class="form-control", placeholder = "Antecedentes personales..."});
+
+                <div class="flex">
+                    <div class="in-flex">
+                        <span style="margin-top:15px" class="span">Teléfono: </span>
+                        @Html.TextBoxFor(m => m.Item1.telefono, new {@Value = Model.Item1.telefono,Class="form-control", placeholder="Teléfono: ", id = "telefono"})
+                    </div>
+                    <div class="in-flex">
+                        <span style="margin-top:15px" class="span">Correo electrónico: </span>
+                        @Html.TextBoxFor(m => m.Item1.email, new {@Value = Model.Item1.email, Class="form-control", placeholder="Correo Electrónico: "})
+                    </div>
                 </div>
-                <div class="tab-pane fade" id="nav-antFamiliares">
-                    @Html.TextAreaFor(t => t.Item3.antFamiliares,4,50, new { Class="form-control", placeholder = "Antecedentes familiares..."});
+
+                <div class="flex">
+                    <div class="in-flex">
+
+
+                        <div class="double-flex">
+                            <div class="in-flex">
+                                <span style="margin-top:15px" class="span">Altura: </span>
+                                @Html.TextBoxFor(m => m.Item3.altura,new{@Value = Model.Item3.altura,Class="form-control",id = "altura", placeholder = "Altura"})
+                            </div>
+                            <div class="in-flex">
+                                <span style="margin-top:15px" class="span">Peso: </span>
+                                @Html.TextBoxFor(m => m.Item3.peso, new{@Value = Model.Item3.peso,Class="form-control",id = "peso", placeholder = "Peso" })
+                            </div>
+                        </div>
+                    <span style="margin-top:15px" class="span">Tipo de sangre: </span>
+                    @Html.TextBoxFor(m => m.Item3.tipoSangre, new{@Value = Model.Item3.tipoSangre,Class="form-control", placeholder = "Tipo de sangre" })
+                    </div>
+                    
+                    <div class="in-flex">
+                        <div class="double-flex">
+                            <div class="in-flex">
+                                <span style="margin-top:15px" class="span">Municipio: </span>
+                                @Html.TextBoxFor(m => m.Item2.municipio, new {@Value = Model.Item2.municipio,Class="form-control", placeholder="Municipio: "})
+                            </div>
+                            <div class="in-flex">
+                                <span style="margin-top:15px" class="span">Código postal: </span>
+                                @Html.TextBoxFor(m => m.Item2.codPostal, new{@Value = Model.Item2.codPostal,Class="form-control", placeholder = "Código postal", id="postal" })
+                            </div>
+                        </div>
+                        <span style="margin-top:15px" class="span">Dirección: </span>
+                        @Html.TextAreaFor(m => m.Item2.direccion, new {@Value = Model.Item2.direccion,Class="form-control area-direccion", placeholder="Dirección: "})
+
+                    </div>
+                </div>          
+
+                <div>
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#nav-antPeronales" type="button" role="tab" aria-selected="true">Ant. Personales</button>
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-antFamiliares" type="button" role="tab" aria-selected="false">Ant. Familiares</button>
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-alergias" type="button" role="tab" aria-selected="false">Alergias</button>
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-tratHabitual" type="button" role="tab" aria-selected="false">Trat. Habitual</button>
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-interQuirur" type="button" role="tab" aria-selected="false">Interven. Quirúrgicas</button>
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-patologias" type="button" role="tab" aria-selected="false">Patologías</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-antPeronales">
+                            @Html.TextAreaFor(t => t.Item3.antPeronales, new { Class="form-control text-area-nav", placeholder = "Antecedentes personales..."});
+                        </div>
+                        <div class="tab-pane fade" id="nav-antFamiliares">
+                            @Html.TextAreaFor(t => t.Item3.antFamiliares, new { Class="form-control text-area-nav", placeholder = "Antecedentes familiares..."});
+                        </div>
+                        <div class="tab-pane fade" id="nav-alergias">
+                            @Html.TextAreaFor(t => t.Item3.alergias, new { Class="form-control text-area-nav", placeholder = "Alergias..."});
+                        </div>
+                        <div class="tab-pane fade" id="nav-tratHabitual">
+                            @Html.TextAreaFor(t => t.Item3.tratHabitual, new { Class="form-control text-area-nav", placeholder = "Tratamientos habituales..."});
+                        </div>
+                        <div class="tab-pane fade" id="nav-interQuirur">
+                            @Html.TextAreaFor(t => t.Item3.intQuirurgica, new { Class="form-control text-area-nav", placeholder = "Intervenciones quirúrgicas..."});
+                        </div>
+                        <div class="tab-pane fade" id="nav-patologias">
+                            @Html.TextAreaFor(t => t.Item3.patologia, new { Class="form-control text-area-nav", placeholder = "Patologías..."});
+                        </div>
+                    </div>
                 </div>
-                <div class="tab-pane fade" id="nav-alergias">
-                    @Html.TextAreaFor(t => t.Item3.alergias,4,50, new { Class="form-control", placeholder = "Alergias..."});
-                </div>
-                <div class="tab-pane fade" id="nav-tratHabitual">
-                    @Html.TextAreaFor(t => t.Item3.tratHabitual,4,50, new { Class="form-control", placeholder = "Tratamientos habituales..."});
-                </div>
-                <div class="tab-pane fade" id="nav-interQuirur">
-                    @Html.TextAreaFor(t => t.Item3.intQuirurgica,4,50, new { Class="form-control", placeholder = "Intervenciones quirúrgicas..."});
-                </div>
-                <div class="tab-pane fade" id="nav-patologias">
-                    @Html.TextAreaFor(t => t.Item3.patologia,4,50, new { Class="form-control", placeholder = "Patologías..."});
-                </div>
+
             </div>
-        </div>
 
-        <div>
-            <button type="submit" class="botonCancelar" formaction="@Url.Action("GestionUsuarios", "Usuarios")"> Cancelar</button>
-            <button type="submit" class="botonCrear"> Guardar Cambios</button>
-        </div>
+            <div class="modal-footer">
+                <button type="submit" class="botonCancelar" formaction="@Url.Action("GestionUsuarios", "Usuarios")"> Cancelar</button>
+                <button type="submit" class="botonCrear"> Guardar Cambios</button>
+            </div>
     }
+</div>
+
+
 @section Scripts{
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

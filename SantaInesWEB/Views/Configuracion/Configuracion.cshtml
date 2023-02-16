@@ -64,7 +64,6 @@
                     <span style="margin-top:15px" class="span">Correo electrónico: </span>
                     @Html.TextBoxFor(m => m.Item1.email, new {@Value = Model.Item1.email, Class="form-control", placeholder="Correo Electrónico: "})
                 </div>
-
             </div>
             @*Direccion*@
 
@@ -87,10 +86,7 @@
                     <span style="margin-top:15px" class="span">Dirección: </span>
                     @Html.TextAreaFor(m => m.Item2.direccion, new {@Value = Model.Item2.direccion,Class="form-control", placeholder="Dirección: "})
                 </div>
-
             </div>
-
-
         </div>
         <div class="modal-footer">
             <button type="submit" class="botonCancelar" formaction="@Url.Action("GestionCitas", "Citas")">Cancelar</button>
