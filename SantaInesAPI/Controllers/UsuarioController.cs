@@ -26,14 +26,14 @@ namespace SantaInesAPI.Controllers
         }
 
         [HttpGet]
-        [Route("ConsultaUsuarios/")]
-        public ApplicationResponse<List<UsuarioDTO>> ConsultarUsuarioDAO()
+        [Route("ConsultaUsuarios/{rol}/{username}")]
+        public ApplicationResponse<List<UsuarioDTO>> ConsultarUsuarioDAO([FromRoute] string? rol, [FromRoute] string? username)
         {
             var response = new ApplicationResponse<List<UsuarioDTO>>();
 
             try
             {
-                response.Data = _dao.ConsultarUsuarioDAO();
+                response.Data = _dao.ConsultarUsuarioDAO(rol,username);
             }
             catch (ExceptionsControl ex)
             {

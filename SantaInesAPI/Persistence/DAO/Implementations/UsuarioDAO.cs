@@ -1,4 +1,5 @@
-﻿using SantaInesAPI.BussinessLogic.DTO;
+﻿using Microsoft.EntityFrameworkCore;
+using SantaInesAPI.BussinessLogic.DTO;
 using SantaInesAPI.BussinessLogic.Mapper;
 using SantaInesAPI.Migrations;
 using SantaInesAPI.Persistence.DAO.Interface;
@@ -87,29 +88,54 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             }
         }
 
-        public List<UsuarioDTO> ConsultarUsuarioDAO()
+        public List<UsuarioDTO> ConsultarUsuarioDAO(string? rol,string? username)
         {
             try
             {
-                var lista = _context.Usuario.Select(
-                    u => new UsuarioDTO
-                    {
-                        username = u.username,
-                        password = u.password,
-                        cedula = u.cedula,
-                        nombre_completo = u.nombre_completo,
-                        apellido_completo = u.apellido_completo,
-                        fecha_Nacimiento = u.fecha_nacimiento,
-                        sexo = u.sexo,
-                        telefono = u.telefono,
-                        email = u.email,
-                        id_direccion = u.id_direccion,
-                        edad = u.edad,
-                        idHistoria = u.idHistoria
-                    }
-                );
+                List<UsuarioDTO> lista = new List<UsuarioDTO>();
+                if (rol?.ToUpper() == "DOCTOR")
+                    lista = _context.Citas.Where(c => c.doctor == username && c.patient != null)
+                        .Include(i => i.Empleado)
+                        .Include(i => i.Usuario)
+                        .Select(s => s.Usuario)
+                        .Distinct()
+                        .Select(u => new UsuarioDTO
+                        {
+                            username = u.username,
+                            password = u.password,
+                            cedula = u.cedula,
+                            nombre_completo = u.nombre_completo,
+                            apellido_completo = u.apellido_completo,
+                            fecha_Nacimiento = u.fecha_nacimiento,
+                            sexo = u.sexo,
+                            telefono = u.telefono,
+                            email = u.email,
+                            id_direccion = u.id_direccion,
+                            edad = u.edad,
+                            idHistoria = u.idHistoria
+                        })
+                        .ToList();
 
-                return lista.ToList();
+                else
+                    lista = _context.Usuario.Select(
+                        u => new UsuarioDTO
+                        {
+                            username = u.username,
+                            password = u.password,
+                            cedula = u.cedula,
+                            nombre_completo = u.nombre_completo,
+                            apellido_completo = u.apellido_completo,
+                            fecha_Nacimiento = u.fecha_nacimiento,
+                            sexo = u.sexo,
+                            telefono = u.telefono,
+                            email = u.email,
+                            id_direccion = u.id_direccion,
+                            edad = u.edad,
+                            idHistoria = u.idHistoria
+                        }
+                    ).ToList();
+
+                return lista;
 
             }
             catch (Exception ex)

@@ -22,7 +22,7 @@ namespace SantaInesWEB.Controllers
         {
             try
             {
-                return View(await _servicioApiUsuario.MostrarTabla());
+                return View(await _servicioApiUsuario.MostrarTabla(HttpContext.Session.GetString("rol"), HttpContext.Session.GetString("username")));
 
             }
             catch (Exception ex)
