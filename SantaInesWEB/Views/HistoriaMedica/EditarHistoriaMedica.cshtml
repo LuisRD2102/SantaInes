@@ -55,10 +55,12 @@
                     <div class="in-flex">
                         <span style="margin-top:15px" class="span">Nombre completo: </span>
                         @Html.TextBoxFor(m => m.Item1.nombre_Completo, new {@Value = Model.Item1.nombre_Completo,Class="form-control", placeholder="Nombre(s): "})
-                    </div>
+                        @Html.ValidationMessageFor(m => m.Item1.nombre_Completo ,null, new { @class = "text-danger" })
+                </div>
                     <div class="in-flex">
                         <span style="margin-top:15px" class="span">Apellido completo: </span>
                         @Html.TextBoxFor(m => m.Item1.apellido_Completo, new {@Value = Model.Item1.apellido_Completo,Class="form-control", placeholder="Apellido(s): "})
+                    @Html.ValidationMessageFor(m => m.Item1.apellido_Completo ,null, new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -66,10 +68,12 @@
                     <div class="in-flex">
                         <span style="margin-top:15px" class="span">Teléfono: </span>
                         @Html.TextBoxFor(m => m.Item1.telefono, new {@Value = Model.Item1.telefono,Class="form-control", placeholder="Teléfono: ", id = "telefono"})
+                        @Html.ValidationMessageFor(m => m.Item1.telefono ,null, new { @class = "text-danger" })
                     </div>
                     <div class="in-flex">
                         <span style="margin-top:15px" class="span">Correo electrónico: </span>
                         @Html.TextBoxFor(m => m.Item1.email, new {@Value = Model.Item1.email, Class="form-control", placeholder="Correo Electrónico: "})
+                        @Html.ValidationMessageFor(m => m.Item1.email ,null, new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -96,14 +100,17 @@
                             <div class="in-flex">
                                 <span style="margin-top:15px" class="span">Municipio: </span>
                                 @Html.TextBoxFor(m => m.Item2.municipio, new {@Value = Model.Item2.municipio,Class="form-control", placeholder="Municipio: "})
+                                @Html.ValidationMessageFor(m => m.Item2.municipio ,null, new { @class = "text-danger" })
                             </div>
                             <div class="in-flex">
                                 <span style="margin-top:15px" class="span">Código postal: </span>
                                 @Html.TextBoxFor(m => m.Item2.codPostal, new{@Value = Model.Item2.codPostal,Class="form-control", placeholder = "Código postal", id="postal" })
+                                @Html.ValidationMessageFor(m => m.Item2.codPostal ,null, new { @class = "text-danger" })
                             </div>
                         </div>
                         <span style="margin-top:15px" class="span">Dirección: </span>
                         @Html.TextAreaFor(m => m.Item2.direccion, new {@Value = Model.Item2.direccion,Class="form-control area-direccion", placeholder="Dirección: "})
+                        @Html.ValidationMessageFor(m => m.Item2.direccion ,null, new { @class = "text-danger" })
 
                     </div>
                 </div>          
@@ -154,6 +161,10 @@
 @section Scripts{
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 
 
