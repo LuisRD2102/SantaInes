@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="~/css/EmpleadoYDepartamento.css" />
     <link rel="stylesheet" href="~/css/Toaster.css" />
     <link rel="stylesheet" href="~/css/Modal.css" /> 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">  
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">    
 
 </head>
 
@@ -44,25 +45,23 @@
 <!--Alerta de mensajes exitosos ARREGLAR-->
 @if (Context.Request.Query["message"].Count() > 0)
 {
-    @*<div class="alert alert-success text-center alert-dismissible fade show p-3" role="alert">
+     @*<div class="alert alert-success text-center alert-dismissible fade show p-3" role="alert">
         <p class="fs-6 m-0">@Context.Request.Query["message"]</p>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>*@
-   
 
-@*<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <img src="..." class="rounded me-2" alt="...">
-      <strong class="me-auto">Prueba</strong>
-      <small>11 mins ago</small>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    <div class="toast">
+        <div class="toast-content">
+            <i class="uil uil-check toast-check"></i>
+            <div class="message">
+                <span class="message-text text-1">Success</span>
+                <span class="message-text text-2">Your changes has been saved</span>
+            </div>
+        </div>
+        <i class="uil uil-multiply toast-close"></i>
+        <div class="progress"></div>
     </div>
-    <div class="toast-body">
-      @Context.Request.Query["message"]
-    </div>
-  </div>
-</div>*@
+
 }
 
  <div class="contenedor">
@@ -210,42 +209,12 @@
 
 @section Scripts{
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js" defer></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.13.1/features/pageResize/dataTables.pageResize.min.js" defer></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.13.1/features/pageResize/dataTables.pageResize.min.js" defer></script>-0
     <script src="~/js/Empleado.js"></script>
     <script src="~/js/Departamento.js"></script>
+    <script src="~/js/Toaster.js"></script>
 
-    <@*script type="text/javascript" src="jquery.dataTables.js"></script>*@
-          @*<script type="text/javascript" src="dataTables.scrollingPagination.js"></script>*@
-
-    <script>
-    //$(document).ready(function () {
-    //    var rowsShown = 16;
-    //    if (window.matchMedia('(max-device-width: 1200px)').matches) {
-    //        rowsShown = 8;
-    //    }
-    //    var rowsTotal = $('#table-empleado tbody tr').length;
-    //    var numPages = rowsTotal / rowsShown;
-    //    for (i = 0; i < numPages; i++) {
-    //        var pageNum = i + 1;
-    //        $('#nav').append('<a href="#" rel="' + i + '">' + pageNum + '</a> ');
-    //    }
-    //    $('#table-empleado tbody tr').hide();
-    //    $('#table-empleado tbody tr').slice(0, rowsShown).show();
-    //    $('#table-empleado a:first').addClass('active');
-    //    $('#nav a').bind('click', function () {
-
-    //        $('#nav a').removeClass('active');
-    //        $(this).addClass('active');
-    //        var currPage = $(this).attr('rel');
-    //        var startItem = currPage * rowsShown;
-    //        var endItem = startItem + rowsShown;
-    //        $('#table-empleado tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
-    //            css('display', 'table-row').animate({ opacity: 1 }, 300);
-    //    });
-    //});
-
-
-
+    <script>  
     $(document).ready(function () {
         $('#table-departamento').dataTable({
             "pagingType": "numbers",

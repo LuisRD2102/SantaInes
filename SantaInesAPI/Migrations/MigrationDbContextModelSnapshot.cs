@@ -50,7 +50,7 @@ namespace SantaInesAPI.Migrations
 
                     b.HasIndex("patient");
 
-                    b.ToTable("Citas");
+                    b.ToTable("Citas", (string)null);
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Departamento", b =>
@@ -69,7 +69,7 @@ namespace SantaInesAPI.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Departamentos");
+                    b.ToTable("Departamentos", (string)null);
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Direccion", b =>
@@ -91,7 +91,7 @@ namespace SantaInesAPI.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Direccion");
+                    b.ToTable("Direccion", (string)null);
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Empleado", b =>
@@ -129,7 +129,7 @@ namespace SantaInesAPI.Migrations
 
                     b.HasIndex("id_departamento");
 
-                    b.ToTable("Empleados");
+                    b.ToTable("Empleados", (string)null);
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.HistoriaMedica", b =>
@@ -167,7 +167,7 @@ namespace SantaInesAPI.Migrations
 
                     b.HasKey("idHistoria");
 
-                    b.ToTable("HistoriaMedicas");
+                    b.ToTable("HistoriaMedicas", (string)null);
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Usuario", b =>
@@ -219,7 +219,7 @@ namespace SantaInesAPI.Migrations
                     b.HasIndex("id_direccion")
                         .IsUnique();
 
-                    b.ToTable("Usuario");
+                    b.ToTable("Usuario", (string)null);
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Cita", b =>
