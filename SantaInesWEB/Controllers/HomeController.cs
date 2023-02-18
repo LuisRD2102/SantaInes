@@ -33,7 +33,13 @@ namespace SantaInesWEB.Controllers
             modeloDashboard.CantidadDoctores = await _servicioApiGrafica.CantidadDoctores();
             modeloDashboard.CantidadPacientes = await _servicioApiGrafica.CantidadPacientes();
 
-            return View(modeloDashboard);
+            //REDIRECCION A VISTA DESPUES DE LOGUEARSE SEGUN EL ROL
+            if (HttpContext.Session.GetString("rol").ToUpper() == "PACIENTE")
+                return RedirectToAction("GestionCitas", "Citas");
+            else if (HttpContext.Session.GetString("rol").ToUpper() == "SECRETARIA" || HttpContext.Session.GetString("rol").ToUpper() == "DOCTOR")
+                return RedirectToAction("GestionCitasDoctor", "Citas");
+            else
+                return View(modeloDashboard);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

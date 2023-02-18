@@ -25,67 +25,72 @@
 
     <ul class="nav-list">
 
-        <li>
-           <i class='bx bx-search' ></i>
-           <input type="text" placeholder="Search...">
-           <span class="tooltip">Search</span>
-        </li>
+        @if (Context.Session.GetString("rol").ToUpper() == "GERENCIA" || Context.Session.GetString("rol").ToUpper() == "PRESIDENCIA")
+        {
+            <li>
+                <a asp-controller="Home" asp-action="Index">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+              </a>
+               <span class="tooltip">Dashboard</span>
+            </li>
 
-        <li>
-          <a asp-controller="Home" asp-action="Index">
-            <i class='bx bx-grid-alt'></i>
-            <span class="links_name">Dashboard</span>
-          </a>
-           <span class="tooltip">Dashboard</span>
-        </li>
+            <li>
+                <a asp-controller="Itinerarios" asp-action="GestionItinerarios">
+                    <i class='bx bx-calendar-edit'></i>
+                    <span class="links_name">Itinerarios</span>
+                </a>
+                <span class="tooltip">Itinerarios</span>
+            </li>
 
-        <li>
-            <a asp-controller="Usuarios" asp-action="GestionUsuarios">
-                <i class='bx bx-user' ></i>
-                <span class="links_name">@(Context.Session.GetString("rol").ToUpper() == "DOCTOR" ? "Pacientes" : "Usuarios")</span>
-            </a>
-                <span class="tooltip">@(Context.Session.GetString("rol").ToUpper() == "DOCTOR" ? "Pacientes" : "Usuarios")</span>
-        </li>
+            <li>
+                <a asp-controller="Empleados" asp-action="GestionEmpleados">
+                    <i class='bx bx-buildings'></i>
+                    <span class="links_name">Empleados y <br />Departamentos</span>
+                </a>
+                <span class="tooltip">Empleados y Departamentos</span>
+            </li>
+        }
 
-        <li>
-             <a asp-controller="Empleados" asp-action="GestionEmpleados">
-               <i class='bx bx-buildings' ></i>
-               <span class="links_name">Empleados y <br />Departamentos</span>
-            </a>
-            <span class="tooltip">Empleados y Departamentos</span>
-        </li>
+        @if (Context.Session.GetString("rol").ToUpper() == "GERENCIA" || Context.Session.GetString("rol").ToUpper() == "PRESIDENCIA" || Context.Session.GetString("rol").ToUpper() == "DOCTOR"){
+            <li>
+                <a asp-controller="Usuarios" asp-action="GestionUsuarios">
+                    <i class='bx bx-user' ></i>
+                    <span class="links_name">@(Context.Session.GetString("rol").ToUpper() == "DOCTOR" ? "Pacientes" : "Usuarios")</span>
+                </a>
+                    <span class="tooltip">@(Context.Session.GetString("rol").ToUpper() == "DOCTOR" ? "Pacientes" : "Usuarios")</span>
+            </li>
+        }
 
-        <li>
-             <a asp-controller="Citas" asp-action="GestionCitas">
-               <i class='bx bx-calendar' ></i>
-               <span class="links_name">Citas</span>
-             </a>
-             <span class="tooltip">Citas</span>
-        </li>
+        @if (Context.Session.GetString("rol").ToUpper() == "PACIENTE")
+        {
+                <li>
+                    <a asp-controller="Citas" asp-action="GestionCitas">
+                        <i class='bx bx-calendar' ></i>
+                        <span class="links_name">Citas</span>
+                    </a>
+                     <span class="tooltip">Citas</span>
+                </li>
 
-        <li>
-            <a asp-controller="Itinerarios" asp-action="GestionItinerarios">
-               <i class='bx bx-calendar-edit' ></i>
-               <span class="links_name">Itinerarios</span>
-            </a>
-            <span class="tooltip">Itinerarios</span>
-        </li>
+                <li>
+                    <a asp-controller="Configuracion" asp-action="Configuracion" asp-route-username="@Context.Session.GetString("username")">
+                        <i class='bx bx-cog'></i>
+                        <span class="links_name">Perfil</span>
+                    </a>
+                    <span class="tooltip">Perfil</span>
+                </li>
+        }
 
-        <li>
-            <a asp-controller="Citas" asp-action="GestionCitasDoctor">
-                <i class='bx bx-book-add'></i>
-               <span class="links_name">Citas pendientes</span>
-            </a>
-               <span class="tooltip">Citas pendientes</span>
-        </li>
-
-        <li>
-                <a asp-controller="Configuracion" asp-action="Configuracion" asp-route-username="@Context.Session.GetString("username")">
-           <i class='bx bx-cog' ></i>
-           <span class="links_name">Perfil</span>
-         </a>
-                <span class="tooltip">Perfil</span>
-        </li>
+        @if (Context.Session.GetString("rol").ToUpper() != "PACIENTE")
+        {
+            <li>
+                <a asp-controller="Citas" asp-action="GestionCitasDoctor">
+                    <i class='bx bx-book-add'></i>
+                   <span class="links_name">Citas pendientes</span>
+                </a>
+                <span class="tooltip">Citas pendientes</span>
+            </li>
+        }
 
          <li class="profile">
              <a asp-controller ="Login" asp-action="Login" class="log-out">

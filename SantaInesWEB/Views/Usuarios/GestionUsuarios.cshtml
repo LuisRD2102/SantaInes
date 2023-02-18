@@ -128,6 +128,7 @@
                 }, {
                     "target": 9,
                     "orderable": false,
+                    "visible": "@Context.Session.GetString("rol").ToUpper()" == "DOCTOR" || "@Context.Session.GetString("rol").ToUpper()" == "PRESIDENCIA",
                 }
             ],
             "stripeClasses": []

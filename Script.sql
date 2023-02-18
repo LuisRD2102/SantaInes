@@ -1,6 +1,8 @@
 INSERT INTO dbo.Departamentos values ('77033F54-C19A-4036-8E75-B032D92AE90D','Enfermeria','Laboratorio de enfermeria')
 INSERT INTO dbo.Departamentos values ('10356C66-569F-41EF-99E2-83070A04628D','Medicina General','Laboratorio de Medicina General')
-INSERT INTO dbo.Departamentos values ('A8A48205-5FFB-42AD-8567-1639DB6A60A7','Secretaria','Secretaria general')
+INSERT INTO dbo.Departamentos values ('A8A48205-5FFB-42AD-8567-1639DB6A60A7','Secretaría','Secretaria general')
+INSERT INTO dbo.Departamentos values ('D2C8EA80-8AC1-4CFB-98AD-F33F055310EF','Gerencia','Gerencia general')
+
 
 
 INSERT INTO dbo.Direccion values ('82348632-9A01-441A-92B5-08EB4752AD64','Libertador','Centro-sur calle 2',1014)
@@ -23,5 +25,7 @@ INSERT INTO dbo.Usuario values ('amanda','12345678',12345678,'Amanda Luisa','Fer
 
 INSERT INTO dbo.Empleados values ('doc1','12345678',28273612,'Juan Fernando','Caires Montreal','Doctor','77033F54-C19A-4036-8E75-B032D92AE90D','M')
 INSERT INTO dbo.Empleados values ('doc2','12345678',28111999,'Carla Maria','Montilla','Doctor','10356C66-569F-41EF-99E2-83070A04628D','F')
-INSERT INTO dbo.Empleados values ('emp1','12345678',19837822,'Rolando','Ramirez','Empleado','A8A48205-5FFB-42AD-8567-1639DB6A60A7','M')
+INSERT INTO dbo.Empleados values ('secretaria1','12345678',19837822,'Maria','Ramirez','Secretaria','A8A48205-5FFB-42AD-8567-1639DB6A60A7','M')
+INSERT INTO dbo.Empleados values ('gerente1','12345678',27333123,'Adrian','Monsalve','Gerencia','D2C8EA80-8AC1-4CFB-98AD-F33F055310EF','M')
+INSERT INTO dbo.Empleados values ('presidente1','12345678',27888444,'Henry','Castillo','Presidencia',null,'M')
 
