@@ -18,7 +18,9 @@ namespace SantaInesAPI.BussinessLogic.Mapper
                 antPeronales = h.antPeronales,
                 patologia = h.patologia,
                 intQuirurgica = h.intQuirurgica,
-                tratHabitual = h.tratHabitual
+                tratHabitual = h.tratHabitual,
+                referencias = h.referencias,
+                diagnostico = h.diagnostico
             };
         }
 
@@ -35,7 +37,9 @@ namespace SantaInesAPI.BussinessLogic.Mapper
                 antPeronales = h.antPeronales,
                 patologia = h.patologia,
                 intQuirurgica = h.intQuirurgica,
-                tratHabitual = h.tratHabitual
+                tratHabitual = h.tratHabitual,
+                referencias = h.referencias,
+                diagnostico = h.diagnostico
             };
         }
 

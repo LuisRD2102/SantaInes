@@ -147,6 +147,9 @@ namespace SantaInesAPI.Migrations
                     b.Property<string>("antPeronales")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("diagnostico")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("intQuirurgica")
                         .HasColumnType("nvarchar(max)");
 
@@ -155,6 +158,9 @@ namespace SantaInesAPI.Migrations
 
                     b.Property<float?>("peso")
                         .HasColumnType("real");
+
+                    b.Property<string>("referencias")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("tipoSangre")
                         .HasColumnType("nvarchar(max)");

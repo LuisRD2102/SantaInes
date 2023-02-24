@@ -14,6 +14,8 @@ namespace SantaInesWEB.Models
         public string? tratHabitual { get; set; }
         public string? intQuirurgica { get; set; }
         public string? patologia { get; set; }
+        public string? referencias { get; set; }
+        public string? diagnostico { get; set; }
 
     }
 }
