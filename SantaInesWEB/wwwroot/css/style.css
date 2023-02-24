@@ -211,11 +211,11 @@ body {
   background: #f6f6f6;
   
 }
+
 .sidebar li a:hover{
   background: var(--primary-color);
-  
-  
 }
+
 .sidebar li a .links_name{
   color: var(--icons-color);
   font-size: 15px;
@@ -333,3 +333,17 @@ body {
     display: none;
   }
 }
+
+.selectedNavItem {
+    background: var(--primary-color) !important;
+    border-radius: 12px;
+}
+
+    .selectedNavItem i {
+        background: var(--primary-color) !important;
+        color: var(--color-white);
+    }
+
+    .selectedNavItem .links_name {
+        color: white !important;
+    }

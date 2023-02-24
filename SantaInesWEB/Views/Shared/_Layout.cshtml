@@ -28,15 +28,15 @@
         @if (Context.Session.GetString("rol").ToUpper() == "GERENCIA" || Context.Session.GetString("rol").ToUpper() == "PRESIDENCIA")
         {
             <li>
-                <a asp-controller="Home" asp-action="Index">
-                    <i class='bx bx-grid-alt'></i>
-                    <span class="links_name">Dashboard</span>
+                <a  asp-controller="Home" asp-action="Index">
+                <i class='bx bx-grid-alt'></i>
+                <span class="links_name">Dashboard</span>
               </a>
                <span class="tooltip">Dashboard</span>
             </li>
 
             <li>
-                <a asp-controller="Itinerarios" asp-action="GestionItinerarios">
+                <a  asp-controller="Itinerarios" asp-action="GestionItinerarios">
                     <i class='bx bx-calendar-edit'></i>
                     <span class="links_name">Itinerarios</span>
                 </a>
@@ -44,7 +44,7 @@
             </li>
 
             <li>
-                <a asp-controller="Empleados" asp-action="GestionEmpleados">
+                <a  asp-controller="Empleados" asp-action="GestionEmpleados">
                     <i class='bx bx-buildings'></i>
                     <span class="links_name">Empleados y <br />Departamentos</span>
                 </a>
@@ -54,7 +54,7 @@
 
         @if (Context.Session.GetString("rol").ToUpper() == "GERENCIA" || Context.Session.GetString("rol").ToUpper() == "PRESIDENCIA" || Context.Session.GetString("rol").ToUpper() == "DOCTOR"){
             <li>
-                <a asp-controller="Usuarios" asp-action="GestionUsuarios">
+                <a  asp-controller="Usuarios" asp-action="GestionUsuarios">
                     <i class='bx bx-user' ></i>
                     <span class="links_name">@(Context.Session.GetString("rol").ToUpper() == "DOCTOR" ? "Pacientes" : "Usuarios")</span>
                 </a>
@@ -65,7 +65,7 @@
         @if (Context.Session.GetString("rol").ToUpper() == "PACIENTE")
         {
                 <li>
-                    <a asp-controller="Citas" asp-action="GestionCitas">
+                    <a  asp-controller="Citas" asp-action="GestionCitas">
                         <i class='bx bx-calendar' ></i>
                         <span class="links_name">Citas</span>
                     </a>
@@ -122,3 +122,35 @@
 </body>
 </html>
 
+<script>
+    jQuery(function ($) {
+        $("ul a")
+            .click(function (e) {
+                var link = $(this);
+
+                var item = link.parent("li");
+
+                if (item.hasClass("selectedNavItem")) {
+                    item.removeClass("selectedNavItem").children("a").removeClass("selectedNavItem");
+                } else {
+                    item.addClass("selectedNavItem").children("a").addClass("selectedNavItem");
+                }
+
+                if (item.children("ul").length > 0) {
+                    var href = link.attr("href");
+                    link.attr("href", "#");
+                    setTimeout(function () {
+                        link.attr("href", href);
+                    }, 300);
+                    e.preventDefault();
+                }
+            })
+            .each(function () {
+                var link = $(this);
+                if (link.get(0).href === location.href) {
+                    link.addClass("selectedNavItem").parents("li").addClass("selectedNavItem");
+                    return false;
+                }
+            });
+    });
+</script>
