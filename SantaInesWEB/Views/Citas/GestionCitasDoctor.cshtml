@@ -122,13 +122,6 @@
                     args.data.fontColor = "white";
                     args.data.html = ``;
                     break;
-                case "En espera":
-                    args.data.backColor = "#e69138";  // orange
-                    args.data.barHidden = true;
-                    args.data.borderColor = "darker";
-                    args.data.fontColor = "white";
-                    args.data.html = ``;
-                    break;
                 case "Confirmada":
                     args.data.backColor = "#6aa84f";  // green
                     args.data.barHidden = true;
@@ -141,18 +134,11 @@
         onEventClick: async (args) => {
 
             const form = [
-                { name: "Editar Cita" },
-                {
-                    name: "Estado", id: "status", type: "select", options: [
-                        { name: "Libre", id: "Libre" },
-                        { name: "En espera", id: "En espera" },
-                        { name: "Confirmada", id: "Confirmada" },
-                    ]
-                },
+                { name: "Detalles de la cita" },
                 { name: "Paciente", id: "pacienteNombre", disabled: true },
                 { name: "Inicio", id: "start", dateFormat: "dd/MM/yyyy h:mm tt", disabled: true },
                 { name: "Fin", id: "end", dateFormat: "dd/MM/yyyy h:mm tt", disabled: true },
-                { name: "Doctor", id: "resource", disabled: true, options: app.doctors },
+                { name: "Doctor", id: "resource", options: app.doctors , disabled: true },
             ];
 
             const data = args.e.data;
@@ -195,9 +181,6 @@
 
                 switch (ev.data.status) {
                     case "Libre":
-                        args.html = ev.data.text;
-                        break;
-                    case "En espera":
                         args.html = ev.data.text;
                         break;
                     case "Confirmada":

@@ -138,13 +138,6 @@ const calendar = new DayPilot.Calendar("calendar", {
             args.data.fontColor = "white";
             args.data.html = ``;
             break;
-          case "En espera":
-            args.data.backColor = "#e69138";  // orange
-            args.data.barHidden = true;
-            args.data.borderColor = "darker";
-            args.data.fontColor = "white";
-            args.data.html = ``;
-            break;
           case "Confirmada":
             args.data.backColor = "#6aa84f";  // green
             args.data.barHidden = true;
@@ -161,10 +154,10 @@ const calendar = new DayPilot.Calendar("calendar", {
         }
 
         const form = [
-          {name: "Solicitar una cita"},
-          {name: "Inicio", id: "start", dateFormat: "dd/MM/yyyy h:mm tt", disabled: true},
-                { name: "Fin", id: "end", dateFormat: "dd/MM/yyyy h:mm tt", disabled: true },
-          {name: "Nombre completo", id: "name", disabled: true},
+            {name: "Solicitar una cita"},
+            {name: "Inicio", id: "start", dateFormat: "dd/MM/yyyy h:mm tt", disabled: true},
+            { name: "Fin", id: "end", dateFormat: "dd/MM/yyyy h:mm tt", disabled: true },
+            {name: "Nombre completo", id: "name", disabled: true},
         ];
 
         const data = {
@@ -183,10 +176,10 @@ const calendar = new DayPilot.Calendar("calendar", {
         if (modal.canceled) {
           return;
         }
+        args.e.data.status = "Confirmada";
+        await DayPilot.Http.put(`https://localhost:7270/Citas/${data.id}/request`, modal.result);
 
-            await DayPilot.Http.put(`https://localhost:7270/Citas/${data.id}/request`, modal.result);
-
-        args.e.data.status = "En espera";
+        
         calendar.events.update(args.e.data);
 
     }
@@ -209,9 +202,6 @@ calendar.dayEndsHour = 21;
                 switch (ev.data.status) {
                     case "Libre":
                         args.html = `Disponible<br/>${ev.data.doctorName}<br/>${ev.data.empleado.departamento.nombre}`;
-                        break;
-                    case "En espera":
-                        args.html = `Cita por confirmar<br/>${ev.data.doctorName}<br/>${ev.data.empleado.departamento.nombre}`;
                         break;
                     case "Confirmada":
                         args.html = `Cita confirmada<br/>${ev.data.doctorName}<br/>${ev.data.empleado.departamento.nombre}`;

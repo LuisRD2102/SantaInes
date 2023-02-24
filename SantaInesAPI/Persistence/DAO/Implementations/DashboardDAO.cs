@@ -136,7 +136,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             try
             {
                 DashboardNumberDTO dto = new DashboardNumberDTO();
-                dto.data = _context.Citas.Where(c => c.Start.Month == mes && c.Status== "En espera").Count();
+                dto.data = _context.Citas.Where(c => c.Start.Month == mes && c.Status== "Confirmada" && c.End > DateTime.Now).Count();
 
                 return dto;
             }

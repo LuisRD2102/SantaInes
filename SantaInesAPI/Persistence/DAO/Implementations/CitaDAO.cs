@@ -129,7 +129,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                     return HttpStatusCode.NoContent;
                 }
                 appointmentSlot.patient = slotRequest.Patient;
-                appointmentSlot.Status = "En espera";
+                appointmentSlot.Status = "Confirmada";
                 appointmentSlot.Usuario = await _context.Usuario.FindAsync(appointmentSlot.patient);
                 _context.Citas.Update(appointmentSlot);
                 await _context.SaveChangesAsync();
