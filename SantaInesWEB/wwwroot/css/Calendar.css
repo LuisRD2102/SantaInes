@@ -2,7 +2,8 @@
     --primary-color: #74b71b;
     --primary-color-dark: #537624;
     --table-color: #212529;
-    --sidebar-color: #11101D;
+    --sidebar-color: #f6f6f6;
+    --icons-color: #383838;
     --color-text: #E1E1E1;
     --color-white: #fff;
     --color-light: rgba(132, 139, 200, 0.18);
@@ -20,21 +21,17 @@
     --border-first-child: 1.8rem 0 0 0;
     --border-last-child: 0 1.8rem 0 0;
     --padding: 1.2rem;
-    --box-shadow: 0 2rem 3rem var(--color-light);
+    --box-shadow: 0 2rem 3rem var(--icons-color);
 }
 
 .navigator_default_main {
-    /* border-left: 1px solid #ffffff;
-    border-right: 1px solid #ffffff;
-    border-bottom: 1px solid #ffffff;  */
     display: grid;
     grid-template-columns: repeat(2,1fr);
     gap: 1.6rem;
     height: 10% !important;
-    /*width: fit-content !important;*/
     border: none !important;
     border-radius:var(--card-border-radius) !important;
-    background-color: var(--sidebar-color);
+    background-color: #f6f6f6;
     margin-top: 20px;
     font-size: 12px;
 }
@@ -57,10 +54,10 @@
 }
 
 .navigator_default_title, .navigator_default_titleleft, .navigator_default_titleright {
-    /*border-top: 1px solid #ffffff;*/
-    border: none !important;
-    color: #e1e1e1;
-    background: #212529;
+    border-top:none !important;
+    border-bottom:1px solid var(--color-text) !important;
+    color: var(--icons-color);
+    background: #f6f6f6;
 }
 
 .navigator_default_title {
@@ -72,15 +69,16 @@
 }
 /* day headers */
 .navigator_default_dayheader {
-    color: #e1e1e1;
-    background: #212529;
+    color: var(--icons-color);
+    border-bottom:1px solid var(--color-text) !important;
+    background: #f6f6f6;
     padding: 0px;
     text-align: center;
 }
 /* day cells */
 .navigator_default_cell {
-    color: #e1e1e1;
-    background: #212529;
+    color: var(--icons-color);
+    background: #f6f6f6;
     text-align: center;
 }
 
@@ -96,8 +94,8 @@
 }
 
 .navigator_default_weekend {
-    color: #e1e1e1;
-    background: #11101d;
+    color: var(--icons-color);
+    background: #f6f6f6;
     text-align: center;
     padding: 0px;
 }
@@ -113,7 +111,7 @@
 }
 
 .navigator_default_todaybox {
-    border: 2px solid white;
+    border: 2px solid black;
     
 }
 
@@ -123,7 +121,7 @@
 
 .navigator_default_select .navigator_default_cell_box {
     background-color: var(--primary-color); /*Cambiar*/
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 /*Elimina la palabra DEMO*/

@@ -42,7 +42,7 @@ main .form-select{
     background-color:#f6f6f6;
     margin-bottom:1.6rem;
     width: 98%;
-    border: 1px solid #E1E1E1;
+    border: 2px solid #E1E1E1;
     color:var(--icons-color);
 }   
 

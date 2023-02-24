@@ -2,7 +2,8 @@
     --primary-color: #74b71b;
     --primary-color-dark: #537624;
     --table-color: #212529;
-    --sidebar-color: #11101D;
+    --sidebar-color: #f6f6f6;
+    --icons-color: #383838;
     --color-text: #E1E1E1;
     --color-white: #fff;
     --color-light: rgba(132, 139, 200, 0.18);
@@ -23,6 +24,7 @@
     --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
+
 .scheduler_default_main {
     /*border: 1px solid #ffffff;*/
     border: none;
@@ -34,25 +36,25 @@
 
 ::-webkit-scrollbar {
     width: 10px !important;
-    background-color: var(--table-color);
+    background-color: #f6f6f6;
 }
 
 
 ::-webkit-scrollbar-thumb {
-    background: var(--sidebar-color);
+    background: var(--primary-color);
     border-radius: var(--border-radius-2);
     transition: all 0.5s ease;
 }
 
     ::-webkit-scrollbar-thumb:hover {
-        background: #555;
+        background: var(--primary-color-dark);
     }
 
 .scheduler_default_event {
 }
 
 .scheduler_default_event {
-    color: #e1e1e1;
+    color: var(--icons-color);
 }
 
 .scheduler_default_event_inner {
@@ -63,7 +65,7 @@
     bottom: 0px;
     margin: 0px;
     overflow: hidden;
-    background-color: #11101d;
+    background-color: var(--color-text);
     padding: 15px;
     display: flex;
     align-items: center;
@@ -71,14 +73,15 @@
 
 .scheduler_default_timeheadergroup,
 .scheduler_default_timeheadercol {
-    color: #e1e1e1;
-    background: #212529;
+    color: var(--icons-color);
+    background: #f6f6f6;
 }
 
 .scheduler_default_rowheader,
 .scheduler_default_corner {
-    color: #e1e1e1;
-    background: #212529;
+    /*border:none !important;*/
+    color: var(--icons-color);
+    background: #f6f6f6;
 }
 
 .scheduler_default_rowheader_inner {
@@ -87,7 +90,7 @@
     right: 0px;
     top: 0px;
     bottom: 0px;
-    border-right: 1px solid #e0e0e0;
+    border-right: 1px solid var(--icons-color);
     padding: 7px;
     display: flex;
     align-items: center;
@@ -104,7 +107,7 @@
     right: 0px;
     top: 0px;
     bottom: 0px;
-    border-right: 1px solid #ffffff;
+    border-right: 1px solid var(--icons-color);
     padding: 7px;
     display: flex;
     align-items: center;
@@ -112,28 +115,28 @@
 }
 
 .scheduler_default_timeheadergroup_inner {
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid var(--icons-color);
 }
 
 .scheduler_default_divider,
 .scheduler_default_splitter,
 .scheduler_default_divider_horizontal,
 .scheduler_default_resourcedivider {
-    background-color: #ffffff;
+    background-color: var(--icons-color);
 }
 
 .scheduler_default_matrix_vertical_line,
 .scheduler_default_matrix_horizontal_line {
-    background-color: #ffffff;
-}
-
-.scheduler_default_cell {
-    background: #303030;
+    background-color: var(--icons-color);
     
 }
 
+.scheduler_default_cell {
+    background: #ededed;
+}
+
     .scheduler_default_cell.scheduler_default_cell_business {
-        background: #303030;        
+        background: #ededed;        
     }
 
 .scheduler_default_message {
@@ -150,7 +153,7 @@
 }
 
 .scheduler_default_matrix_vertical_break {
-    background-color: #999;
+    background-color: var(--icons-color);
 }
 
 .scheduler_default_cellparent {
@@ -179,11 +182,11 @@
 
 .scheduler_default_columnheader_splitter {
     box-sizing: border-box;
-    border-right: 1px solid #c0c0c0;
-}
+    border-right: 1px solid var(--icons-color);
+ }
 
     .scheduler_default_columnheader_splitter:hover {
-        background-color: #c0c0c0;
+        background-color: var(--icons-color);
     }
 
 .scheduler_default_columnheader_cell_inner {
@@ -200,7 +203,8 @@
 .scheduler_default_timeheader_float {
     display: flex;
     align-items: center;
-    
+    border-bottom:1px solid var(--icons-color);
+    background-color:#f6f6f6;
     justify-content: center;
 }
 
@@ -313,18 +317,19 @@
 
 .scheduler_default_link_horizontal {
     border-bottom-style: solid;
-    border-bottom-color: #cc0000;
+    border-bottom-color: var(--icons-color);
+    
 }
 
 .scheduler_default_link_vertical {
     border-right-style: solid;
-    border-right-color: #cc0000;
+    border-right-color: var(--icons-color);
 }
 
 .scheduler_default_link_arrow_right:before {
     content: '';
     border-width: 6px;
-    border-color: transparent transparent transparent #cc0000;
+    border-color: transparent transparent transparent var(--icons-color);
     border-style: solid;
     width: 0px;
     height: 0px;
@@ -575,12 +580,12 @@
 
 .scheduler_default_rowheader_scroll {
     cursor: default;
-    background: #212529;
+    background: #f6f6f6;
     border-bottom-left-radius: var(--card-border-radius) !important;
 }
 
 .scheduler_default_timeheader_scroll {
-    background: #212529;
+    background: #f6f6f6;
     border-top-right-radius: var(--card-border-radius) !important;
 }
 

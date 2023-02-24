@@ -2,7 +2,8 @@
     --primary-color: #74b71b;
     --primary-color-dark: #537624;
     --table-color: #212529;
-    --sidebar-color: #11101D;
+    --sidebar-color: #f6f6f6;
+    --icons-color: #383838;
     --color-text: #E1E1E1;
     --color-white: #fff;
     --color-light: rgba(132, 139, 200, 0.18);
@@ -36,29 +37,28 @@
 main .top-bar {
     display: flex;
     justify-content: space-between;
-    background-color: var(--sidebar-color);
+    background-color: #f6f6f6;
     box-sizing: border-box;
     height: 60px;
-    
 }
 
     main .top-bar .titulo-top {
         display: flex;
-        color: white;
+        color: var(--icons-color);
         align-items: center;
         margin-left: 30px;
     }
 
         main .top-bar .titulo-top h2 {
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
 main .contenedor-calendario {
     width: 100%;
     height: 98%;
     box-shadow: var(--box-shadow);
-    background: var(--table-color);
+    background: #f6f6f6;
     margin-top: 20px;
     border-radius: var(--card-border-radius);
     transition: all 0.5s ease;
