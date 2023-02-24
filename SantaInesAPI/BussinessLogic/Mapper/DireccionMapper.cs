@@ -11,8 +11,8 @@ namespace SantaInesAPI.BussinessLogic.Mapper
             {
                 id = d.id,
                 municipio = d.municipio,
-                direccion = d.direccion,               
-                codPostal = d.cod_postal
+                direccion = d.direccion              
+               
                 
             };
         }
@@ -23,8 +23,8 @@ namespace SantaInesAPI.BussinessLogic.Mapper
             {
                 id = d.id,
                 municipio = d.municipio,
-                direccion = d.direccion,
-                cod_postal = d.codPostal
+                direccion = d.direccion
+                
             };
         }
     }

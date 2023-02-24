@@ -35,9 +35,11 @@
     height:1px !important;
 }
 
+main .btnHM:hover{
+    cursor:pointer;
+}
 
 @media screen and (max-width: 1200px) {
- 
     main .table-responsive {
         margin: auto;
         border-radius: var(--card-border-radius);

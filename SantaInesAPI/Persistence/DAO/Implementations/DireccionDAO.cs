@@ -28,8 +28,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                     {
                         id = d.id,
                         municipio = d.municipio,
-                        direccion = d.direccion,
-                        codPostal = d.cod_postal
+                        direccion = d.direccion                        
                     }
                 );
                 return data.First();
@@ -53,8 +52,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                             {
                                 id = d.id,
                                 municipio = d.municipio,
-                                direccion = d.direccion,
-                                codPostal = d.cod_postal                             
+                                direccion = d.direccion                             
 
                             });
 
@@ -77,8 +75,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                     {
                         id = d.id,
                         municipio = d.municipio,
-                        direccion = d.direccion,
-                        codPostal = d.cod_postal
+                        direccion = d.direccion
                     }
                 );
 

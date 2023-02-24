@@ -29,7 +29,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 var data = _context.Usuario.Where(u => u.username == usuario.username).Select(
                     u => new UsuarioDTO
                     {
-                        username = u.username,
+                        username = u.cedula.ToString(),
                         password = u.password,
                         cedula = u.cedula,
                         nombre_completo = u.nombre_completo,
@@ -55,6 +55,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
         {
             try
             {
+                usuario.username = usuario.cedula.ToString();
                 if (!(ExisteCedula(usuario))) {
                     _daoHM.CrearHistoriaMedica(usuario.idHistoria);
                     _context.Usuario.Add(usuario);

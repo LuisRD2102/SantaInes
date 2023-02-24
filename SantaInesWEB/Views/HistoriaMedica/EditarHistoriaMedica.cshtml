@@ -102,11 +102,7 @@
                                 @Html.TextBoxFor(m => m.Item2.municipio, new {@Value = Model.Item2.municipio,Class="form-control", placeholder="Municipio: "})
                                 @Html.ValidationMessageFor(m => m.Item2.municipio ,null, new { @class = "text-danger" })
                             </div>
-                            <div class="in-flex">
-                                <span style="margin-top:15px" class="span">Código postal: </span>
-                                @Html.TextBoxFor(m => m.Item2.codPostal, new{@Value = Model.Item2.codPostal,Class="form-control", placeholder = "Código postal", id="postal" })
-                                @Html.ValidationMessageFor(m => m.Item2.codPostal ,null, new { @class = "text-danger" })
-                            </div>
+                         
                         </div>
                         <span style="margin-top:15px" class="span">Dirección: </span>
                         @Html.TextAreaFor(m => m.Item2.direccion, new {@Value = Model.Item2.direccion,Class="form-control area-direccion", placeholder="Dirección: "})

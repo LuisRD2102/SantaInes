@@ -50,7 +50,7 @@ namespace SantaInesAPI.Migrations
 
                     b.HasIndex("patient");
 
-                    b.ToTable("Citas", (string)null);
+                    b.ToTable("Citas");
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Departamento", b =>
@@ -69,7 +69,7 @@ namespace SantaInesAPI.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Departamentos", (string)null);
+                    b.ToTable("Departamentos");
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Direccion", b =>
@@ -77,9 +77,6 @@ namespace SantaInesAPI.Migrations
                     b.Property<Guid>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("cod_postal")
-                        .HasColumnType("int");
 
                     b.Property<string>("direccion")
                         .IsRequired()
@@ -91,7 +88,7 @@ namespace SantaInesAPI.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Direccion", (string)null);
+                    b.ToTable("Direccion");
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Empleado", b =>
@@ -129,7 +126,7 @@ namespace SantaInesAPI.Migrations
 
                     b.HasIndex("id_departamento");
 
-                    b.ToTable("Empleados", (string)null);
+                    b.ToTable("Empleados");
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.HistoriaMedica", b =>
@@ -167,7 +164,7 @@ namespace SantaInesAPI.Migrations
 
                     b.HasKey("idHistoria");
 
-                    b.ToTable("HistoriaMedicas", (string)null);
+                    b.ToTable("HistoriaMedicas");
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Usuario", b =>
@@ -219,7 +216,7 @@ namespace SantaInesAPI.Migrations
                     b.HasIndex("id_direccion")
                         .IsUnique();
 
-                    b.ToTable("Usuario", (string)null);
+                    b.ToTable("Usuario");
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Cita", b =>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/css/Toaster.css" />
     <link rel="stylesheet" href="~/css/Modal.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
 
 </head>
 
@@ -24,13 +25,10 @@
             <thead>
                 <tr>
                     <th>
-                        Usuario
+                        Cedula
                     </th>
                     <th>
                         Contraseña
-                    </th>
-                    <th>
-                        Cedula
                     </th>
                     <th>
                         Nombres
@@ -60,13 +58,10 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(i => item.username)
+                        @Html.DisplayFor(i => item.cedula)
                     </td>
                     <td>
                         @Html.DisplayFor(i => item.password)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(i => item.cedula)
                     </td>
                     <td>
                         @Html.DisplayFor(i => item.nombre_Completo)
@@ -74,7 +69,6 @@
                     <td>
                         @Html.DisplayFor(i => item.apellido_Completo)
                     </td>
-
                     <td>
                         @Html.DisplayFor(i => item.sexo)
                     </td>
@@ -88,17 +82,25 @@
                         @Html.DisplayFor(i => item.id_direccion)
                     </td>
                     <td>
-                        <div class="dropdown">
+                        <button id="btnHistoriaMedica" class="btnHM" type="button" onclick="location.href='@Url.Action("EditarHistoriaMedica","HistoriaMedica",new { username = @item.username })'">
+                            <span class="material-symbols-sharp">
+                                clinical_notes
+                            </span>
+                           
+                        </button>
+                       
+
+              @*          <div class="dropdown">
 
                             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-vertical-rounded'></i></button>
 
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
-                                <button id="btnHistoriaMedica" type="button" class="dropdown-item" onclick="location.href='@Url.Action("EditarHistoriaMedica","HistoriaMedica",new { username = @item.username })'">Historia Médica</button>
-                                @*<button id="btnEliminar" type="button" class="dropdown-item" data-toggle="eliminarEmpleado-modal" data-target="#popUpEliminar" data-url="@Url.Action("EliminarEmpleado","Empleados",new { username = "Usuario" })">Eliminar</button>*@
+                                
+                                <button id="btnEliminar" type="button" class="dropdown-item" data-toggle="eliminarEmpleado-modal" data-target="#popUpEliminar" data-url="@Url.Action("EliminarEmpleado","Empleados",new { username = "Usuario" })">Eliminar</button>
 
                             </ul>
-                        </div>
+                        </div>*@
                     </td>
                 </tr>
             }
@@ -122,11 +124,11 @@
             "lengthChange": false,
             "columnDefs": [
                 {
-                    "target": 8,
+                    "target": 7,
                     "visible": false,
                     "searchable": false,
                 }, {
-                    "target": 9,
+                    "target": 8,
                     "orderable": false,
                     "visible": "@Context.Session.GetString("rol").ToUpper()" == "DOCTOR" || "@Context.Session.GetString("rol").ToUpper()" == "PRESIDENCIA",
                 }

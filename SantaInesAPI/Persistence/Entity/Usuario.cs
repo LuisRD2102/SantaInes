@@ -31,7 +31,7 @@ namespace SantaInesAPI.Persistence.Entity
                 if (now < fecha_nacimiento.AddYears(age))
                     age--;
                 return age;
-            } }
+        } }
 
     }
 }

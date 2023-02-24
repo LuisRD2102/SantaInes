@@ -37,6 +37,11 @@ namespace SantaInesAPI.Persistence.Database
             .HasOne(b => b.Usuario)
             .WithOne(i => i.HistoriaMedica)
             .HasForeignKey<Usuario>(b => b.idHistoria);
+
+            //modelBuilder.Entity<Usuario>()
+            //.Property(b => b.username)
+            //.HasDefaultValue()
+            //.HasForeignKey<Usuario>(b => b.idHistoria);
         }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Direccion> Direccion { get; set; }
