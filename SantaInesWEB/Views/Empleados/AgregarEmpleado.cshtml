@@ -41,7 +41,7 @@
                         new SelectListItem{Value = "", Text = "Sexo"},
                         new SelectListItem{Value = "M", Text = "Masculino"},
                         new SelectListItem{Value = "F", Text = "Femenino"}
-                        }, new {Class="form-select",Style = "color:#E1E1E1", id="sexo"} )
+                        }, new {Class="form-select",Style = "color:#383838", id="sexo"} )
                     @Html.ValidationMessageFor(m => m.Item1.sexo,null, new { @class = "text-danger" })
                     <br />
 
@@ -57,7 +57,7 @@
                         new SelectListItem{Value = "", Text = "Rol"},
                         new SelectListItem{Value = "Doctor", Text = "Doctor"},
                         new SelectListItem{Value = "Empleado", Text = "Empleado"}
-                        }, new {Class="form-select",Style = "color:#E1E1E1", id="rol"} )
+                }, new {Class="form-select",Style = "color:#383838", id="rol"} )
                     @Html.ValidationMessageFor(m => m.Item1.rol,null, new { @class = "text-danger" })
                     <br />
 
@@ -76,11 +76,11 @@
 
 <script>
     document.querySelector('#rol').onchange = function () {
-        this.style.color = '#E1E1E1';
+        this.style.color = '#383838';
     }
 
     document.querySelector('#sexo').onchange = function () {
-        this.style.color = '#E1E1E1';
+        this.style.color = '#383838';
     }
 
  </script>

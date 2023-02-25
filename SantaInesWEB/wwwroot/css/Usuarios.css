@@ -35,6 +35,11 @@
     height:1px !important;
 }
 
+main .btnHM {
+    border:none;
+    background-color:#f6f6f6;
+}
+
 main .btnHM:hover{
     cursor:pointer;
 }

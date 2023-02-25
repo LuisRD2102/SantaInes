@@ -1,12 +1,11 @@
 :root {
     --primary-color: #74b71b;
     --primary-color-dark: #537624;
-    --color-dark-variant: #677483;
     --table-color: #212529;
+    --sidebar-color: #f6f6f6;
+    --icons-color: #383838;
     --color-text: #E1E1E1;
-    --sidebar-color: #11101D;
     --color-white: #fff;
-    --color-dark: #363949;
     --color-light: rgba(132, 139, 200, 0.18);
     --card-border-radius: 2rem;
     --border-radius-1: 0.4rem;
@@ -31,25 +30,6 @@
     
 }
 
-/*.close {
-    float: right;
-    font-size: 21px;
-    font-weight: bold;
-    line-height: 1;
-    color: var(--sidebar-color);
-    text-shadow: 0 1px 0 #ffffff;
-    opacity: 0.2;
-    filter: alpha(opacity=20);
-}
-
-    .close:hover,
-    .close:focus {
-        color: var(--primary-color);
-        text-decoration: none;
-        cursor: pointer;
-        opacity: 0.5;
-        filter: alpha(opacity=50);
-    }*/
 
 button.close {
     padding: 0;
@@ -104,19 +84,6 @@ button.close {
     margin: 10px;
 }
 
-/*.modal-content {
-    position: relative;
-    background-color: #ffffff;
-    border: 1px solid #999999;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    outline: 0;
-}*/
-
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -147,8 +114,7 @@ button.close {
         margin-top: 2px;
         font-size: 24px;
         opacity: 1 !important;
-        /*color:var(--sidebar-color); Cambiar*/
-        color: var(--color-text);
+        color:var(--icons-color);
         transition: all 0.5s ease;
     }
 
@@ -167,9 +133,9 @@ button.close {
 }
 
 .modal-body h5{
-    color:var(--color-text);
+    color:var(--icons-color);
     text-align:center;
-    font-weight:300;
+    font-weight:400;
 }
 
 .modal-body span{
@@ -181,7 +147,7 @@ button.close {
 }
 
 .modal-body .span{
-    color: var(--color-text);
+    color: var(--icons-color);
     font-size:14px;
     margin-left: 0.6rem;
     margin-bottom: 0.4rem;
@@ -359,8 +325,7 @@ button.close {
     flex-direction: column;
     width: 100%;
     pointer-events: auto;
-    /*background-color: #fff;*/ /*Cambiar*/
-    background-color:var(--table-color);
+    background-color:#f6f6f6;
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: var(--card-border-radius);
@@ -408,7 +373,7 @@ button.close {
     font-weight: 600;
     font-size: 16px;
     /*color: var(--sidebar-color);*/
-    color: var(--color-text); /*Cambiar*/
+    color: var(--icons-color); /*Cambiar*/
 }
 
 .modal-body {
@@ -637,8 +602,8 @@ button.close {
     line-height: 1.5;
     color: #212529;
     /*background-color: #fff;*/ /*Cambiar*/
-    background-color: var(--sidebar-color);
-    color:var(--color-text);
+    background-color: #ededed;
+    color: var(--icons-color);
     background-clip: padding-box;
     border: 1px solid var(--sidebar-color);
     -webkit-appearance: none;
@@ -674,13 +639,13 @@ button.close {
 }
 
 .form-control::-moz-placeholder {
-    color: var(--color-text);
+    color: var(--icons-color);
     opacity: 1;
 }
 
 .form-control::placeholder {
     /*color: #6c757d; */ /*Cambiar*/
-    color: var(--color-text);
+    color: var(--icons-color);
     opacity: 1;
 }
 
@@ -845,13 +810,13 @@ textarea.form-control-lg {
     color: #6c757d;
     cursor: pointer;
     /*background-color: #fff; Cambiar*/
-    background-color: var(--sidebar-color);
-    color: var(--color-text);
+    background-color: #ededed;
+    color: var(--icons-color);
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     background-size: 16px 12px;
-    border: 1px solid var(--sidebar-color);
+    border: 1px solid #ededed;
     border-radius: var(--border-radius-2);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     -webkit-appearance: none;

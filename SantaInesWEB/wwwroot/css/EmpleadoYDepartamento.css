@@ -2,7 +2,8 @@
     --primary-color: #74b71b;
     --primary-color-dark: #537624;
     --table-color: #212529;
-    --sidebar-color: #11101D;
+    --sidebar-color: #f6f6f6;
+    --icons-color: #383838;
     --color-text: #E1E1E1;
     --color-white: #fff;
     --color-light: rgba(132, 139, 200, 0.18);
@@ -44,7 +45,7 @@ h1{
 .dropdown-toggle {
     white-space: nowrap;
     cursor:pointer;
-    background-color: var(--table-color);
+    background-color: #f6f6f6;
     border: none;
     border-radius: 100%;
     height: 30px;
@@ -55,7 +56,7 @@ h1{
 main .dropdown i {
     display: flex;
     margin: auto;
-    color:var(--color-text);
+    color:var(--icons-color);
     justify-content: center;
     font-size: 14px;
 }
@@ -96,9 +97,8 @@ main .dropdown-toggle:hover {
     color: #212529;
     text-align: left;
     list-style: none;
-    background-color: var(--table-color);
+    background-color: #f6f6f6;
     background-clip: padding-box;
-    color: var(--color-text); /*Cambiar*/
     border: 0.5px solid var(--primary-color-dark);
     border-radius: 0.25rem;
 }
@@ -142,8 +142,7 @@ main .dropdown-toggle:hover {
     padding: 0.25rem 1rem;
     clear: both;
     font-weight: 400;
-    /*color: #212529;*/ /*Cambiar*/
-    color:var(--color-text); /*Cambiar*/
+    color:var(--icons-color); 
     text-align: inherit;
     text-decoration: none;
     white-space: nowrap;
@@ -153,8 +152,8 @@ main .dropdown-toggle:hover {
 }
 
     .dropdown-item:hover, .dropdown-item:focus {
-        color: var(--color-text);
-        background-color: #11101D;
+        color: var(--icons-color);
+        background-color: var(--color-text);
     }
 
     .dropdown-item.active, .dropdown-item:active {
@@ -248,7 +247,7 @@ main .wrapperTable {
 main .Empleados .titulo-empleado {
     margin-top: 1.2rem;
     margin-left: 1rem;
-    color:var(--color-text); /*Cambiar*/
+    color:var(--icons-color);
 }
     
 
@@ -341,39 +340,38 @@ main .contenedor .departamentos {
             border: none !important;
         }
 
-    main .top-bar {
+main .top-bar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f6f6f6;
+    box-sizing: border-box;
+    height: 60px;
+}
+
+    main .top-bar .titulo-top {
         display: flex;
-        justify-content: space-between;
-        background-color: var(--sidebar-color);
-        box-sizing: border-box;
-        height: 60px;
+        color: var(--icons-color);
+        align-items: center;
+        margin-left: 30px;
     }
 
-        main .top-bar .titulo-top {
-            display:flex;
-            color: white;
-            align-items:center;
-            margin-left: 30px;
+        main .top-bar .titulo-top h2 {
+            font-size: 16px;
+            font-weight: 600;
         }
-
-            main .top-bar .titulo-top h2 {
-                font-size: 16px;
-                font-weight: 500;
-            }
 
 main .departamentos .titulo-departamento {
     margin-top: 1.2rem;
     margin-left: 1rem;
-    color: var(--color-text); /*Cambiar*/
+    color: var(--icons-color);
 }
 
 
 /*Tabla responsive*/
 main .table-responsive {
-    /* background-color: white;*/
-    background-color: var(--table-color); /*Cambiar*/
+    background-color: #f6f6f6; 
     margin: auto;
-    color: var(--color-text); /*Cambiar*/
+    color: var(--icons-color);
     border-radius: var(--card-border-radius);
     box-shadow: var(--box-shadow);
     height: auto;
@@ -386,9 +384,7 @@ main .table-responsive:hover{
 }
 
 table.dataTable thead th {
-    /*background-color: var(--primary-color);*/
-    /*color: white;*/
-    color: var(--color-text); /*Cambiar*/
+    color: var(--icons-color);
     text-align: center !important;
     font-weight: 500 !important;
 }
