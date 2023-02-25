@@ -22,8 +22,8 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 DashboardDTO dto = new DashboardDTO();
                 dto.labels = new string[] { "Hombres", "Mujeres"};
                 var dataTemp = new int[2];
-                dataTemp[0] = _context.Citas.Where(c => c.Start.Month == mes && c.Usuario.sexo == Char.ToString('M') && c.Status=="Confirmada").Include(u => u.Usuario).Count();
-                dataTemp[1] = _context.Citas.Where(c => c.Start.Month == mes && c.Usuario.sexo == Char.ToString('F') && c.Status == "Confirmada").Include(u => u.Usuario).Count();
+                dataTemp[0] = _context.Citas.Where(c => c.Start.Month == mes && c.Usuario.sexo == Char.ToString('M') && c.Status=="Confirmada" && c.End < DateTime.Now).Include(u => u.Usuario).Count();
+                dataTemp[1] = _context.Citas.Where(c => c.Start.Month == mes && c.Usuario.sexo == Char.ToString('F') && c.Status == "Confirmada" && c.End < DateTime.Now).Include(u => u.Usuario).Count();
                 dto.data = dataTemp;
                 return dto;
             }
@@ -47,7 +47,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 for (int i = 0; i < guids.Length; i++)
                 {
                     labels.Add(guids[i].nombre);
-                    data.Add(_context.Citas.Where(d => d.Empleado.Departamento.id == guids[i].id && d.Status=="Confirmada" && d.Start.Month == mes).Include(e => e.Empleado.Departamento).Count());
+                    data.Add(_context.Citas.Where(d => d.Empleado.Departamento.id == guids[i].id && d.Status=="Confirmada" && d.Start.Month == mes && d.End < DateTime.Now).Include(e => e.Empleado.Departamento).Count());
                 };
 
                 dto.labels = labels.ToArray();
@@ -69,7 +69,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 var labels = new List<string>();
                 var data = new List<int>();
 
-                var empleados = _context.Citas.Where(c => c.Status == "Confirmada" && c.Start.Month == mes)
+                var empleados = _context.Citas.Where(c => c.Status == "Confirmada" && c.Start.Month == mes && c.End < DateTime.Now)
                             .Include(i => i.Empleado)
                             .GroupBy(info => info.Empleado.username)
                             .Select(group => new
@@ -152,7 +152,7 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
             try
             {
                 DashboardNumberDTO dto = new DashboardNumberDTO();
-                dto.data = _context.Citas.Where(c => c.Start.Month == mes && c.Status == "Confirmada").Count();
+                dto.data = _context.Citas.Where(c => c.Start.Month == mes && c.Status == "Confirmada" && c.End < DateTime.Now).Count();
 
                 return dto;
             }
