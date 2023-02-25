@@ -2,11 +2,12 @@
     --primary-color: #74b71b;
     --primary-color-dark: #537624;
     --color-dark-variant: #677483;
-    --table-color: #212529;
-    --color-text: #E1E1E1;
-    --sidebar-color: #11101D;
-    --color-white: #fff;
     --color-dark: #363949;
+    --table-color: #212529;
+    --sidebar-color: #f6f6f6;
+    --icons-color: #383838;
+    --color-text: #E1E1E1;
+    --color-white: #fff;
     --color-light: rgba(132, 139, 200, 0.18);
     --card-border-radius: 2rem;
     --border-radius-1: 0.4rem;
@@ -26,22 +27,22 @@
 }
 
 .modal_default_main {
-    border: 10px solid var(--table-color) !important;
+    border: 10px solid #f6f6f6 !important;
     border-radius:var(--card-border-radius) !important;
 }
 
 .modal_default_inner{
-    background-color:var(--table-color) !important;
+    background-color:#f6f6f6 !important;
 }
 
 .modal_default_form_item.modal_default_form_title {
     font-weight: 900 !important;    
-    color: var(--color-text) !important;
+    color: var(--icons-color) !important;
 }
 
 .modal_default_form_item_label {
     font-weight: 400 !important;
-    color: var(--color-text) !important;
+    color: var(--icons-color) !important;
     margin-left:10px;
 }
 
@@ -56,8 +57,8 @@ select {
     color: #6c757d;
     cursor: pointer;
     /*background-color: #fff; Cambiar*/
-    background-color: var(--sidebar-color);
-    color: var(--color-text);
+    background-color: #ededed;
+    color: var(--icons-color);
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
@@ -85,8 +86,8 @@ input {
     line-height: 1.5;
     color: #212529;
     /*background-color: #fff;*/ /*Cambiar*/
-    background-color: var(--sidebar-color);
-    color: var(--color-text);
+    background-color: #ededed;
+    color: var(--icons-color);
     background-clip: padding-box;
     border: 1px solid var(--sidebar-color);
     -webkit-appearance: none;

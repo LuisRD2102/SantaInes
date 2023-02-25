@@ -1,8 +1,11 @@
 :root {
     --primary-color: #74b71b;
     --primary-color-dark: #537624;
+    --color-dark-variant: #677483;
+    --color-dark: #363949;
     --table-color: #212529;
-    --sidebar-color: #11101D;
+    --sidebar-color: #f6f6f6;
+    --icons-color: #383838;
     --color-text: #E1E1E1;
     --color-white: #fff;
     --color-light: rgba(132, 139, 200, 0.18);
@@ -24,7 +27,7 @@
 }
 /*Overrides*/
 .column-main .titulo h1 {
-    color: var(--color-text);
+    color: var(--icons-color);
     margin-left: 1rem;
 }
 
@@ -42,7 +45,7 @@
 }
 
 .column-main .titulo-citas-pendientes h1 {
-    color: var(--color-text);
+    color: var(--icons-color);
     margin-left: 1rem;
 }
 
@@ -69,13 +72,13 @@ main .contenedor-calendario{
     line-height: 1.5;
     color: #6c757d;
     cursor: pointer;
-    background-color: var(--table-color);
-    color: var(--color-text);
+    background-color: #f6f6f6;
+    color: var(--icons-color);
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     background-size: 16px 12px;
-    border: 1px solid var(--color-white);
+    border: 2px solid var(--color-text);
     border-radius: var(--border-radius-2);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     -webkit-appearance: none;
@@ -95,7 +98,7 @@ main .contenedor-calendario{
 }
 
 .calendar_default_main {
-    border: 1px solid #212529;
+    border: 1px solid #f6f6f6;
     min-width: 54.7%;
     border-radius: var(--card-border-radius);
 }
@@ -110,7 +113,7 @@ main .contenedor-calendario{
     }
 */
 .calendar_default_event {
-    color: #e1e1e1;
+    color: var(--icons-color);
 }
 
 .calendar_default_event_inner {
@@ -152,8 +155,8 @@ main .contenedor-calendario{
     top: 1px;
     bottom: 0px;
     margin: 0px;
-    color: #e1e1e1;
-    background-color: #74b71b;
+    color: var(--icons-color);
+    background-color: #ededed;
     background: -webkit-gradient(linear, left top, left bottom, from(#76bb1c), to(#72b31a));
     background: -webkit-linear-gradient(top, #76bb1c 0%, #72b31a);
     background: -moz-linear-gradient(top, #76bb1c 0%, #72b31a);
@@ -165,7 +168,7 @@ main .contenedor-calendario{
     -webkit-border-radius: 20px;
     border-radius: 20px;
     padding: 2px;
-   /* border: 1px solid #ffffff;*/
+    /* border: 1px solid #ffffff;*/
     text-align: left;
 }
 
@@ -178,10 +181,10 @@ main .contenedor-calendario{
     right: 0px;
     /*   border-right: 1px solid #ffffff;
     border-bottom: 1px solid #ffffff;*/
-    border-right: 1px solid #11101D;
-    border-bottom: 1px solid #11101D;
+    border-right: 1px solid var(--icons-color);
+    border-bottom: 1px solid var(--icons-color);
     color: #e1e1e1;
-    background: #212529;
+    background: #f6f6f6;
     background: -webkit-gradient(linear, left top, left bottom, from(#22262a), to(#202428));
     background: -webkit-linear-gradient(top, #22262a 0%, #202428);
     background: -moz-linear-gradient(top, #22262a 0%, #202428);
@@ -201,14 +204,14 @@ main .contenedor-calendario{
     right: 0px;
 /*    border-right: 1px solid #ffffff;
     border-bottom: 1px solid #ffffff;*/
-    color: #e1e1e1;
-    background: #212529;
-    background: -webkit-gradient(linear, left top, left bottom, from(#22262a), to(#202428));
+    color: var(--icons-color);
+    background: #f6f6f6;
+   /* background: -webkit-gradient(linear, left top, left bottom, from(#22262a), to(#202428));
     background: -webkit-linear-gradient(top, #22262a 0%, #202428);
     background: -moz-linear-gradient(top, #22262a 0%, #202428);
     background: -ms-linear-gradient(top, #22262a 0%, #202428);
     background: -o-linear-gradient(top, #22262a 0%, #202428);
-    background: linear-gradient(top, #22262a 0%, #202428);
+    background: linear-gradient(top, #22262a 0%, #202428);*/
     filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr="#22262a", endColorStr="#202428");
 }
 
@@ -220,16 +223,16 @@ main .contenedor-calendario{
     left: 0px;
     bottom: 0px;
     right: 0px;
-  /*  border-right: 1px solid #ffffff;
+    /*  border-right: 1px solid #ffffff;
     border-bottom: 1px solid #ffffff;*/
-    color: #e1e1e1;
-    background: #212529;
-    background: -webkit-gradient(linear, left top, right top, from(#22262a), to(#202428));
+    color: var(--icons-color);
+    background: #f6f6f6;
+    /*    background: -webkit-gradient(linear, left top, right top, from(#22262a), to(#202428));
     background: -webkit-linear-gradient(left, #22262a 0%, #202428);
     background: -moz-linear-gradient(left, #22262a 0%, #202428);
     background: -ms-linear-gradient(left, #22262a 0%, #202428);
     background: -o-linear-gradient(left, #22262a 0%, #202428);
-    background: linear-gradient(left, #22262a 0%, #202428);
+    background: linear-gradient(left, #22262a 0%, #202428);*/
     filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr="#22262a", endColorStr="#202428", GradientType=1);
 }
 
@@ -249,14 +252,14 @@ main .contenedor-calendario{
     /*border-right: 1px solid #ffffff;
     border-bottom: 1px solid #ffffff;*/
     border-top-left-radius: var(--card-border-radius);
-    color: #e1e1e1;
-    background: #212529;
-    background: -webkit-gradient(linear, left top, right top, from(#22262a), to(#202428));
+    color: var(--icons-color);
+    background: #f6f6f6;
+/*    background: -webkit-gradient(linear, left top, right top, from(#22262a), to(#202428));
     background: -webkit-linear-gradient(left, #22262a 0%, #202428);
     background: -moz-linear-gradient(left, #22262a 0%, #202428);
     background: -ms-linear-gradient(left, #22262a 0%, #202428);
     background: -o-linear-gradient(left, #22262a 0%, #202428);
-    background: linear-gradient(left, #22262a 0%, #202428);
+    background: linear-gradient(left, #22262a 0%, #202428);*/
     filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr="#22262a", endColorStr="#202428", GradientType=1);
 }
 
@@ -269,14 +272,14 @@ main .contenedor-calendario{
     /*  border-right: 1px solid #ffffff;
     border-bottom: 1px solid #ffffff;*/
     border-top-right-radius: var(--card-border-radius);
-    color: #e1e1e1;
-    background: #212529;
-    background: -webkit-gradient(linear, left top, left bottom, from(#22262a), to(#202428));
+    color: var(--icons-color);
+    background: #f6f6f6;
+/*    background: -webkit-gradient(linear, left top, left bottom, from(#22262a), to(#202428));
     background: -webkit-linear-gradient(top, #22262a 0%, #202428);
     background: -moz-linear-gradient(top, #22262a 0%, #202428);
     background: -ms-linear-gradient(top, #22262a 0%, #202428);
     background: -o-linear-gradient(top, #22262a 0%, #202428);
-    background: linear-gradient(top, #22262a 0%, #202428);
+    background: linear-gradient(top, #22262a 0%, #202428);*/
     filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr="#22262a", endColorStr="#202428");
 }
 
@@ -290,13 +293,13 @@ main .contenedor-calendario{
     left: 0px;
     bottom: 0px;
     right: 0px;
-    border-right: 1px solid #ffffff;
-    border-bottom: 1px solid #ffffff;
-    background: #303030;
+    border-right: 1px solid var(--icons-color);
+    border-bottom: 1px solid var(--icons-color);
+    background: #ededed;
 }
 
 .calendar_default_cell_business .calendar_default_cell_inner {
-    background: #303030;
+    background: #ededed;
 }
 
 .calendar_default_message {

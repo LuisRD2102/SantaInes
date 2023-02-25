@@ -79,8 +79,6 @@
 
                 <div class="flex">
                     <div class="in-flex">
-
-
                         <div class="double-flex">
                             <div class="in-flex">
                                 <span style="margin-top:15px" class="span">Altura: </span>
@@ -95,15 +93,13 @@
                     @Html.TextBoxFor(m => m.Item3.tipoSangre, new{@Value = Model.Item3.tipoSangre,Class="form-control", placeholder = "Tipo de sangre" })
                     </div>
                     
-                    <div class="in-flex">
-                        <div class="double-flex">
-                            <div class="in-flex">
-                                <span style="margin-top:15px" class="span">Municipio: </span>
-                                @Html.TextBoxFor(m => m.Item2.municipio, new {@Value = Model.Item2.municipio,Class="form-control", placeholder="Municipio: "})
-                                @Html.ValidationMessageFor(m => m.Item2.municipio ,null, new { @class = "text-danger" })
-                            </div>
+                    <div class="in-flex">                        
+                        
+                        <span style="margin-top:15px" class="span">Municipio: </span>
+                        @Html.TextBoxFor(m => m.Item2.municipio, new {@Value = Model.Item2.municipio,Class="form-control", placeholder="Municipio: "})
+                        @Html.ValidationMessageFor(m => m.Item2.municipio ,null, new { @class = "text-danger" })                       
                          
-                        </div>
+                        
                         <span style="margin-top:15px" class="span">Dirección: </span>
                         @Html.TextAreaFor(m => m.Item2.direccion, new {@Value = Model.Item2.direccion,Class="form-control area-direccion", placeholder="Dirección: "})
                         @Html.ValidationMessageFor(m => m.Item2.direccion ,null, new { @class = "text-danger" })
