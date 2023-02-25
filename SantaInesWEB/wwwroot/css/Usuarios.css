@@ -2,7 +2,8 @@
     --primary-color: #74b71b;
     --primary-color-dark: #537624;
     --table-color: #212529;
-    --sidebar-color: #11101D;
+    --sidebar-color: #f6f6f6;
+    --icons-color: #383838;
     --color-text: #E1E1E1;
     --color-white: #fff;
     --color-light: rgba(132, 139, 200, 0.18);
@@ -37,7 +38,25 @@
 
 main .btnHM {
     border:none;
-    background-color:#f6f6f6;
+    background-color:var(--primary-color);
+    border-radius:100%;
+    height:30px;
+    width:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: all 0.5s ease;
+}
+
+
+main .btnHM:hover{
+    background-color:var(--primary-color-dark);
+}
+
+main span{
+    color:#f6f6f6;
+    font-size:16px !important;
+    
 }
 
 main .btnHM:hover{

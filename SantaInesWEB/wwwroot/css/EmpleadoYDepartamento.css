@@ -544,7 +544,7 @@ main .agregar i {
     }
 
     main .table-responsive {
-        background-color: #212529; /*Cambiar*/
+        
         margin: auto;
         border-radius: var(--card-border-radius);
         height: 40vh;

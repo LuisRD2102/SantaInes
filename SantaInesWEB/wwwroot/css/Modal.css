@@ -1,6 +1,8 @@
 :root {
     --primary-color: #74b71b;
     --primary-color-dark: #537624;
+    --color-dark-variant: #677483;
+    --color-dark: #363949;
     --table-color: #212529;
     --sidebar-color: #f6f6f6;
     --icons-color: #383838;
