@@ -5,10 +5,10 @@ INSERT INTO dbo.Departamentos values ('D2C8EA80-8AC1-4CFB-98AD-F33F055310EF','Ge
 
 
 
-INSERT INTO dbo.Direccion values ('82348632-9A01-441A-92B5-08EB4752AD64','Libertador','Centro-sur calle 2',1014)
-INSERT INTO dbo.Direccion values ('BBFABEC2-D7DA-449D-9D74-656FE20CAFA7','Libertador','Calle 5 intesección UCV',1053)
-INSERT INTO dbo.Direccion values ('AA6C0B77-3C5D-4D04-8A15-660171326B2F','Chacao','Ocatava avenida parque chacao',1060)
-INSERT INTO dbo.Direccion values ('B4901987-5F75-46E2-A143-8C0FAB47232C','Chacao','Octava avenida parque chacao',1080)
+INSERT INTO dbo.Direccion values ('82348632-9A01-441A-92B5-08EB4752AD64','Centro-sur calle 2',24,356,854);
+INSERT INTO dbo.Direccion values ('BBFABEC2-D7DA-449D-9D74-656FE20CAFA7','Calle 5 intesección UCV',24,356,853);
+INSERT INTO dbo.Direccion values ('AA6C0B77-3C5D-4D04-8A15-660171326B2F','Ocatava avenida parque chacao',24,366,876);
+INSERT INTO dbo.Direccion values ('B4901987-5F75-46E2-A143-8C0FAB47232C','Calle Eleazar',24,366,877);
 
 
 INSERT INTO dbo.HistoriaMedicas (idHistoria) values ('8fa67439-030a-430f-821a-08db0e284e2d');

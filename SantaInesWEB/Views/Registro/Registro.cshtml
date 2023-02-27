@@ -19,27 +19,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
-	
-	<script>
-        $(function () {
-            $("#telefono").mask("(999) 999-9999");
-			$("#cedula").mask("99999999");
-			$("#postal").mask("9999");
-        })
-
-		document.querySelector('#fecha').onchange = function () {
-			this.style.color = "black";
-		}
-
-		//$('.empty').blur(function () {
-		//	if (!$(this).val()) {
-		//		$('.empty').addClass('input-danger');
-				
-		//	}
-		//	else $('.empty').removeClass('input-danger');
-		//})
-
-	</script>	
 }
 
 	<div class="page-content">
@@ -113,14 +92,31 @@
 					<h2>Información Domiciliaria</h2>
 				
 					<div class="form-row">
-						@Html.TextBoxFor(m => m.Item2.municipio, new{Placeholder = "Municipio" })
-						@Html.ValidationMessageFor(m => m.Item2.municipio ,null, new { @class = "text-danger-right" })
+						@Html.DropDownListFor(d => d.Item2.id_estado, new List<SelectListItem>(),"Estado",new { id = "estadosDDL", disabled="true" })
+						@Html.ValidationMessageFor(m => m.Item2.id_estado ,null, new { @class = "text-danger-right" })
+						<span class="select-btn">
+							<i class="zmdi zmdi-chevron-down"></i>
+						</span>
 					</div>
-										
 
 					<div class="form-row">
-					@Html.TextBoxFor(m => m.Item2.direccion, new{Placeholder = "Dirección" })
-					@Html.ValidationMessageFor(m => m.Item2.direccion ,null, new { @class = "text-danger-right" })
+						@Html.DropDownListFor(d => d.Item2.id_municipio, new List<SelectListItem>(),"Municipio",new { id = "municipiosDDL", disabled="true" })
+						@Html.ValidationMessageFor(m => m.Item2.id_municipio ,null, new { @class = "text-danger-right" })
+						<span class="select-btn">
+							<i class="zmdi zmdi-chevron-down"></i>
+						</span>
+					</div>
+
+					<div class="form-row">
+						@Html.DropDownListFor(d => d.Item2.id_parroquia, new List<SelectListItem>(),"Parroquia",new { id = "parroquiasDDL", disabled="true" })
+						@Html.ValidationMessageFor(m => m.Item2.id_parroquia ,null, new { @class = "text-danger-right" })
+						<span class="select-btn">
+							<i class="zmdi zmdi-chevron-down"></i>
+						</span>
+					</div>
+
+					<div class="form-row">
+						@Html.TextBoxFor(m => m.Item2.direccion, new{Placeholder = "Dirección" })
 					</div>										
 					<center class="form-row-last">
 						<input type="submit" name="register" class="register" value="Registrar">

@@ -1,9 +1,4 @@
-﻿using SantaInesAPI.Persistence.Entity;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.SqlTypes;
-
-namespace SantaInesAPI.BussinessLogic.DTO
+﻿namespace SantaInesAPI.BussinessLogic.DTO
 {
     public class HistoriaMedicaDTO
     {

@@ -33,6 +33,7 @@ namespace SantaInesWEB.Controllers
 				dir.id = Guid.NewGuid();
 				user.id_direccion = dir.id;
 				user.idHistoria = Guid.NewGuid();
+				user.username = user.cedula.ToString();
                 JObject respuestaDireccion = await _servicioApiDireccion.RegistrarDireccion(dir);
 				JObject respuestaUsuario = await _servicioApiUsuario.RegistrarUsuario(user);
 

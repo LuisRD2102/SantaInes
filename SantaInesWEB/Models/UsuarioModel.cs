@@ -17,7 +17,7 @@ namespace SantaInesWEB.Models
 		[StringLength(int.MaxValue,MinimumLength = 5, ErrorMessage = "La contraseña debe de tener al menos 5 caracteres")]
 		public string password { get; set; }
 
-		//[Required(ErrorMessage = "Repita la contraseña")]
+		[Required(ErrorMessage = "Repita la contraseña")]
 		[Compare("password", ErrorMessage = "Las contraseñas no coinciden")]
 		public string password2 { get; set; }		
 
@@ -43,5 +43,6 @@ namespace SantaInesWEB.Models
         public Guid id_direccion { get; set; }
         public List<UsuarioModel> usuarios { get; set; }
         public Guid idHistoria { get; set; }
+
     }
 }

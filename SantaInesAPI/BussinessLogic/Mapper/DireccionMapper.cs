@@ -10,10 +10,13 @@ namespace SantaInesAPI.BussinessLogic.Mapper
             return new DireccionDTO()
             {
                 id = d.id,
-                municipio = d.municipio,
-                direccion = d.direccion              
-               
-                
+                id_estado = d.id_estado,
+                id_municipio = d.id_municipio,
+                id_parroquia = d.id_parroquia,
+                direccion = d.direccion,
+                nb_estado = d.nb_estado,
+                nb_municipio = d.nb_municipio,
+                nb_parroquia = d.nb_parroquia
             };
         }
 
@@ -22,9 +25,10 @@ namespace SantaInesAPI.BussinessLogic.Mapper
             return new Direccion()
             {
                 id = d.id,
-                municipio = d.municipio,
+                id_estado = d.id_estado,
+                id_municipio = d.id_municipio,
+                id_parroquia = d.id_parroquia,
                 direccion = d.direccion
-                
             };
         }
     }

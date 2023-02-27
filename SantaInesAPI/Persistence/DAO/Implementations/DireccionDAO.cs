@@ -23,15 +23,8 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 _context.Direccion.Update(direccion);
                 _context.SaveChanges();
 
-                var data = _context.Direccion.Where(d => d.id == direccion.id).Select(
-                    d => new DireccionDTO
-                    {
-                        id = d.id,
-                        municipio = d.municipio,
-                        direccion = d.direccion                        
-                    }
-                );
-                return data.First();
+                var data = _context.Direccion.Where(d => d.id == direccion.id).First();
+                return DireccionMapper.EntityToDTO(data);
             }
             catch (Exception ex)
             {
@@ -47,16 +40,9 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
                 _context.Direccion.Add(direccion);
                 _context.SaveChanges();
 
-                var data = _context.Direccion.Where(d => d.id == direccion.id)
-                            .Select(d => new DireccionDTO
-                            {
-                                id = d.id,
-                                municipio = d.municipio,
-                                direccion = d.direccion                             
+                var data = _context.Direccion.Where(d => d.id == direccion.id).First();
 
-                            });
-
-                return data.First();
+                return DireccionMapper.EntityToDTO(data);
 
             }
             catch (Exception ex)
@@ -70,14 +56,13 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
         {
             try
             {
-                var lista = _context.Direccion.Select(
-                    d => new DireccionDTO
-                    {
-                        id = d.id,
-                        municipio = d.municipio,
-                        direccion = d.direccion
-                    }
-                );
+                var lista = _context.Direccion                  
+                    .Include(i => i.Estado)
+                    .Include(i => i.Municipio)
+                    .Include(i => i.Parroquia)
+                    .Select(
+                        d => DireccionMapper.EntityToDTO(d)
+                    );
 
                 return lista.ToList();
 
@@ -113,16 +98,77 @@ namespace SantaInesAPI.Persistence.DAO.Implementations
         {
             try
             {
-
                 var direccion = _context.Direccion
-               .Where(d => d.id == id).First();
-                return DireccionMapper.EntityToDTO(direccion);
+               .Where(d => d.id == id)
+                    .Include(i => i.Estado)
+                    .Include(i => i.Municipio)
+                    .Include(i => i.Parroquia)
+                    .First();
 
+                return DireccionMapper.EntityToDTO(direccion);
             }
             catch (Exception ex)
             {
                 throw new ExceptionsControl("No se encuentra la direccion" + " " + id, ex);
             }
         }
+
+        public List<EstadoDTO> ConsultarEstados()
+        {
+            try
+            {
+                var lista = _context.Estados
+                    .Select(
+                        d => EstadoMapper.EntityToDTO(d)
+                    );
+
+                return lista.ToList();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
+                throw ex.InnerException!;
+            }
+        }
+
+        public List<MunicipioDTO> ConsultarMunicipios(int id)
+        {
+            try
+            {
+                var lista = _context.Municipios.Where(m => m.id_estado == id)
+                    .Select(
+                        d => MunicipioMapper.EntityToDTO(d)
+                    );
+
+                return lista.ToList();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
+                throw ex.InnerException!;
+            }
+        }
+
+        public List<ParroquiaDTO> ConsultarParroquias(int id)
+        {
+            try
+            {
+                var lista = _context.Parroquias.Where(p => p.id_municipio == id)
+                    .Select(
+                        d => ParroquiaMapper.EntityToDTO(d)
+                    );
+
+                return lista.ToList();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " : " + ex.StackTrace);
+                throw ex.InnerException!;
+            }
+        }
+
     }
 }

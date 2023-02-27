@@ -111,7 +111,60 @@ namespace SantaInesAPI.Controllers
             }
             return response;
         }
-    }
 
-    
+        [HttpGet]
+        [Route("ConsultarEstados/")]
+        public ApplicationResponse<List<EstadoDTO>> ConsultarEstadosDAO()
+        {
+            var response = new ApplicationResponse<List<EstadoDTO>>();
+            try
+            {
+                response.Data = _DireccionDAO.ConsultarEstados();
+            }
+            catch (ExceptionsControl ex)
+            {
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("ConsultarMunicipios/{id}")]
+        public ApplicationResponse<List<MunicipioDTO>> ConsultarMunicipiosDAO([FromRoute] int id)
+        {
+            var response = new ApplicationResponse<List<MunicipioDTO>>();
+            try
+            {
+                response.Data = _DireccionDAO.ConsultarMunicipios(id);
+            }
+            catch (ExceptionsControl ex)
+            {
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("ConsultarParroquias/{id}")]
+        public ApplicationResponse<List<ParroquiaDTO>> ConsultarParroquiasDAO([FromRoute] int id)
+        {
+            var response = new ApplicationResponse<List<ParroquiaDTO>>();
+            try
+            {
+                response.Data = _DireccionDAO.ConsultarParroquias(id);
+            }
+            catch (ExceptionsControl ex)
+            {
+                response.Success = false;
+                response.Message = ex.Mensaje;
+                response.Exception = ex.Excepcion.ToString();
+            }
+            return response;
+        }
+
+    } 
 }
