@@ -4,11 +4,27 @@
 :root {
     --primary-color: #74b71b;
     --primary-color-dark: #537624;
+    --table-color: #212529;
+    --sidebar-color: #f6f6f6;
+    --icons-color: #383838;
+    --color-text: #E1E1E1;
+    --color-white: #fff;
+    --color-light: rgba(132, 139, 200, 0.18);
     --card-border-radius: 2rem;
     --border-radius-1: 0.4rem;
     --border-radius-2: 0.8rem;
     --border-radius-3: 1.2rem;
     --btn-radius: 10px;
+    --card-border-radius: 1.8rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+    --btn-radius: 10px;
+    --card-padding: 1.8rem;
+    --border-first-child: 1.8rem 0 0 0;
+    --border-last-child: 0 1.8rem 0 0;
+    --padding: 1.2rem;
+    --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
 * {
@@ -131,6 +147,13 @@ section .texto-titulo {
 
 section .texto{
     text-align:justify;
+}
+
+.card{
+    /*background-color:#fafafa;*/
+    /*border:none !important;*/
+    box-shadow:var(--box-shadow);
+    border-radius:var(--card-border-radius);
 }
 
 .gradient-custom-2 {

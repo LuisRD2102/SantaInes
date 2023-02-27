@@ -4,8 +4,6 @@
     --color-sidebar: #11101D;
 }
 
-/* Mi CSS */
-
 .text-danger{
     color:red;
     font-size: 12px;
@@ -26,8 +24,10 @@
     border-bottom: 1px solid red;    
 }
 
-
-/* Fin de Mi CSS*/
+html {
+    height: 100vh;
+    background: #f6f6f6;
+}
 
 body {
     margin: 0;
@@ -36,6 +36,8 @@ body {
 .page-content {
     width: 100%;
     margin: 0 auto;
+    height:100vh;
+    background-color:#f6f6f6;
     display: flex;
     height:850px;
     display: -webkit-flex;
