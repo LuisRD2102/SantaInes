@@ -138,6 +138,18 @@ namespace SantaInesAPI.Migrations
                     b.HasIndex("id_departamento");
 
                     b.ToTable("Empleados");
+
+                    b.HasData(
+                        new
+                        {
+                            username = "00000001",
+                            apellido_completo = "Principal",
+                            cedula = 1,
+                            nombre_completo = "Administrador",
+                            password = "12345678",
+                            rol = "Presidencia",
+                            sexo = "M"
+                        });
                 });
 
             modelBuilder.Entity("SantaInesAPI.Persistence.Entity.Estado", b =>

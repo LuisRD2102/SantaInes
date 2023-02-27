@@ -1572,7 +1572,10 @@ namespace SantaInesAPI.Persistence.Database
                 new Parroquia {id_parroquia = 1137, id_municipio = 462, parroquia = "Sucre (Catia)"},
                 new Parroquia {id_parroquia = 1138, id_municipio = 462, parroquia = "23 de enero" }
             );
-        }
+
+			modelBuilder.Entity<Empleado>().HasData(
+				new Empleado { username = "00000001", password = "12345678", cedula = 00000001, nombre_completo= "Administrador",apellido_completo= "Principal", rol = "Presidencia", id_departamento = null, sexo = "M" });
+		}
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Direccion> Direccion { get; set; }
         public DbSet<Departamento> Departamentos { get; set; }
