@@ -56,11 +56,11 @@
                         <span style="margin-top:15px" class="span">Nombre completo: </span>
                         @Html.TextBoxFor(m => m.Item1.nombre_Completo, new {@Value = Model.Item1.nombre_Completo,Class="form-control", placeholder="Nombre(s): "})
                         @Html.ValidationMessageFor(m => m.Item1.nombre_Completo ,null, new { @class = "text-danger" })
-                </div>
+                    </div>
                     <div class="in-flex">
                         <span style="margin-top:15px" class="span">Apellido completo: </span>
                         @Html.TextBoxFor(m => m.Item1.apellido_Completo, new {@Value = Model.Item1.apellido_Completo,Class="form-control", placeholder="Apellido(s): "})
-                    @Html.ValidationMessageFor(m => m.Item1.apellido_Completo ,null, new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(m => m.Item1.apellido_Completo ,null, new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -71,11 +71,27 @@
                         @Html.ValidationMessageFor(m => m.Item1.telefono ,null, new { @class = "text-danger" })
                     </div>
                     <div class="in-flex">
-                        <span style="margin-top:15px" class="span">Correo electrónico: </span>
-                        @Html.TextBoxFor(m => m.Item1.email, new {@Value = Model.Item1.email, Class="form-control", placeholder="Correo Electrónico: "})
-                        @Html.ValidationMessageFor(m => m.Item1.email ,null, new { @class = "text-danger" })
+                        <span style="margin-top:15px" class="span">Estado: </span>
+                        @Html.DropDownListFor(d => d.Item2.id_estado, new List<SelectListItem>(),"Estado",new { id = "estadosDDL", Class="form-select",disabled="true" })
+                        @Html.ValidationMessageFor(m => m.Item2.id_estado ,null, new { @class = "text-danger-right" })
                     </div>
+                    @*<div class="in-flex">
+                        
+                    </div>*@
                 </div>
+
+            <div class="flex">
+                <div class="in-flex">
+                    <span style="margin-top:15px" class="span">Correo electrónico: </span>
+                    @Html.TextBoxFor(m => m.Item1.email, new {@Value = Model.Item1.email, Class="form-control", placeholder="Correo Electrónico: "})
+                    @Html.ValidationMessageFor(m => m.Item1.email ,null, new { @class = "text-danger" })
+                </div>
+                <div class="in-flex">
+                    <span style="margin-top:15px" class="span">Municipio: </span>
+                    @Html.DropDownListFor(d => d.Item2.id_municipio, new List<SelectListItem>(),"Municipio",new { id = "municipiosDDL", Class="form-select",disabled="true" })
+                    @Html.ValidationMessageFor(m => m.Item2.id_municipio ,null, new { @class = "text-danger-right" })
+                </div>
+            </div>
 
                 <div class="flex">
                     <div class="in-flex">
@@ -89,16 +105,16 @@
                                 @Html.TextBoxFor(m => m.Item3.peso, new{@Value = Model.Item3.peso,Class="form-control",id = "peso", placeholder = "Peso" })
                             </div>
                         </div>
-                    <span style="margin-top:15px" class="span">Tipo de sangre: </span>
-                    @Html.TextBoxFor(m => m.Item3.tipoSangre, new{@Value = Model.Item3.tipoSangre,Class="form-control", placeholder = "Tipo de sangre" })
+
+                        <span style="margin-top:15px" class="span">Tipo de sangre: </span>
+                        @Html.TextBoxFor(m => m.Item3.tipoSangre, new{@Value = Model.Item3.tipoSangre,Class="form-control", placeholder = "Tipo de sangre" })
                     </div>
                     
-                    <div class="in-flex">                        
-                        
-                        @*<span style="margin-top:15px" class="span">Municipio: </span>
-                        @Html.TextBoxFor(m => m.Item2, new {@Value = Model.Item2.municipio,Class="form-control", placeholder="Municipio: "})
-                        @Html.ValidationMessageFor(m => m.Item2.municipio ,null, new { @class = "text-danger" })   *@                    
-                         
+                    <div class="in-flex">              
+
+                        <span style="margin-top:15px" class="span">Parroquia: </span>
+                        @Html.DropDownListFor(d => d.Item2.id_parroquia, new List<SelectListItem>(),"Parroquia",new { id = "parroquiasDDL", Class="form-select",disabled="true" })
+                        @Html.ValidationMessageFor(m => m.Item2.id_parroquia ,null, new { @class = "text-danger-right" })                         
                         
                         <span style="margin-top:15px" class="span">Dirección: </span>
                         @Html.TextAreaFor(m => m.Item2.direccion, new {@Value = Model.Item2.direccion,Class="form-control area-direccion", placeholder="Dirección: "})
@@ -169,6 +185,86 @@
 
 
     <script>
+
+        $(document).ready(function () {
+            var settedValues = false;
+            //Rellena el dropdown de estados
+            var dropDown = $("#estadosDDL");
+            $.ajax({
+                type: "GET",
+                url: 'https://localhost:7270/Direccion/ConsultarEstados',
+                data: "",
+                success: function (result) {
+                    var data = result.data;
+                    var s = '<option value="">Estado</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].id_estado + '">' + data[i].estado + '</option>';
+                    }
+                    dropDown.html(s);
+                    dropDown.prop('disabled', false);
+                    if (settedValues == false)
+                        dropDown.val(@Model.Item2.id_estado).trigger('change');
+                }
+            });
+
+            //Rellena el dropdown de municipios segun el estado que se seleccione
+            $("#estadosDDL").change(function () {
+                var dropDown = $("#municipiosDDL");
+                dropDown.prop('disabled', true);
+                $("#parroquiasDDL").prop('disabled', true);
+                $("#municipiosDDL option:not(:first)").remove();
+                $("#parroquiasDDL option:not(:first)").remove();
+                var id_estado = $("#estadosDDL").val();
+
+                if (id_estado)
+                    $.ajax({
+                        type: "GET",
+                        url: 'https://localhost:7270/Direccion/ConsultarMunicipios/' + id_estado,
+                        data: "",
+                        success: function (result) {
+                            var data = result.data;
+                            var s = '<option value="">Municipio</option>';
+                            for (var i = 0; i < data.length; i++) {
+                                s += '<option value="' + data[i].id_municipio + '">' + data[i].municipio + '</option>';
+                            }
+                            dropDown.html(s);
+                            dropDown.prop('disabled', false);
+                            if (settedValues == false)
+                                dropDown.val(@Model.Item2.id_municipio).trigger('change');
+                        }
+                    });
+            });
+
+            //Rellena el dropdown de parroquias segun el municipio que se seleccione
+            $("#municipiosDDL").change(function () {
+                var dropDown = $("#parroquiasDDL");
+                dropDown.prop('disabled', true);
+                $("#parroquiasDDL option:not(:first)").remove();
+                var id_municipio = $("#municipiosDDL").val();
+
+                if (id_municipio)
+                    $.ajax({
+                        type: "GET",
+                        url: 'https://localhost:7270/Direccion/ConsultarParroquias/' + id_municipio,
+                        data: "",
+                        success: function (result) {
+                            var data = result.data;
+                            var s = '<option value="">Parroquia</option>';
+                            for (var i = 0; i < data.length; i++) {
+                                s += '<option value="' + data[i].id_parroquia + '">' + data[i].parroquia + '</option>';
+                            }
+                            dropDown.html(s);
+                            dropDown.prop('disabled', false);
+                            if (settedValues == false) {
+                                dropDown.val(@Model.Item2.id_parroquia).trigger('change');
+                                settedValues = true;
+                            }
+                        }
+                    });
+            });
+
+        });
+
 
         $(function () {
             $("#telefono").mask("(999) 999-9999");
